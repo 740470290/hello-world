@@ -1,0 +1,6 @@
+git clone https://github.com/CKTim/BlueTooth.git
+cd Test
+git add .
+git commit  -m  "myCode"
+git push -u origin master
+740470290@qq.com
