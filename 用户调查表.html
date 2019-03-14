@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<h1>用户调查表</h1>
+<table border="1">
+    <form action="">
+    <tr>
+        <td>姓名:</td>
+        <td><input type="text" name="username" value="请输入"></td>
+    </tr>
+    <tr>
+        <td>性别:</td>
+        <td><input type="radio" name="sex" checked>男<input type="radio" name="sex">女<input type="radio" name="sex">保密</td>
+    </tr>
+    <tr>
+        <td>出生日期:</td>
+        <td><select name="province" id="">
+            <option value="">1992年</option></select>
+        <select name="city" id="">
+            <option value="">2月</option></select>
+        <select name="area" id="">
+            <option value="">2日</option></select></td>
+    </tr>
+    <tr>
+        <td>家庭地址:</td>
+        <td><select name="province" id="">
+            <option value="">江苏省</option></select>
+        <select name="city" id="">
+            <option value="">南京市</option></select>
+        <select name="area" id="">
+            <option value="">玄武区</option></select></td>
+    </tr>
+    <tr>
+        <td>兴趣爱好:</td>
+        <td><input type="checkbox" checked>学习<input type="checkbox">音乐<input type="checkbox">旅游</td>
+    </tr>
+    <tr>
+        <td>本人介绍:</td>
+        <td><textarea name="自我介绍" id="" cols="30" rows="10">请输入自我介绍</textarea></td>
+    </tr>
+
+    <tr>
+        <td colspan="2" align="center"><input type="submit">
+        <button>取消</button>
+        <button>修改</button>
+        <button>添加</button>
+        <button>删除</button>
+        <button>提交</button>
+        </td>
+    </tr>
+    </form>
+</table>
+</body>
+</html>
