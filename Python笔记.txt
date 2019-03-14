@@ -1,0 +1,69 @@
+1.列表可以修改
+2.元组=列表，不能修改，字符串不能修改
+3.字典用的是主键，1=a,2=b 引用1就是a 
+d = {key1 : value1, key2 : value2 }
+3.迭代是Python最强大的功能之一
+4.Python爬虫架构
+调度器、URL管理器、网页下载器、网页解析器、应用程序
+5.报错：空行，少语句，“”写成了‘’，网站把本机ip封了
+6.重点get,head方法-requests
+7.正则re加find_all检索信息，re用于简洁表达字符串
+8.soup用于处理html文本
+9.scrapy:
+建立工程和Spider模板
+scrapy startproject BaiduStocks
+cd BaiduStocks
+scrapy genspider stocks baidu.com
+修改stocks.py文件
+编写Spider
+编写ITEM Pipelines和Settings
+10.爬取信息的2个for循环在第二个循环里，每次都会检索第一条信息，造成多余的操作，不能用liskLink.append
+11.隐藏自己的访问
+设置代理ip
+设置user-agent
+12.多进程，进程池，连接池，asyncio检查IO，aiohttp发http协议，gevent,grequests,twisted,tornado
+13.mysql数据库操作
+删除“个体”“个人”字符小于8
+delete from company where name like '%个体%';
+去重
+DELETE
+FROM
+	company
+WHERE
+	id NOT IN (
+		SELECT
+			dt.minno
+		FROM
+			(
+				SELECT
+					MIN(id) AS minno
+				FROM
+					company
+				GROUP BY
+					name
+			) dt
+	)
+字符小于8
+DELETE FROM company WHERE length(name) < 20;
+select * FROM company WHERE length(name) < 20;
+重新排序id
+alter table table_name drop id;
+alter table table_name add id int(11) primary key auto_increment first;
+14.scrapy
+1.新建scrapy和spiders
+2.写items,定义要抓取的东西
+定义user-agent
+将数据yield到pipelines里面
+解析下一页规则，取后一页的xpath
+15.django
+django-admin startproject HelloWorld
+python manage.py startapp cmdb
+urls添加域名index
+views写域名函数
+在app同级目录新建tmplates，存放html
+写html文件
+python manage.py runserver 127.0.0.1:8000 运行app
+app同级目录static存放css,js,images
+
+创建sqlite数据库的表python manage.py makemigrations
+python manage.py migrate

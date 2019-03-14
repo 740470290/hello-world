@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/a.css">
+</head>
+<body>
+<h1>shuru</h1>
+<form action="/index/" method="post">
+    <input type="text" name="username"><br>
+    <input type="password" name="password"><br>
+    boy:<input type="radio" name="sex" value="boy" checked>
+    girl:<input type="radio" name="sex" value="girl"><br>
+    乐观<input type="checkbox" name="feature1" value="乐观" checked>
+    幽默<input type="checkbox" name="feature2" value="幽默">
+    学霸<input type="checkbox" name="feature3" value="学霸">
+    小清新<input type="checkbox" name="feature4" value="小清新"><br>
+    省份:<select name="province" id="">
+        <option value="江苏省">江苏省</option>
+        <option value="浙江省">浙江省</option>
+        <option value="上海市">上海市</option>
+    </select><br>
+    自我介绍:<br>
+    <textarea name="自我介绍" id="" cols="30" rows="10"></textarea><br>
+    <input type="submit" value="提交"><br>
+    <input type="reset">
+</form>
+<hr>
+<h1>zhangshi</h1>
+<table border="1">
+    <thead>
+    <th>name</th>
+    <th>password</th>
+    <th>sex</th>
+    <th>feature</th>
+    </thead>
+    <tbody>
+    {% for line in data %}
+    <tr>
+        <td>{{ line.user }}</td>
+        <td>{{ line.pwd }}</td>
+        <td>{{ line.sex }}</td>
+        <td>{{ line.feature }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+</body>
+</html>
