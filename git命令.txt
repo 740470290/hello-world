@@ -1,5 +1,5 @@
-git clone https://github.com/CKTim/BlueTooth.git
-cd Test
+git clone https://github.com/740470290/hello-world.git
+cd hello-world
 git add .
 git commit  -m  "myCode"
 git push -u origin master
