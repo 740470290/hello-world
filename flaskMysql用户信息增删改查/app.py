@@ -20,8 +20,6 @@ class User(db.Model):
 def index():
     if request.method == 'GET':
         ulist = User.query.all()
-        for i in ulist:
-            print(i)
         return render_template('index.html', says=ulist)
     else:
         user = request.form.get('say_user')
