@@ -21,15 +21,13 @@ def index():
     if request.method == 'GET':
         ulist = User.query.all()
         return render_template('index.html', says=ulist)
-    else:
-        user = request.form.get('say_user')
-        text = request.form.get('say_password')
-        # date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        user = User(name=user, password=text)
-        # 调用添加方法
-        db.session.add(user)
-        db.session.commit()
-        return redirect(url_for('index'))
+    user = request.form.get('say_user')
+    text = request.form.get('say_password')
+    # date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+    user = User(name=user, password=text)
+    # 调用添加方法
+    db.session.add(user)
+    db.session.commit()
 @app.route('/del/', methods=['GET', 'POST'])
 def del_user():
     # 根据摸个字段作删除,filter_by蕾仕于where条件限定
@@ -37,13 +35,11 @@ def del_user():
     if request.method == 'GET':
         ulist = User.query.all()
         return render_template('index.html', says=ulist)
-    # else:
     userId = request.form.get('userId')
     User.query.filter_by(id=userId).delete()
     db.session.execute("alter table user drop id;")
     db.session.execute("alter table user add id int(5) not null primary key auto_increment first;")
     db.session.commit()
-    return redirect(url_for('del_user'))
 @app.route('/edits/', methods=['GET', 'POST'])
 def edit_user():
     # 根据摸个字段作删除,filter_by蕾仕于where条件限定
@@ -51,13 +47,11 @@ def edit_user():
     if request.method == 'GET':
         ulist = User.query.all()
         return render_template('index.html', says=ulist)
-    # else:
     userId = request.form.get('userId')
     user = request.form.get('say_user')
     text = request.form.get('say_password')
     User.query.filter_by(id=userId).update({'name': user,'password': text})
     db.session.commit()
-    return redirect(url_for('edit_user'))
 # #指定数据库连接还有库名
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@127.0.0.1:3306/myflask?charset=utf8'
 # 制定配置，用来省略操作
