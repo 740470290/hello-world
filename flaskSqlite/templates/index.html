@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <h1>用户信息</h1>
-            <form action="{{ url_for('index') }}" method="POST">
+            <form action="{{ url_for('index') }}" method="POST" name="f">
                 <label for="usr">用户名:</label>
                 <input type="text" name="say_user" class="form-control">
                 <label for="pwd">密码:</label>
@@ -23,7 +23,7 @@
             </form>
             <form action="{{ url_for('del_user') }}" method="POST">
                 <label for="usr">id:</label>
-                <input type="text" name="userId" class="form-control"><br>
+                <input type="text" name="userId" class="form-control" required="required"><br>
                 <input type="submit" value="删除"  class="btn btn-primary">
             </form>
             <form action="{{ url_for('edit_user') }}" method="POST">
@@ -54,5 +54,12 @@
             </tbody>
         </table>
     </div>
+{#    <script>#}
+{#        window.onload=function f() {#}
+{#            var a = document.getElementsByTagName("tr").length;#}
+{#                document.forms["f"]["say_user"].value#}
+{#            console.log(a)#}
+{#        }#}
+{#    </script>#}
 </body>
 </html>
