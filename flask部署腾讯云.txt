@@ -1,0 +1,5 @@
+1.买主机
+2.登录远程桌面http://bbs.qcloud.com/thread-1807-1-1.html
+3.安装python3.7,flask
+设置host0.0.0.0端口号80(这是http默认端口号,直接输入ip地址就行)
+把程序的文件夹复制到云主机C盘,打开cmd,进入app.py路径,python app.py
