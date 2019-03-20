@@ -42,7 +42,7 @@ def edit_user():
         userId = request.form.get('userId')
         user = request.form.get('say_user')
         text = request.form.get('say_password')
-        cur.execute("update students set name=" + user + ", password =" + text + " where id=" + userId)
+        cur.execute("update students set name=" +"\'"+ user+"\'" + ", password =" +"\'"+ text +"\'"+ " where id=" + userId)
         con.commit()
     # else:
     cur.execute("select * from students")
