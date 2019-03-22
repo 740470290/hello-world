@@ -1,8 +1,5 @@
-from flask import Flask, request, render_template, redirect, url_for
-import time
-from flask_sqlalchemy import SQLAlchemy
+﻿from flask import Flask, request, render_template
 import sqlite3 as sql
-
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -51,4 +48,4 @@ def edit_user():
 
 # 程序入口
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=80)
