@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .container{
+        width: 1000px;
+        margin: 0 auto;
+    }
+    .head *{
+        display: inline-block;
+    }
+    .head a{
+        text-decoration: none;
+        padding: 0 20px;
+        line-height: 90px;
+        height: 90px;
+        text-align: center;
+        font-size: 18px;
+    }
+    .first{
+        background-color: #31c27c;
+        color: #fff;
+        margin-left: 50px;
+    }
+    .head a:hover{
+        color: #31c27c;
+    }
+    .name{
+        width: 174px;
+        height: 36px;
+        border: 1px solid #c9c9c9;
+        padding: 0 33px 0 11px;
+        font-size: 14px;
+        border-radius: 3px;
+        margin-left: 50px;
+    }
+    .sub{
+        font-size: 16px;
+        height: 36px;
+        width: 55px;
+        margin-left: 20px;
+        border: 1px solid #c9c9c9;
+        background: #FCFAFA;
+        padding: 0 9px;
+        border-radius: 3px;
+    }
+    .line{
+        height: 1px;
+        background: #CBC2C2;
+    }
+    .content a{
+        text-decoration: none;
+    }
+    .content a:hover{
+        color: #31c27c;
+    }
+    .content{
+        position: relative;
+        left: 50px;
+        top: 50px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+            <a href="" class="first">首页</a>
+            <a href="">新闻</a>
+            <a href="">视频</a>
+            <a href="">音乐</a>
+            <form action="">
+                <input type="text" class="name">
+                <input type="submit" value="搜索" class="sub">
+            </form>
+        </div>
+        <div class="line"></div>
+        <div class="content">
+            <a href="">
+            <img src="300.jpg" height="200" width="200" alt=""><br>
+            梅溪湖畔的“隐形守护者”
+            </a>
+        </div>
+    </div>
+</body>
+</html>
