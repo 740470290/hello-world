@@ -14,6 +14,10 @@ function checkIdBelow() {
     var str="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
     var pas="_1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
     var i,j;
+    if(x.length<6 || a.length<6){
+        alert("至少输入6位")
+        return false;
+    }
     if (isNaN(c) || c < 1 || c > b-1) {
         alert("id输入错误");
         return false;
@@ -37,6 +41,10 @@ function checkPassword() {
     var str="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
     var pas="_1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
     var i,j;
+    if(x.length<6 || a.length<6){
+        alert("至少输入6位")
+        return false;
+    }
     for(i=0;i<x.length;i++){
         if(pas.indexOf(x[i])==-1){
         alert("不合法的密码");
