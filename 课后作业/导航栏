@@ -61,6 +61,9 @@
         left: 50px;
         top: 50px;
     }
+    .content img:hover{
+        box-shadow: 6px 6px 6px black;
+    }
     </style>
 </head>
 <body>
