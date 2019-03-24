@@ -1,3 +1,5 @@
 pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/ --upgrade tensorflow     # for Python 3.*
 pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/ --upgrade tensorflow-gpu # for Python 3.* and GPU
 //windows去掉--upgrade,pip3改为pip
+2.文件名不能取tensorflow否则报错
+3.卸载h5py包,否则报错
