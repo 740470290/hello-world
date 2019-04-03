@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>冒泡排序</title>
+    </head>
+    <body>
+    <script>
+    var arr=[100,22,10,7,68,55,1,5,4,3,2,77,56,99,8];
+    //找出最大的,放在最后面
+    for(j=0;j<arr.length-1;j++){
+      for(var i=0;i<arr.length-1-j;i++){
+            if(arr[i]>arr[i+1]){
+                //数据交换
+                var tmp=arr[i];
+                arr[i]=arr[i+1];
+                arr[i+1]=tmp;
+                }
+            }
+    }
+    document.write(arr)
+    </script>
+    </body>
+</html>
