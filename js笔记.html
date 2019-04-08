@@ -1,10 +1,12 @@
 var a=document.getElementById('a')
-//改变css
+//改变css .style只能获得内联样式
 window.getComputedStyle(a).color
 a.style.background='red'
 a.style.setProperty('background','green')
 a.style.removeProperty('background')//删除属性
 //改变属性
+a.getAttribute('color')
+a.hasAttribute('color')
 a.setAttribute('disabled','disabled')
 a.removeAttribute('disabled')
 //改变class
