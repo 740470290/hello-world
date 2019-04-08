@@ -9,8 +9,12 @@ a.setAttribute('disabled','disabled')
 a.removeAttribute('disabled')
 //改变class
 a.classList.add()
-a.classList+=' c2'
+a.className+=' c2'
 a.classList.remove('c2')
 //css选择器
 var a=document.querySelector('#app')
 var a=document.querySelectorAll('p')[0]
+//方法监听,使用id不需要先声明
+a.addEventListener('click',f)
+a.removeEventListener('click',f)//移除
+a.onclick=function(){}
