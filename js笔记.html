@@ -22,4 +22,5 @@ var a=document.querySelectorAll('p')[0]
 a.addEventListener('click',f)
 a.removeEventListener('click',f)//移除
 a.onclick=function(){}
-
+//没有checked属性的input标签
+document.querySelector('td>input:not(:checked)')
