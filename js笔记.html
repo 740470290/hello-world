@@ -2,6 +2,7 @@ var a=document.getElementById('a')
 //改变css .style只能获得内联样式
 window.getComputedStyle(a).color
 a.style.background='red'
+a.style.background=''
 a.style.setProperty('background','green')
 a.style.removeProperty('background')//删除属性
 //改变属性
@@ -12,6 +13,7 @@ a.removeAttribute('disabled')
 //改变class
 a.classList.add()
 a.className+=' c2'
+a.className=''
 a.classList.remove('c2')
 //css选择器
 var a=document.querySelector('#app')
