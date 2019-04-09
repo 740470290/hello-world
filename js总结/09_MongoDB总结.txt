@@ -1,0 +1,77 @@
+一、安装
+  1.安装软件
+  2.配置环境
+    在我的电脑-属性-高级系统设置-高级-环境变量-path,若win7就在路径最后添加 ;C:\Program Files\MongoDB\Server\3.0\bin ,若win10选择新建添加C:\Program Files\MongoDB\Server\3.0\bin
+  3.检测
+    在cmd或Git Bash中输入mongo,显示"目标计算机积极拒绝"说明环境配置好了
+二、操作
+  (一)启动数据库服务,最后出现on port 27017表示启动成功,该命令窗口不可关闭,打开新的命令窗口来完成后续操作
+    mongod --dbpath 目标文件夹的绝对路径
+  (二)连接数据库服务,连接成功才可以使用mongo命令,也可以在第一步完成后直接用NodeJS进行操作
+    mongo
+  (三)数据库操作
+    1.查看当前服务器中的所有数据库
+      show dbs
+    2.使用指定数据库,若数据库不存在则直接创建并使用
+      use 数据库名称
+    3.查看当前数据库名称
+      db
+    4.查看当前数据库中的集合
+      show collections
+    5.删除当前所在的数据库
+      db.dropDatabase()
+  (四)集合操作
+    1.创建集合并插入数据
+      db.集合名.insert({id:1,name:"zs",age:23})
+    2.查询集合中的数据
+      db.集合名.find()
+    3.删除集合中的数据,不写json条件则清空所有
+      db.集合名.remove({id:1})
+    4.修改符合条件的所有数据,若只想修改第一条就不写{multi:true}
+      db.集合名.update({id:2},{$set:{age:32}},{multi:true});
+    5.删除集合
+      db.集合名.drop()
+    ?6.导入json文件中的数据(仅cmd可使用)
+      mongoimport -d 数据库名称 -c 集合名称 文件路径
+
+      mongoimport --db 数据库名称 --collection 集合名称 --drop --file 文件路径
+      将文件中的数据导入到指定集合中去,如果集合已经存在,则先删除原有集合,然后再创建新的集合,导入数据
+  (五)关系
+    1.大于(great than)
+      $gt
+      例:查询年龄大于等于20岁的信息
+        db.stu.find({age:{$gte:20}})
+    2.大于等于(great than or equal)
+      $gte
+    3.小于(less than)
+      $lt
+    4.小于等于(less than or equal)
+      $lte
+    5.等于(equal)
+      $eq
+      例:查询年龄等于20岁的学生的信息
+        db.stu.find({age:20})
+        db.stu.find({age:{$eq:20}})
+    6.不等于(not equal)
+      $ne
+      例:查询年龄不是20岁的信息
+        db.stu.find({age:{$ne:20}})
+    7.与、并且
+      $and
+      例:查询年龄为44岁且id为101的信息
+        db.stu.find({age:44,id:101})
+        db.stu.find({$and:[{age:44},{id:101}] })
+    8.或者
+      $or
+      例:查询年龄为48岁,或者id为105的信息
+        db.stu.find({ $or:[{age:48},{id:105}] })
+    9.非、取反
+      $not
+      例:查询年龄不小于44岁的信息
+        db.stu.find({age:{$not:{$lt:44}} })
+        查询年龄等于44岁的信息,如果$not后面不能直接跟具体的值,等于也要写$eq包装下
+        db.stu.find({age:{$not:{$eq:44}} })
+    1.既不是,也不是
+      $nor
+      例:查询年龄不是44岁,id不是104的信息
+        db.stu.find({$nor:[{age:44},{id:104}]})

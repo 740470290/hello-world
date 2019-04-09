@@ -1,0 +1,395 @@
+                              NodeJS
+一、软件操作
+  (一)操作平台
+    1.编辑器
+    2.cmd打开的磁盘操作系统
+    3.git
+  (二)js文件的运行与结束
+    不推荐在编辑器内运行,此外操作方式相同
+    1.运行,可以创建一个后缀为bat的文件,将代码如nodemon app.js写在其中,双击即可运行文件
+      node xx.js回车
+    2.停止
+      Ctrl+C
+  (三)安装外部模块
+    1.若在安装时添加--save,package.json中会有记录,之后可以自动安装所有被记录的模块,一般将--save添加到install后
+    2.若在安装时添加-g表示作用域为全局,nodemon需要添加
+    3.淘宝镜像:https://npm.taobao.org/,此为国内网站,下载速度更快
+    4.安装方法:npm i 模块名+回车
+  (四)杂项
+    1.强制结束,可在任务管理器的进程里将node.exe关掉
+    2.每次调式完都需要及时停止以免影响之后
+    3.for循环中的fs.stat方法不能遍历,需要使用自调函数完成自增
+二、require引入
+  (一)引入自带模块
+    var http=require('http'); 引入http模块
+    var url=require('url'); 引入url模块
+    var fs=require('fs'); 引入fs模块
+  (二)引入自定义模块
+    方法与前者相同,不熟悉时,可将鼠标悬停其上,会有信息提示
+  (三)引入其他js
+    var 自定义名=require("./xx.js")
+三、模块
+  (一)安装外部模块
+    npm i --save 模块名
+    添加了--save后文件夹内会生成一个package-lock.json文件,该文件中会保存这些安装过的模块名,若有需要,可以一次性安装记录的所有模块
+  (二)http模块
+    var serve = http.createServer(function(req,res){
+      服务器内容编写区
+    }).listen(4000,'localhost');
+    listen效果为开启服务,监听端口;第一个参数是端口号,80是本机端口不能使用;第二个参数是地址
+    1.req,全称request,译为请求
+      (1)req.url 获取请求路径与参数,不能获取锚点,如一个完整的网页地址:http://localhost:400/a/b/c?name=zhangsan&age=23#sad,/之后的是路径,?之后的是参数,#之后的是锚点,req.url获取的就是/a/b/c?name=zhangsan&age=23
+      (2)清除/favicon.ico
+          if(req.url=='/favicon.ico'){
+            return;
+          }
+    2.res,全称response,译为回应
+      (1)res.writeHead(200,{"Content-Type":"text/html;charset=utf-8"}); 设置文本显示类型和中文,显示类型设为text/plain可以显示纯文本
+      (2)res.write("字符串|标签"); 不结束请求,只返回数据
+      (3)res.end(["字符串|标签"]); 结束请求,可选择返回数据,必须要有否则会死循环
+  (三)fs模块,fs中的所有方法都有异步和同步两种形式,异步的最后一个参数都是回调函数,回调函数的第一个参数都是异常,但异步方法不能保证执行顺序;同步操作时,任何异常都会被立即抛出,但速度太慢
+    1.引入
+      var fs=require('fs');
+    2.readFile,异步读取文件,此方法运行相当较慢,会发生异步处理,需要注意
+      (1)异步方法
+        fs.readFile("路径"[,"utf-8"],function(err,data){
+          if(err){
+            console.log(err); 不打印看不到错误信息
+            res.end("读取出错"); 返回错误响应
+          }else{
+            res.end(data); 正确结果,返回数据,data是buffer类型
+          }
+        })
+      (2)同步方法,需要创建变量来接收
+        var result=fs.readFileSync("./NodeJS02.html");
+        console.log(result)
+    3.readFileSync,同步读取文件
+      fs.readFileSync('路径');
+    4.mkdir,异步创建文件夹
+      fs.mkdir("./a",function(err){
+        if(err){
+          console.log(err);
+          res.end("失败");
+        }else{
+          console.log("成功");
+        }
+      })
+    5.writeFile,异步写入数据到文件,文件存在则覆盖,不存在则创建
+      fs.writeFile("./1.txt","aaa",function(err){
+        if(err){
+          console.log(err);
+          res.end("失败");
+        }else{
+          console.log("成功");
+        }
+      })
+    6.readdir,读取文件夹内容
+        fs.readdir("./",function(err,files){
+          if(err){
+            console.log(err);
+            return;
+          }else{
+            console.log(files) //files为数组形式
+          }
+        })
+    7.stat,异步获取文件或文件夹状态
+      fs.stat("1.txt",function(err,stats){
+        if(err){
+          console.log("无此文件/文件夹");
+        }else{
+          console.log(stats);
+          console.log(stats.isBlockDevice()); //查看是否是块文件,块文件指的是C盘D盘之类,不是为false,是为true
+          console.log(stats.isDirectory()); //查看是否是文件夹
+          console.log(stats.isFile()); //查看是否是文件
+        }
+      })
+    8.rename,将旧路径的文件放在新路径里,在路径的最后一级写文件的名字
+      fs.rename(oldPath,newPath,function(err){
+        console.log(err);
+      });
+  (四)express模块,是对http模块的简化
+    1.引入
+      var express=require('express');
+    2.创建app应用对象
+      var app=express();
+    3.监听端口
+      app.listen(4000);
+    4.设置视图模板引擎,可以调用view文件夹中的ejs模板,需要自建view文件夹
+      app.set('view engine','ejs')
+    5.处理请求
+      (1)get方法,第一个参数写路径,其路径是精准匹配,第二个参数写函数或路由调用
+        app.get("/路径",function(req,res){
+          函数结构体
+        })
+        app.get('/路径',route.暴露的方法名);
+      (2)use方法,其路径是模糊匹配,如路径为'/info','/info/student'一样可以匹配到,其他同get
+      (3)post方法,针对post请求,其他同get
+    6.静态文件伺服,设置根目录,可以同时设置多个,第一个不行自动向下匹配,一般需要引用图片或css文件时需要设置
+      app.use(express.static("./路径"))
+    7.结束
+      (1)结束请求
+        a.end,返回值不支持中文,参数类型:string、buffer
+          res.end("描述语句"+变量);
+        b.send,返回值支持中文,参数类型:string、buffer、json、array
+          res.send("描述语句"+变量);
+        c.render,调用设置好的ejs模板,ejs文件在设置视图模板引擎后不写后缀名,当ejs模板中有需要填充的,就需要传递json数据
+          res.render("ejs文件"[,json数据][,回调函数]);
+      (2)转移请求
+        a.redirect,跳转页面至
+        res.redirect('/');
+  (五)mongodb模块,封装数据库常用操作
+    1.引入mongodb模块中的操作模块
+      var mongoClient=require('mongodb').MongoClient;
+    2.也可以引入数据库中的ObjectID模块,需要对每条数据独有的_id进行删改查时,通过其他方式获取的_id格式不匹配,需要通过该模块进行封装,才能调用
+      (1)引入模块
+        var ObjectID=require('mongodb').ObjectID
+      (2)获取_id      
+        var id=req.params/body/query.id;
+      (3)匹配格式
+        id=ObjectID(id);
+    3.定义数据库与集合名称,需要数据库与集合实际存在
+      var dbName="web1807";
+      var collection="student";
+    4.使用connect方法来连接服务器,共有三个参数,第一个是mongo服务器地址"mongodb://localhost:27017",可以提前定义,第二个参数添加后不会报错,第三个参数是回调函数,回调函数中有两个参数,第一个是错误,第二个是连接后端服务器
+      mongoClient.connect(url,{useNewUrlParser:true},function(err,client){
+        if(err){
+          console.log(err)
+          return;
+        }
+        结构主体
+      })
+    以下皆写在结构主体中
+    5.获取数据库与集合
+      var db=client.db(dbName)
+      var coll=db.collection(collection);
+    6.对coll对象进行增删查改,方法名后缀一般分one和many两种,前者只能修改单个,或者多个
+      (1)增加多条数据
+        coll.insertMany(单条json数据/数组形式的多条json数据,function(err,result){
+          if(err){
+            console.log(err)
+            return
+          }
+          对result的操作
+          client.close();
+        })
+      (2)删除多条符合数据
+        coll.deleteMany({匹配json条件1[,匹配json条件2,...]},function(err,result){
+          if(err){
+            console.log(err)
+            return
+          }
+          对result的操作
+          client.close();
+        })
+      (3)查找数据,不写json条件默认查找所有
+        coll.find({匹配json条件1[,匹配json条件2,...]}).toArray(function(err,docs){
+          if(err){
+            console.log(err)
+            return
+          }
+          对docs的操作
+          client.close();
+        })
+      (4)更改数据
+        coll.updateMany({匹配json条件1[,匹配json条件2,...]},{$set:{替换json数据}},function(err,result){
+          if(err){
+            console.log(err)
+            return
+          }
+          对result的操作
+          client.close();
+        })
+    7.关闭连接,需要注意写的位置
+      client.close();
+    8.封装调用,需要利用回调函数,详见db文件夹
+  (六)silly-datetime模块,修饰时间的格式,一般用时间给上传的文件命名
+    1.引入
+      var sd=require('silly-datetime');
+    2.获取当前时间
+      var now=new Date();
+    3.format方法,规范化时间
+      sd.format(now,'YYYY-MM-DD HH:mm:ss');
+  (七)formidable,接收上传文件,详见六-(一)-2-(2)
+  (八)ejs,后台json数据生成前端节点
+    1.前端节点格式
+      <%= 自定义变量名 %>
+      <% for语句/if语句/while语句 %>
+    2.设置视图模板引擎,可以调用view文件夹中的ejs模板,需要自建view文件夹
+      app.set('view engine','ejs')
+    3.后台服务器json数据格式,在查询数据库时,一般会将查询方法中的参数result作为数据,再配上自定义的变量名进行调用
+      var 自定义数据名={自定义变量名:数据,可以为数组,甚至数组元素还可以为json}
+    4.连接前端与后台,写在后台服务器
+      res.render('ejs文件'/字符串模板,自定义数据名/json数据)
+  (九)自定义的db模块,是对NodeJS对MongoDB数据库增删改查四种方法的封装,详见db文件夹
+  (十)rimraf,删除文件夹
+    rimraf('路径',function(err){
+      console.log(err);
+    });
+  (十一)gm,使用命令行操作的图形处理工具
+    1.引入
+      var gm=require('gm')
+    2.使用
+      gm('./img/eason.jpg') //原图片路径
+      .flip() //上下颠倒
+      .magnify() //放大
+      .rotate('green', 45) //旋转一定度数,并用指定颜色填充空白
+      .blur(7, 3) //模糊
+      .crop(300, 300, 150, 130) //截取,参数分别为宽、高、x坐标和y坐标
+      .edge(3) //锐化描边
+      .drawCircle(10, 10, 20, 10) //画圆,参数分别为圆心x坐标、y坐标和圆上一点的x坐标、y坐标
+      .write('./11.jpg',function(err){ //处理后图片路径
+        if(err){
+          console.log('操作失败');
+        }
+      })
+四、暴露
+  (一)暴露属性或方法,一般来说暴露的属性名和已定义的属性名相同,最后通过require调用
+    exports.暴露的属性名=已定义的属性名
+    exports.暴露的方法名=已定义的函数名/直接暴露写函数体
+    例: exports.info=function(req,res){
+          res.send("这是info");
+        }
+  (二)暴露对象,包括面向对象方法创建的,最后通过require调用
+    module.exports=已定义的对象名
+五、路由
+  (一)调用暴露属性、方法或对象
+    var route=require('暴露方法js的路径')
+  (二)调用路由文件为次级路径,主页面使用use方法模糊匹配,次页面选择get精准匹配
+    1.在次页面创建路由对象
+      var route=express.Router();
+    2.在次页面撰写get方法的不同路径
+      route.get("/a",function(req,res){
+        res.send("这是student的/a请求");
+      })
+    3.在次页面暴露对象
+      module.exports=route; 
+    4.在主页面调用对象
+      var route=require("./04_route.js")
+    5.在主页面使用use方法模糊匹配一级路径,精准匹配二级路径
+      app.use("/student",route)
+六、获取参数
+  (一)获取表单控件提交的参数
+    1.get提交
+      (1)req.query
+        a.必须在载入express时才能使用
+          var exp=require('express');
+        b.最后req.query的显示为{上传数据的表单控件的name值:'表单控件的value值',...},以 req.query.上传数据的表单控件的name值.属性名 调用值
+      (2)urlObj.query
+        a.首先需要载入url
+          var url=require('url');
+        b.使用parse方法,想要调用格式化的urlObj.query必须添加第二个参数true
+          var urlObj=url.parse(req.url,true);
+        c.最后urlObj.query的显示为{上传数据的表单控件的name值:'表单控件的value值',...},以 urlObj.query.上传数据的表单控件的name值.属性名 调用值
+    2.post提交,上传文件必须使用此方式
+      <form action="/路径" method="POST" enctype="multipart/form-data"></form>
+      (1)req.body
+        a.首先需要载入body-parser
+          var bdParser=require('body-parser')
+        b.然后设置请求消息头,不设置就是undefined,固定格式
+          app.use(bdParser.urlencoded({extended:true}));
+        c.最后req.body的显示为{上传数据的表单控件的name值:'表单控件的value值',...},以 req.body.上传数据的表单控件的name值.属性名 调用值
+      (2)formidable
+        a.首先需要载入formidable
+          var fd = require('formidable');
+        b.然后重新定义,固定格式
+          var form = new fd.IncomingForm();
+        c.设置上传文件的临时保存路径
+          form.uploadDir='路径';
+        d.使用parse方法,其具有三个参数
+          form.parse(req,function(err,fields,files){
+            if(err){
+              console.log(err);
+              res.send('失败')
+            }else{
+              对fields和files里调用的值的操作
+            }
+          }
+          (a)err参数,错误数据,一般直接打印
+          (b)fields参数,显示为{上传数据的表单控件的name值:'上传数据的表单控件的value值',...}
+          (c)files参数,显示为{上传文件的表单控件的name值:File{属性名:值,...}},想要调用其中的值,以 files.上传文件的表单控件的name值.属性名 调用值
+  (二)获取路径参数
+    1.获取准确路径,如http://localhost:400/a/b/c?name=zhangsan&age=23#sad,urlObj.pathname
+      (1)首先需要载入url
+        var url=require('url');
+      (2)使用parse方法,想要调用格式化的urlObj.query必须添加第二个参数true
+        var urlObj=url.parse(req.url,true);
+      (3)urlObj.pathname显示为/a/b/c,若是首页http://localhost:400也会返回/
+      (4)urlObj.query显示为{name:'zhangsan',age:'23'}
+    2.获取模糊路径
+      (1)模糊路径类型,一般将模糊路径写在最后
+        a.冒号参数,如/show/:dirName
+        b.正则表达式,如/^\/[a-z]{3}\/[1-9]{3}$/
+      (2)获取方式:通过req.params.dirName调用实际路径的值
+七、项目结构
+  public,存放公共文件夹(css,js,img)
+  scripts,自己定义的js脚本文件,暴露后被app.js调用
+  uploads,上传图片保存的路径
+  views,ejs视图模板存放路径,ejs文件结构与Html相同,通过res.render引入js文件
+  app.js,服务器启动文件
+  package.json,npm init后自动生成的,配置文件
+八、中间件
+  (一)next
+    app.use(function(req,res,next){
+      if(req.url=="/a"){
+        next();
+      }else{
+        res.send("所有请求");
+      }
+    })
+    若路径为/a则跳过,否则都生效
+九、状态管理,记录浏览器与服务器之间的交互状态,管理这种状态的机制就叫状态管理机制
+  (一)cookie机制,记录服务器与浏览器之间的一种规范,由服务器生成并发送给浏览器,由浏览器保存,浏览器会自动带着cookie去访问服务器,可以设置多个cookie,若设置的属性名一样,后设置的值会覆盖前者,用户可以删除、禁用、修改cookie,cookie可以保存的数据很少
+    1.引入cookie管理模块cookie-parser
+      var cp=require('cookie-parser')
+    2.设置解析方式
+      app.use(cp());
+    3.生成cookie,设置中写maxAge为此rookie的最大持续时间
+      res.cookie('名字',值[,{设置}]);
+      res.cookie('username','Jim Green',{maxAge=90000});
+    4.调用直接利用req.cookies.username
+    5.清除cookie
+      res.clearCookie('名字');
+  (二)session机制,session基于cookie实现,为了解决cookie存储量小和不安全而产生的,其数据保存在服务器端的,客户端无法修改,session需要引入express-session模块,其设置与获取都通过req,req.session是json对象,浏览器保存的是key,服务器保存的是value,如果浏览器的key被修改,就会失去对应的value,也就无法获得数据
+    1.引入session管理模块cookie-parser
+      var session=require('express-session')
+    2.使用session中间件
+      app.use(session({
+        secret:'keyboard cat', //通过字符串获取一个hash值,用于生成一个sessionID
+        resave:false, //不强制自动保存,即使数据在请求期间没有被修改
+        saveUninitialized:true, //强制保存未初始化的session
+        cookie:{maxAge:600000} //设置最大持续时间
+      }))
+    3.生成session
+      req.session.username='jxh'
+    4.调用直接利用req.session.username
+    5.清除session
+      req.session.destroy(function(err){
+        if(err){
+          res.send("清除失败")
+        }else{
+          res.send("清除成功")
+        }
+      })
+十、参考网址
+  (一)Express方法:
+    http://www.expressjs.com.cn/4x/api.html
+  (二)NodeJS中文网,主要针对自带操作和模块
+    http://nodejs.cn/api/
+  (三)npm模块平台,主要针对自定义模块
+    https://www.npmjs.com/
+十一、MD5加密,将一些敏感的数据保存进数据库时,避免明文保存
+  (一)特点: 
+    1.最后得出的MD5校验码长度都一致
+    2.不同内容的数据的MD5校验码都不一样,内容相同,哪怕文件名、存储位置不同也无影响
+    3.源数据计算MD5校验码简单,反推难
+  (二)原则:
+    1.通常不要只加密一次
+      var pwd='123';
+      var str=crypto.createHash('md5').update(pwd).digest('base64');
+      str=crypto.createHash('md5').update(pwd).digest('base64');
+    2.可以使用加盐加密
+      var pwd='123';
+      pwd+='abc';
+      var str=crypto.createHash('md5').update(pwd).digest('base64');
+
+?案例:day10.06获取表单输入的数据 day11.04upper

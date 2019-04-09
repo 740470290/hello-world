@@ -1,0 +1,334 @@
+                           HyperText Markup language
+                                超文本标记语言
+序、标准格式
+	<标签名 属性名="属性值">
+一、head部位
+	(一)meta标签,单标签
+		<meta http-equiv="refresh" content="3;#.html">
+		<!-- 属性设置为刷新,3秒后转至另一个网页 -->
+		<meta http-equiv="description" content="花卉">
+		<!-- 属性设置为描述,增加被搜索广度 -->
+		<meta http-equiv="keywords" content="牡丹,杜鹃..."> <meta http-equiv="" content="">
+		<!-- 属性设置为关键词,增加被搜索广度 -->
+	(二)link标签,单标签
+		<link rel="stylesheet" href="index.css">
+		<!-- 导入外部css进行修饰 -->
+		<link rel="shortcut icon" href="img/01.ico">
+		<!-- 在标题栏添加ico图标作为logo -->
+	(三)title标签,双标签
+		<title>百度一下</title> <!-- 设置标题名称 -->
+	(四)style标签,双标签
+		<style>
+			选择器{样式名:样式值;样式名:样式值;}
+		</style>
+二、body部位
+	(一)文本修饰标签
+		1.font标签,双标签(font译为字体形状)
+			<font size="-2" color="red" face="宋体">文本内容</font>
+			<!-- 修饰文本,字体大小可设置正负 -->
+		2.加粗,双标签
+			<b>文本加粗</b>
+			<strong>文本加粗</strong>
+		3.倾斜,双标签
+			<i>文本倾斜</i>	<em>文本倾斜</em>
+		4.下划线,双标签
+			<u>文本下划线</u>	<ins>文本下划线</ins>
+		5.删除线,双标签
+			<s>文本删除线</s>	<del>文本删除线</del>
+		6.上角标,双标签
+			X<sup>3</sup>
+		7.下角标,双标签
+			CO<sub>2</sub>
+		8.标签,双标签,不换行,可随意嵌套
+			<label>文本内容</label>
+		9.块,双标签,不换行,可随意嵌套
+			<span>文本内容</span>
+	(二)img标签,单标签
+		<img src="images/01.jpg" alt="图片有误时的描述信息" title="鼠标悬停时的描述文本" width="300px" height="400px"> 
+		<!-- src为属性名,指向物件的来源,拿取01.jpg作为这个img的源档案 -->
+	(三)标题和段落标签
+		1.h1标签,双标签,换行,不可随意嵌套
+			<h1 align="center">一级标题内容</h1> <!-- 标题可选1-6,依次变小 -->
+		2.p标签,双标签,换行,不可随意嵌套
+			<p align="left/center/right">段落内容</p>
+	(四)div标签,双标签
+		<div></div> 
+		可以随意嵌套,相关之间无缝隙
+		此外还有一些语义化更明确的标签，但实际效果同div
+			1.头部
+				<header></header>
+			2.文章
+				<article></article>
+			3.导航链接区域
+				<nav></nav>
+			4.底部
+				<footer></footer>
+			5.页面内容外的区域
+				<aside></aside>
+	(五)a标签,单标签
+		1.在当前网页跳转向新网页
+			<a href="跳转的地址" target="_self">链接内容</a>
+			<!-- href为属性名,指向需要链接前往的地方 -->
+		2.创建一个空白网页进行跳转
+			<a href="跳转的地址" target="_blank">链接内容</a>	
+		3.下载文件
+			<a href="img/01.jpg" download>下载图片</a>
+			<!-- 只写download是因为标签名于属性名相同,可省略 -->
+		4.跳转至当前网页的特定锚点位置
+			<a name="书签名">锚点01</a> <!-- 建立锚点 -->
+			<a href="#书签名">链接内容</a> <!-- 链接至所创建的锚点 -->
+		4.跳转至不同网页的特定锚点位置
+			<a name="书签名">锚点02</a> <!-- 在目标网页建立锚点 -->	
+			<a href="跳转的地址#书签名">链接内容</a> <!-- 链接至目标网页上所创建的锚点 -->
+		5.返回顶部
+			<a href="#">返回顶部</a>	<!-- 跳转的地址直接写#或不写 -->
+	(六)列表
+		1.ul标签,无序数,双标签
+			<ul type="disc/circle/square/none">
+				<li>无序列表</li>
+				<li>无序列表</li>
+				<li>无序列表</li>
+			</ul>
+		2.ol标签,有序数,双标签
+			<ol type="1/a/A/i/I">
+				<li>有序列表</li>
+				<li>有序列表</li>
+				<li>有序列表</li>
+			</ol>
+		<!-- 快捷方式应写作：ul>li*3 -->
+	(七)自定义列表
+		<dl>
+			<dt>江苏省</dt> <!-- dd与dt同级,显示的时候dd在更右边 -->
+			<dd>南京市</dd>
+			<dd>无锡市</dd>
+			<dt>安徽省</dt>
+			<dd>合肥市</dd>
+			<dd>黄山市</dd>
+		</dl>
+		<!-- 快捷方式应写作：dl>(dt+dd*2)*2 -->
+	(八)table标签,双标签
+		<table align="center/right/left" width="宽度" height="高度" border="边框大小" bordercolor="边框颜色" bgcolor="背景颜色" background="背景图片" cellpadding="0" cellspacing="0">
+		<!-- cellpadding为单元格内内容的左边距 cellspacing为单元格之间的间距 -->
+			<caption>标题内容</caption>	
+			<tr align="center/right/left" valign="top/middle/bottom" bgcolor="背景色">
+			<!-- tr指的是行 -->
+				<td></td> <!-- td指的是单元格 -->
+				<td></td>
+			</tr>
+			<tr>
+				<th></th> <!-- th指的是列,自带居中加粗 -->
+				<th></th>
+			</tr>
+			<tr>
+				<td colspan="2"></td> <!-- 横向合并,需要删去同行的下一个单元格 -->
+			</tr>			
+			<tr>
+				<td rowspan="2"></td> <!-- 纵向合并,需要删去同列的下一个单元格 -->
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+		<!-- 快捷方式应写作：table>tr*4>td*2 -->
+		<!-- 此外可分别设置<thead></thead>、<tbody></tbody>和<tfoot></tfoot>三个双标签嵌套在<tr></tr>之外,可以完成表格内部分区块修饰 -->
+	(九)form标签,双标签
+		<form action="index.php" method="post" enctype="multipart/form-data" name="Uform" form="login">
+		<!-- method="post"使得传输数据不可见,但降低了速度,enctype="multipart/form-data"在需要上传文件时加上,利用form可以给当前表单添加一个特有id,当前表单在上传时不仅囊括form双标签内包含的控件,还有外部采用了同样form特有id的控件 -->
+			<fieldset> <!-- 表单外边框,双标签,需要包住表单内的内容 -->
+			<legend>标题</legend> <!-- 表单线上文字 -->
+			<input type="text" name="Uname" maxlength="12" placeholder="请输入" required autofocus pattern="正则表达式"><br>
+			<!-- 单行文本输入框,maxlength设置最大字数,placeholder设置背景显示文字,所有输入控件添加required后未填会有提示,添加autofocus会使当前输入框在网页加载时自动获得焦点,添加正则表达式后若不符合会有提示 -->
+			<input type="password" name="Upassward"><br> <!-- 密码框 -->
+			<input type="number" min="0" max="20" value="0"> <!-- 数字输入框,可点击按钮上下调动数值,min和max为输入的数字下限和上限,value为默认值 -->
+			<input type="color"> <!-- 颜色选择框 -->
+			<input type="datetime"> <!-- 日历选择框,不支持PC端 -->
+			<input type="date"> <!-- 日历选择框,可设置年、月、日 -->
+			<input type="month"> <!-- 日历选择框,可设置年、月 -->
+			<input type="week"> <!-- 日历选择框,可设置年、周 -->
+			<input type="time"> <!-- 日历选择框,可设置上午/下午、时、分 -->
+			<input type="url"> <!-- 网址输入框,必须以http://开头 -->
+			<input type="email"> <!-- 邮箱输入框,必须有@ -->
+			<input type="tel"> <!-- 电话输入框 -->
+			<input type="range" max="100" value="0" step="25"> <!-- 拖拽条,max为输入的数字上限,value为默认值,step为移动步长 -->
+			<input type="radio" name="sex" value="men" checked>男&nbsp;<input type="radio" name="sex" value="women">女<br>
+			<!-- 单选按钮组,需要设置共同的英文名称,加入checked可设置默认选项 -->
+			<input type="checkbox" name="like" value="">学习&nbsp;<input type="checkbox" name="like" value="">运动<br>
+			<!-- 多选按钮组,需要设置共同的英文名称,加入checked可设置默认选项 -->
+			<select name="province">
+				<option value="jiangsu" selected>江苏省</option>
+				<option value="zhejiang">浙江省</option>
+				<option value="shangdong">山东省</option>
+			</select><br>
+			<!-- 下拉列表框,加入selected可设置默认选项 -->
+			<input type="file" name="headpic" multiple><br>
+			<!-- 文件上传,默认单选,可加多选属性multiple -->
+			<textarea name="introduction" cols="30" rows="10">请输入内容</textarea><br>
+			<!-- 多行文本输入框,cols为宽度,rows为高度 -->
+			<input type="reset"><br> <!-- 重置按钮 -->
+			<input type="button" value="充值"><br> <!-- 普通按钮 -->
+			<input type="hidden"><br> <!-- 隐藏域,传递隐藏数据时使用 -->
+			<input type="submit" value="登录"> <!-- 提交按钮写法1 -->
+			<button>注册</button> <!-- 提交按钮写法2 -->
+			<input type="image" src="images/01.jpg">
+			<!-- 以图片为提交按钮 -->
+			</fieldset>
+		</form>
+	(十)canvas标签,双标签,画布
+	    <canvas id="canvas1"></canvas>
+	    <script>
+	      var canvas_obj=document.querySelector("#canvas1"); //获取画布
+	      var context=canvas_obj.getContext("2d"); //设置画布格式为2d,也可以设置3d
+	      canvas_obj.width="300" //设置画布实际宽度
+	      canvas_obj.height="300" //设置画布实际高度
+	      context.translate(0,0) //重新定义画布左上角坐标,参数分别为x坐标和y坐标
+	      //绘制具体图形
+	      //1.绘制直线路径
+	        context.beginPath() //开始绘制,设置开始与结束可以使多个画布元素的设置不会互相影响
+	        context.moveTo(20,20) //设置直线的起始点,参数分别为x坐标和y坐标
+	        context.lineTo(280,280) //设置直线的终止点,参数分别为x坐标和y坐标,可以重复设置
+	        context.lineTo(280,20)
+	        context.lineTo(20,20)
+	        context.lineTo(280,280) //边角存在残缺,想要完美闭合,需要再画一条线补角
+	        context.lineWidth=5 //设置直线宽度
+	        context.lineJoin="round" //设置边角样式,包括斜角bevel、圆角round和默认尖角miter
+	        context.strokeStyle="blue" //设置描边颜色
+	        context.fillStyle="grey" //设置填充颜色
+	        context.stroke() //描边,对描边选项的设置要放在前面
+	        context.fill() //填充,对填充选项的设置要放在前面,对未被包起的图形不产生效果
+	        context.closePath() //结束绘制
+	      //2.绘制矩形
+	        context.beginPath();
+	        context.rect(10,10,120,60) //参数分别为左上角x坐标、左上角y坐标、长和宽
+	        context.strokeStyle="blue"
+	        context.fillStyle="grey"
+	        context.stroke()
+	        context.fill()
+	        context.closePath()
+	        context.fillRect(140,20,100,70) //创建无描边的矩形
+	        context.strokeRect(140,120,100,70) //创建无填充的矩形
+	        context.clearRect(9,119,30,30) //清空一个矩形区块,最好写在最后
+	      //3.绘制弧线
+	        context.arc(20,20,150,0,0.5*Math.PI[,false]) //参数分别为圆心x坐标、圆心y坐标、半径、起始角、结束角和方向,其中起始角与结束角写为n*Math.PI,2π为360度,方向可不写,顺时针false,逆时针true
+	        context.stroke()
+	        context.fill() //可以设置两条直线形成封闭区域填充
+	      //4.绘制文本
+	        context.font="40px '黑体'" //设置字体
+	        context.textBaseline="top" //设置对齐方式,包括默认alphabetic、顶端top
+	        context.rotate(45*Math.PI/180) //旋转45度,之后定义的所有文本都有旋转效果
+	        context.fillText("阿道夫",0,0[,60]) //创建无描边的文本,参数分别为输出的文本、x坐标、y坐标和最大文本宽度
+	        context.rotate(-45*Math.PI/180) //反向旋转45度,起撤销旋转的作用,之后定义的所有文本不再有旋转效果
+	        context.strokeText("阿道夫",0,50) //创建无填充的文本
+	      //5.绘制图片
+	        var myImg=new Image() //需要先定义一个图片对象
+	        myImg.src="./img/timg (7).jpeg" //引入图片地址
+	        myImg.onload=function(){ //图片加载完成才能绘制
+	          context.drawImage(myImg[,20,20,100,100],15,15,150,150) //创建图片,参数分别为图片对象名、剪切图左上角x坐标、剪切图左上角y坐标、剪切图宽度、剪切图高度、图片左上角x坐标、图片左上角y坐标、图片宽度和图片高度
+	        }
+		</script>
+	(十一)多媒体标签
+		1.audio标签,双标签,音频
+			(1)链接,可同时链接多个为了防止只有一个不被网页支持
+				<audio src="xx.mp3"></audio>
+				<audio>
+					<source src="xx.ogg">
+					<source src="xx.mp3">
+				</audio>
+			(2)audio文件格式
+				ogg mp3 wav
+			(3)audio属性
+				<audio src="images/Kalimba.mp3" controls autoplay loop preload></audio>
+				src来源
+				controls显示播放相关组件
+				autoplay自动播放
+				loop循环播放
+				preload预加载
+		2.video标签,双标签,视频
+			(1)链接,可同时链接多个为了防止只有一个不被网页支持
+				<video src="xx.mp4"></video>
+				<video>
+					<source src="xx.ogg">
+					<source src="xx.mp4">
+				</video>
+			(2)video文件格式
+				ogg mp4 webM
+			(3)video属性
+				<video width="300" height="200" src="images/oceans-clip.mp4" autoplay loop controls preload muted poster="images/c9fcc3cec3fdfc0354fb2871dc3f8794a5c2267c.jpg"></video>
+				width宽度
+				height高度
+				src来源
+				controls显示播放相关组件
+				autoplay自动播放
+				loop循环播放
+				preload预加载
+				muted静音
+				poster封面图像
+			(4)video对象方法,可写在事件中,通过事件的触发完成对视频的操作
+				video_obj.play() 播放
+				video_obj.pause() 暂停
+				video_obj.load() 重新加载
+			(5)video对象属性
+				video_obj.muted 有无声音(false有声音/true无声音)
+				video_obj.playbackRate 播放速度,默认1,可通过+=数值和-=数值完成加速减速
+				video_obj.currentTime 视频当前播放位置,单位秒,可通过+=数值和-=数值完成加速减速
+				video_obj.ended 视频播放是否结束
+	(十二)功能效果小标签
+		1.实体标签
+			空格&nbsp;	大于号>&gt; 小于号<&lt;	版权符号©&copy;	商标符号®&reg;	银元符号¥&yen;
+		2.br标签,单标签,换行
+			<br>
+		3.hr标签,单标签,直线
+			<hr>
+		4.iframe标签,双标签,背景为黄色
+			<mark></mark>
+		5.details标签,双标签,小三角折叠收缩标签及其第一个元素summary标签,双标签
+			<details>
+				<summary></summary>
+			</details>
+		6.meter标签,双标签,刻度,value为当前值,min和max分别为最小和最大值,low和high是非正常值的最小和最大值,value非正常时会变黄色
+		   optimum为最佳值,min、low、high和max将整段划分为三块,optimum与value在同一区域,显示绿色,两者在相邻区域显示黄色,两者距离更远显示红色
+			<meter value="50" min="0" max="100" low="20" high="80" optimum="50"></meter>
+		7.progress标签,双标签,进度条
+			<progress value='50' max="100"></progress>
+		8.iframe标签,双标签,在网页内嵌套一个子网页,双标签中不能输入内容,frameborder中0/1对应边框的无/有,粗细不可调,scrolling中auto/yes/no分别为滚动条自动/有/无
+			<iframe src="" frameborder="1" scrolling="auto"></iframe>
+		9.datalist标签,双标签,文本输入框内的提示,该标签自身输出无内容,显示到页面上需要文本输入框,文本输入框的list属性值为datalist内的id名,option内为会出现的提示内容
+			<datalist id="datalist">
+				<option>南京市</option>
+				<option>南京市教育局</option>
+				<option>南京市教育局人事</option>
+				<option>南京市教育局官网</option>
+			</datalist>
+			<input type="text" list=datalist>
+			同时为了美观去掉右侧的小箭头,需要在css中进行修饰
+			<style>
+				input::-webkit-calendar-picker-indicator{
+					display: none;
+				}
+			</style>
+三、网页文件基本框架
+	项目名
+	images(图片文件夹)
+		banner(子图片文件夹)
+		logo(子图片文件夹)
+		...
+	css(样式文件夹)
+		index.css
+		header.css
+		footer.css
+		...
+	js(js脚本文件夹)
+		index.js
+		comm.js
+		...
+	index.html(主页)
+	addUs.html(子页面)
+四、快捷方式的使用
+	父级连接子集使用>,兄弟级之间使用+,属性名="属性值"要放在[]内,内容放在{}内,$为自动排序,可写多个$,$后可加@进行修饰,@3表示从3开始,@-表示倒序开始
+	ul>li*4>a[href=#]+div[class="text$"]{2011-02-$$@21}
+	<ul>
+		<li><a href="#"></a><div class="text1">2011-02-21</div></li>
+		<li><a href="#"></a><div class="text2">2011-02-22</div></li>
+		<li><a href="#"></a><div class="text3">2011-02-23</div></li>
+		<li><a href="#"></a><div class="text4">2011-02-24</div></li>
+	</ul>

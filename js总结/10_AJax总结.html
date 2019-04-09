@@ -1,0 +1,121 @@
+一、概念
+  AsynChronous:JavaScript And Xml,异步的js和xml,也就是在不刷新浏览器的情况下,浏览器异步发送请求至服务器,服务器接收并返回数据,浏览器解析数据并局部刷新
+  AJax是一系列web技术的集合,一般分同源和跨域两种,协议、域名和端口任何一个不同都是跨域
+二、同源xhr
+  (一)原生写法
+    <script>
+    //(一)创建XMLHttpRequest(AJax的核心对象)对象,属于BOM对象
+      var xhr=new XMLHttpRequest();
+    //(二)建立连接并发送请求 
+      //1.post方法,第三个参数可设置是否异步,默认为true异步,false同步
+        //(1)建立连接
+          xhr.open('post','请求地址')
+        //(2)设置请求头
+          xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        //(3)发送请求
+          xhr.send('name=xiaoming&age=20')
+      //2.get方法,第三个参数可设置是否异步,默认为true异步,false同步
+        //(1)建立连接,若要发送数据需写在地址后,以?开头
+          xhr.open('get','xxx.php?name=xiaoming&age=20')
+        //(2)发送请求
+          xhr.send(null)
+    //(三)监听请求并处理数据,监听的是通信状态改变事件,xhr有两个属性,readyState通信状态,0:请求未建立;1:请求已建立,但未发送;2:请求已发送,但还在处理;3:请求还在处理,已有部分数据传入;4:响应已完成,status状态码,200:OK,请求成功;404:未找到页面;0:未连接
+      xhr.onreadystatechange=function(){
+        if(xhr.readyState===4&&xhr.status===200){
+          //对所得数据xhr.responseText处理的结构体,数据类型为string、XML和json
+          console.log(xhr.responseText)
+        }
+      }
+    </script>
+  (二)封装,见xhr-tools.js文件
+  (三)使用JQuery
+    <script>
+    //1.$.get()方法
+      $.get(
+        '03_jq.php',
+        {sname: "小米"},
+        "json",
+        function (data) {
+          console.log(data)
+        }
+      );
+      /*其中参数:
+        url,请求地址
+        data,参数,采用JS对象格式
+        dataType,若后台数据类型为json字符串,可设置'json'将其转换为JS对象,若不是就不写
+        success,请求成功的回调函数*/
+    //2.$.post()方法,同上
+    //3.$.ajax()方法,该方法可以替代前两个,所有参数都使用键值对格式
+      $.ajax({
+        url:'03_jq.php',
+        data:{sname: "小张"},
+        type:'get',
+        dataType:'json',
+        success:function(data){
+          console.log(data)
+        },
+        beforeSend:function(){
+          console.log('add2执行前执行')
+        }
+      })
+      /*其中参数:
+        url,请求地址
+        data,参数,采用JS对象格式
+        dataType,若后台数据类型为json字符串,可设置'json'将其转换为JS对象,若不是就不写
+        async,是否异步,默认true
+        type,传输方式
+        success,函数,请求成功的回调函数
+        error,函数,打印错误信息
+        beforeSend,函数,请求发送之前的代码块书写处*/
+    </script>
+三、跨域jsonp,创建script标签加载外部脚本,只支持get请求
+  (一)原生写法
+    1.js写法
+      <script>
+        var s=document.createElement('script')
+        s.src='http://127.0.0.1/stage04/AJax02/04_jsonp.php?callback=jsonp'; //必须写绝对路径
+        document.body.appendChild(s);
+        //回调函数
+        function jsonp(data){
+          console.log(data);
+        }
+      </script>
+    2.php内写法,需要拼接成调用函数的形式jsonp(参数)来调用函数
+      <?php
+        $date=$_GET['callback'].'({sname:"jack"})'; 
+        echo $date;
+      ?>
+  (二)使用JQuery的$.ajax()方法,不需要再写回调函数,绝对路径之后不用再传参数,均已自动生成,dataType为jsonp
+    1.js写法
+      <script>
+        $.ajax({
+          url:'http://127.0.0.1:80/stage04/AJax03/01_jqJsonp.php',
+          type:'GET',
+          dataType:'jsonp',
+          success:function(data){
+            console.log(data);
+          }
+        })
+      </script>
+    2.php内写法,需要拼接成调用函数的形式jsonp(参数)来调用函数
+      <?php
+        echo $_GET['callback'].'({word:"hello Jsonp!"})';
+      ?>
+三、跨域CORS
+  (一)使用JQuery的$.ajax()方法,绝对路径之后不用再传参数,不写dataType
+    1.js写法
+      <script>
+        $.ajax({
+          url:'http://127.0.0.1:80/stage04/AJax03/02_cors.php',
+          data:{sname:'jack'},
+          type:'post',
+          success:function(data){
+            console.log(data);
+          }
+        })
+      </script>
+    2.php内写法,需要设置响应头部信息
+      <?php
+        header('Access-Control-Allow-Origin:*');
+        echo $_POST['sname'];
+      ?>

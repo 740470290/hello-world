@@ -1,0 +1,331 @@
+                           Cascading Style Sheets
+                                层叠样式表
+一、标准格式
+	(一)行内样式,应用于当前标签
+		<p style="样式名:样式值;样式名:样式值;"></p>
+	(二)	内联样式,应用于当前网页
+		<style>
+			选择器{样式名:样式值;样式名:样式值;}
+		</style>
+	(三)外联样式,应用于所有被链接的网页
+		1.新建一个css文件：comm.css
+			选择器{样式名:样式值;样式名:样式值;...}
+		2.index.html引入外部css文件
+			<link rel="stylesheet" href="comm.css">
+二、选择器的应用
+	(一)常用选择器
+		1.通配选择器*,匹配所有标签元素
+			*{}
+		2.标签选择器
+			标签名{}
+		3.class类选择器,可响应多个className
+			.className1{}
+			.className2{}
+			<p class="className1 className2"></p>
+		4.id选择器,只能响应一个idName
+			#idName1{}
+			<p id="idName1"></p>
+		5.父子级选择器
+			(1)采用空格,可跨代查找
+				父级选择器 子级选择器 子级选择器{}
+			(2)采用>,不可跨代查找
+				父级选择器>子级选择器>子级选择器{}
+		6.属性选择器
+			(1)选择器名[属性名=属性值][属性名=属性值]{}
+			(2)选择器[属性名] 匹配所有有该属性名的标签,所有标签可以设置data-title属性,值可以随意输入
+			(3)选择器[属性名^=指定属性值] 匹配以指定属性值开头的标签,如花朵、花瓣和花色中选择花
+			(4)选择器[属性名$=指定属性值] 匹配以指定属性值结尾的标签,如中国、美国和英国中选择国
+			(5)选择器[属性名*=指定属性值] 匹配包含指定属性值的标签,如青草、草原和花花草草中选择草
+	(二)选择器的优先级
+		行内样式>id选择器>属性选择器>class选择器>标签选择器>通配选择器
+		父子级则先比最高位,最高位相同时看最高位的数量,两者完全相同则看顺序,靠后的优先
+	(三)复合选择器
+		1.并集选择器
+			选择器1,选择器2{}
+		2.交集选择器
+			标签名.classname{}
+			标签名#idname{}
+	(四)伪选择器
+		1.结构伪类选择器
+			(1) :hover{} <!-- 鼠标悬停的状态 -->
+			(2) :link{} <!-- 默认链接状态,最常使用的功能 -->
+			(3) :active{} <!-- 默认单击按下的状态 -->
+			(4) :visited{} <!-- 被访问过后的状态 -->
+			(5) :first-child{} <!-- 筛选第一个 -->
+			(6) :last-child{} <!-- 筛选最后一个 -->
+			(7) :nth-child(3){} <!-- 筛选第3个 -->
+			(8) :nth-child(odd){} <!-- 奇数行 -->
+			(9) :nth-child(even){} <!-- 偶数行 -->
+			(10) :nth-child(2n-1){} <!-- 满足条件的所有行数 -->
+			(11) :first-line{} <!-- 第一行 -->
+			(12) :first-letter{} <!-- 首字符 -->
+			(13) :focus{} <!-- 获取焦点,主要针对表单控件,对h和p无效,指的就是被选中状态 -->
+			(14) :before{content:"内容";} <!-- 在起始位置添加文字或图片,中文字需要加引号 -->
+			(15) :after{content:"内容";} <!-- 在末端位置添加文字或图片,中文字需要加引号 -->
+			(16) :empty{} <!-- 匹配内容为空的标记 -->
+		3.目标伪类选择器
+			(1) :target{} <!-- 可以修改当前被链接的对象,需要设置<a href="选择器">链接</a> -->
+		4.伪元素选择器
+			(1) ::first-letter{} <!-- 首字母 -->
+			(2) ::first-line{} <!-- 首行 -->
+			(3) ::before{content:"内容";} <!-- 内部开头加一个伪元素,content属性中可写属性名content:attr(data-name)来调用data-name提前设置好的属性值,可以节省空间 -->
+			(4) ::after{content:"内容";} <!-- 内部结尾加一个伪元素 -->
+			(5) ::selection{} <!-- 被选中的文本 -->
+三、文本类CSS样式
+	(一)宽width和高height
+		width:100px|50%;
+		height:200px|40%;
+	(二)边框border,本身占位置
+		border:1px red solid; <!-- 尺寸、颜色和类型三种样式不可或缺,类型有实线solid、短虚线dashed、点状虚线dotted、双边框double、凹槽groove、凸槽ridge -->
+		border-top|bottom|left|right:2px solid transparent; <!-- transparent为透明,可通过设置三个方向透明来制造三角形 -->
+		border:0; <!-- 无边框 -->
+		border-radius:10px; <!-- 设置边框的圆角,值越大,越圆 -->
+		box-shadow:10px 10px 2px 0 red outset; <!-- 盒子投影,参数分别为水平方向偏移,正值向右,负值向左;垂直方向偏移,正值向下,负值向上;模糊度,值越大越模糊;阴影的尺寸;颜色;阴影相对位置,内部阴影inset,外部阴影outset -->
+		box-sizing:border-box|content-box; <!-- 前者宽度锁定,不受边框轮廓的影响;后者为默认值,宽度为内容宽度 -->
+	(三)轮廓outline,本身不占位置,
+		outline:1px solid red; <!-- 不能只定义一条边 -->
+		outline-offset:3px|-3px; <!-- 设置偏移效果,正值向外,负值向内 -->
+		outline:0; <!-- 无轮廓 -->
+	(四)背景设置background
+		background:blue; <!-- 设置背景颜色 -->
+		background:url(img/d.gif) no-repeat center bottom blue;
+		<!-- url为样式名,用作链接,图片的平铺方式有repeat/repeat-x/repeat-y/no-repeat四种,两个位置前者是水平,后者是竖直,如果都位于正中,只写一个center即可 -->
+		background-size: 200px 200px; <!-- 设置背景图片大小 -->
+		background-attachment: fixed; <!-- 固定背景图位置,不会随着内容被拖走 -->
+		background-origin:border-box|padding-box|content-box; <!-- 改变背景图片的显示范围,参照对象分别为外边框、内边框和内容,背景图片默认第二种 -->
+		background-clip:border-box|padding-box|content-box; <!-- 改变背景色的显示范围,参照对象分别为外边框、内边框和内容,背景色默认第一种 -->
+		background-image:-webkit-linear-gradient(方向,颜色1,颜色2,...,颜色n); <!-- 设置线性渐变色背景,webkit为Google浏览器内核,还有火狐moz、欧朋o、IE浏览器ms,可以不写,但是需要在方向前加to而且方向不能写度数,方向可写top、bottom、right和left,也可以写度数如45deg,还可写left top表示左上,颜色可以写多个,但至少2个 -->
+		background-image:-webkit-radial-gradient(圆半径,中心点,颜色1,颜色2,...,颜色n); <!-- 设置径向渐变色背景,webkit为Google浏览器内核,还有火狐moz、欧朋o、IE浏览器ms,圆半径如45px,中心点写circle,颜色可以写多个,但至少2个 -->
+	(五)文本
+		font-size:16px; <!-- 字体大小 -->
+		color:red; <!-- 颜色 -->
+		font-family:"宋体"; <!-- 字体类型 -->
+		text-align:left|center|right; <!-- 水平对齐方式 -->
+		font-weight:bold|bolder|normal; <!-- 文字加粗|正常,可用来去除自带的加粗效果 -->
+		font-style:italic|normal;  <!-- 文字倾斜|正常,可用来去除自带的倾斜效果 -->
+		text-decoration:underline|line-through|overline|none; 
+		<!-- 下划线|删除线|上划线|正常,可用来去除自带的效果 -->
+		text-indent:20px|2em; <!-- 首行缩进20像素|两个字符 -->
+		line-height:30px; <!-- 设置行高,行高等于父级的高度时,可产生竖直居中的效果 -->
+		word|letter-spacing:10px; <!-- 英文单词|所有字符间的字间距 -->
+		text-shadow:5px -5px 5px black,-5px 5px 5px black; <!-- 文本投影,参数分别为水平方向偏移,正值向右,负值向左;垂直方向偏移,正值向下,负值向上;模糊度,可不设置,值越大越模糊;颜色,可不设置,不加为文字颜色;投影不占位置,可添加多个投影效果,用逗号分隔 -->
+	(六)列表list
+		1.序号设置在内部
+			list-style:disc|circle|square|none|upper-alpha inside;
+		2.将序号换为图片
+			list-style:url(img/01.jpg) inside;
+	(七)颜色
+		1.英文单词
+		2.十六进制
+		3.RGB|RGBA
+		4.HSLA H色调(0/360红色,120绿色,240蓝色) S饱和度(0%-100%) L亮度(0%-100%) A透明度(0-1)
+	(八)过渡transition与自由变换transform,一组变换中只能有一个transition和一个transform
+		1.过渡,写改动的属性名,选取所有改动过的属性可直接写all,持续时间如2s,速度曲线如匀速过渡linear,延迟开始时间一般为0s,过渡属性写在为改动的css内可以使得进入和离开时都有动画效果
+			transition:属性名 持续时间 速度曲线 延迟开始时间;
+		2.自由变换
+			(1)位移,不影响其他元素的位置,参数分别为水平方向位移和竖直方向位移
+				transform:translate(20px,0)
+			(2)旋转,正值顺时针,负值逆时针
+				transform:rotate(45deg/-45deg)
+			(3)缩放,缩放的倍数,参数分别为水平方向缩放和竖直方向缩放
+				transform:scale(2,0.5)
+			(4)斜切,变成平行四边形,参数分别为水平方向斜切,不再竖直和竖直方向斜切,不再水平
+				transform:skew(30deg,[0])
+	(九)动画
+		1.关键帧,需要先在style中设置关键帧,from和to代替0%和100
+			@keyframes 动画名{
+				from{css样式结构}
+				25%{css样式结构}
+				50%{css样式结构}
+				75%{css样式结构}
+				to{css样式结构}
+			}
+		2.调用,大部分属性与过渡类似,播放次数如1,默认循环normal只有1次,alternate为无限循环
+			animation:动画名 持续时间 速度曲线 延迟开始时间 播放次数 循环与否;
+四、布局类CSS样式
+	(一)外间距margin
+		1.四个参数,分别对应上、右、下、左顺时针
+			margin:10px 20px 30px 40px;
+		2.三个参数,分别对应上、左右、下
+			margin:10px 20px 30px;
+		3.两个参数,分别对应上下、左右
+			margin:10px 20px;
+		4.一个参数,对应所有
+			margin:10px;
+		5.水平居中
+			mragin:auto;
+	(二)内间距padding,同上
+	(三)显示类型display
+		1.行内元素,没有宽高,不换行
+			display:inline;
+		2.块元素,有宽高,会换行
+			display:block;
+		3.行内块元素,有宽高,不换行
+			display:inline-block;
+		4.隐藏,不占位置
+			display:none;
+	(四)显示状态visibility
+		1.显示,默认状态
+			visibility:visible;
+		2.隐藏,占位置
+			visibility:hidden;
+	(五)透明度opacity,取值范围0-1
+		1.显示,默认状态
+			opacity:1;
+		2.隐藏,占位置
+			opacity:0;
+	(六)浮动float
+		1.左浮动
+			float:left;  
+		2.右浮动
+			float:right;  
+	(七)清除浮动clear
+		1.清除所有浮动
+			clear:both;
+		2.清除左边浮动
+			clear:left;
+		3.清除右边浮动
+			clear:right;
+	(八)自适应高度
+		1.父级设置overflow:hidden,使溢出部分隐藏,但此方法会使一些不占位置的元素无法显示
+		2.如子集元素全部浮动,可在末尾添加一个无高度的非浮动元素,再清除浮动效果
+		3.利用伪选择器:after{content:"内容";},需要转换为块元素自动换行,格式为:
+			.father:after{
+				content:"";
+				display:block;
+				clear:both;
+			}
+		4.通过计算给父级设置合适的固定高
+	(九)溢出overflow
+		1.显示溢出内容,默认状态
+			overflow: visible;
+		2.添加滚动条
+			overflow: auto;
+		3.使溢出部分隐藏
+			overflow: hidden;
+	例: 让行内多出的内容以省略号显示
+		white-space:nowrap; <!-- 不换行,让文字在一行显示 -->
+		overflow:hidden; <!-- 隐藏溢出的内容 -->
+		text-overflow:ellipsis; <!-- 溢出的文本以省略号显示 -->
+	(十)css精灵技术(CSS Sprite)
+		将一组大小位置相同的小图片处理为一张组合图,设置好能让小图片完美显示的长宽,结合background-position让组合图显示不同区域,节省空间,优化加载速度
+	(十一)定位position、纵深与位移
+		1.相对定位,参照物为自身原位置,原位置保留,如果多个元素相对定位,越后进行相对定位的浮在最上面,也就是纵深越高
+			position:relative;
+		2.绝对定位,参照物为设置过定位属性的最近父元素,如果没有则为浏览器首屏窗口,原位置不保留
+			position:absolute;
+		3.固定定位,参照物为浏览器当前窗口,不会被拖拽走,原位置不保留
+			position:fixed;
+		4.纵深,数值越大,图层越靠上
+			z-index:数值;
+		5.位移
+			(1)距离顶部
+				top:20px;
+			(2)距离底部
+				bottom:30px;
+			(3)距离左边
+				left:20px;
+			(4)距离右边
+				right:30px;
+五、移动端Flex布局,是Flexible Box的缩写,中文是弹性盒子,在flexbox布居中float、clear和vertical-align会失效,参考网址https://www.cnblogs.com/qingchunshiguang/p/8011103.html
+	(一)显示类型display
+		1.块元素,每个块元素占一行
+			display:flex;
+		2.行内块元素,连续的行内块元素会在一行内,以各自的第一个子元素的上边界为基准
+			display:inline-flex;
+	(二)父元素容器的属性,父元素的宽高固定,相反子元素的宽高会自适应变换
+		1.子元素的排序方式与排序方向
+			(1)正序横向排列,默认项
+				flex-direction:row;
+			(2)倒序横向排列
+				flex-direction:row-reverse;
+			(3)正序纵向排列
+				flex-direction:column;
+			(4)倒序纵向排列
+				flex-direction:column-reverse;
+		2.子元素的换行方式与排序方向
+			(1)正序不换行,默认项
+				flex-wrap:nowrap;
+			(2)正序换行
+				flex-wrap:wrap;
+			(3)倒序换行
+				flex-wrap:wrap-reverse;
+		3.合并写法,包括flex-direction和flex-wrap
+			flex-flow:row|row-reverse|column|column-reverse nowrap|wrap|wrap-reverse;
+		4.子元素的横向对齐方式
+			(1)左对齐
+				justify-content:flex-start;
+			(2)右对齐
+				justify-content:flex-end;
+			(3)居中对齐
+				justify-content:center;
+			(4)分散居中对齐,首个与最后的子元素贴边,所有子元素的间距相等
+				justify-content:space-between;
+			(5)等间距对齐,所有子元素的左右间距相等
+				justify-content:space-around;
+		5.子元素的纵向对齐方式
+			(1)上对齐
+				align-items:flex-start;
+			(2)下对齐
+				align-items:flex-end;
+			(3)竖直居中对齐
+				align-items:center;
+			(4)第一行文字下方的基线对齐
+				align-items:baseline;
+			(5)被拉伸以适应父元素容器
+				align-items:stretch;
+		6.多行子元素的纵向对齐方式,若子元素只在一行内则不生效,所以需要提前设置好flex-wrap
+			(1)全部上对齐
+				align-content:flex-start;
+			(2)全部下对齐
+				align-content:flex-end;
+			(3)全部竖直居中对齐
+				align-content:center;
+			(4)全部分散竖直居中对齐
+				align-content:space-between;
+			(5)全部等间距对齐,每行子元素的上下间距相等
+				align-content:space-around;
+			(6)被拉伸以适应父元素容器
+				align-content:stretch;
+	(三)子元素项目的属性,父元素的宽高不会受子元素影响,相反子元素的宽高会自适应缩小
+		1.子元素的排序,数值默认为0,可以写负数,越大越靠后
+			order:数值;
+		2.子元素按比例瓜分父元素内的剩余空间,数值默认为0,不可以写负数,越大占比越多,若第一个为1,第二个为2,第三个为3,则第三个占3/(1+2+3)
+			flex-grow:数值;
+		3.父元素的空间不够放入所有子元素时,对子元素进行自适应缩小,数值默认为1,不可以写负数,越大缩小越多,若第一个为1,第二个为2,第三个为3,每个子元素为80px,共超出120px,则第三个缩小80-120/(1+2+3)*3
+			flex-shrink:数值;
+		4.子元素占据的主轴空间,默认为auto,近似理解为宽度但优先级高于宽度,此属性被用来检查主轴是否有多余空间
+			flex-basis:auto/100px;
+		5.合并写法,包括flex-grow、flex-shrink和flex-basis,分别对应空间过剩和空间不足
+			flex:0 1 auto;
+		6.子元素的竖直对齐方式
+			(1)自适应
+				align-self:auto;
+			(2)上对齐
+				align-self:flex-start;
+			(3)下对齐
+				align-self:flex-end;
+			(4)竖直居中对齐
+				align-self:center;
+			(5)第一行文字下方的基线对齐
+				align-self:baseline;
+			(6)被拉伸以适应父元素容器
+				align-self:stretch;
+六、杂项
+	(一)class常用命名
+		头部:header
+		底部:footer
+		内容:content,简写为con
+		导航:navigation,简写为nav
+		广告:banner
+	(二)css常用初始页面布局
+		1.初始化页面:
+			*{padding:0;margin:0;} <!-- 消除所有内外边距 -->
+			a{text-decoration:none;color:black;} <!-- 消除超链接的特殊格式 -->
+			ul,li{list-style: none;} <!-- 消除列表的序号 -->
+			select,input{outline: 0;} <!-- 消除输入框和选择框的轮廓 -->
+		2.公共类:
+			.overflowH{overflow: hidden;} <!-- 设置高度自适应 -->
+			.leftbox{float: left;} <!-- 左浮动 -->
+			.rightbox{float: right;} <!-- 右浮动 -->
+			.autoW{width:1000px;margin:0 auto;} <!-- 宽度1000px并居中 -->

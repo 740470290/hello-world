@@ -1,0 +1,207 @@
+                           			jQuery
+                            	 JavaScript框架
+ 一、jQ的调用
+	(一)引入jquery文件
+		<script src="jq/jquery-1.4.js"></script>
+	(二)加载全局事件,使可调用任意元素
+		1.onload,加载所有页面内容,包括外部链接资源,但只可以有一个生效
+			<script>
+			window.onload=function(){
+
+			}
+			</script>
+		2.ready,加载DOM元素
+			<script>
+			(1)写法1
+				jQuery(document).ready(function($){
+				
+				})
+			(2)写法2
+				$(document).ready(function(){
+				
+				})
+			(3)写法3
+				$(function(){
+
+				})
+			</script>
+二、jQ获取DOM元素
+	通过CSS选择器查找,获取的皆为数组形式
+	$(".box1") //class类选择器
+	$("li").first() //筛选第一个
+	$("li").last() //筛选最后一个
+	$("li").eq(n) //筛选下标为n
+	$("li:odd") //筛选偶数行
+	$("li:even") //筛选奇数行
+	$(this).index() //当前选中的元素的下标
+三、jQ修饰DOM元素属性
+	1.添加属性
+		$(div).attr('属性名1','值') //single 单个样式
+		$(div).attr({ //multiple 多个样式,样式名加引号
+			'属性名1':'值', 
+			'属性名2':'值'
+		})
+	2.获取属性值
+		$(div).attr('属性名')
+	3.移除属性值
+		$(div).attr('属性名','')
+四、jQ修饰CSS样式
+	(一)内联样式 CSS()方法 同.style
+		1.添加样式
+			$("#title").css('样式名1':'值1') //single,单个样式
+			$("#title").css({ //multiple,多个样式,样式名加引号
+				'样式名1':'值1',
+				'样式名2':'值2'
+			})
+		2.获取样式
+			$("#title").css("border")
+		3.移除样式
+			$("#title").css('border','')
+	(二)类名操作
+		1.添加类名
+			$(".box1").addClass('box3') //后面的不加.
+		2.移除类名
+			$(".box1").removeClass('box2')
+			$(".box1").removeClass('') //移除所有类
+		3.切换类名
+			$(".box1").toggleClass('box3')
+五、jQ修饰内容
+	(一)内容修饰
+		$(".box1").html('值'+变量)
+		$(".box1").text('值'+变量)
+	(二)获取内容
+		$(".box1").html()
+		$(".box1").text()
+	(三)清空内容
+		$(".box1").html('')
+		$(".box1").text('')
+六、jQ修饰值
+	(一)value值修饰
+		$("input[name=uname]").val("请输入用户名")
+	(二)获取value值
+		$("input[name=uname]").val()
+	(三)清空value值
+		$("input[name=uname]").val("")
+七、jQ操作DOM事件
+	(一)常规处理事件
+		1.单击事件
+			$(obj).click(function(){
+				执行结构体
+			})
+		2.获取焦点事件
+			$(obj).focus(function(){
+				执行结构体
+			})
+		3.失去焦点事件
+			$(obj).blur(function(){
+				执行结构体
+			})
+		4.鼠标悬停及移出事件
+			$(obj).hover(function(){
+				鼠标悬停时效果
+			},function(){
+				鼠标移出时效果
+			})
+		5.单击事件
+			$(obj).toggle(function(){
+				第一次点击效果
+			},function(){
+				第二次点击效果
+			})
+		6.表单提交
+			$(form_obj).submit(function(){
+				表单提交触发的效果
+			})
+	(二)bind处理事件
+		1.绑定事件
+			$("obj").bind("事件类型"[,额外传递数据],匿名函数或函数名)
+		2.解除绑定事件
+			$("obj").unbind("事件类型"[,额外传递数据],匿名函数或函数名)
+			额外传递数据类型不限,若需要分开传递数据,需要以数组或类数组的形式书写,调用传递的数据需要设置一个形参,在形参.data或形参['data']中,最后通过遍历调出所有
+			添加事件后可以多次触发,若只需要触发一次,需在函数结构体内添加解除绑定事件
+	(三)on处理事件,适用于jQ版本1.7+
+		1.绑定事件
+			$("obj").on("事件类型"[,额外传递数据],匿名函数或函数名)
+		2.解除绑定事件
+			$("obj").off("事件类型"[,额外传递数据],匿名函数或函数名)
+	(四)只执行一次的事件监听器处理事件
+		$("obj").one("事件类型"[,额外传递数据],匿名函数或函数名)
+八、jQ操作DOM家族
+	(一)找子级
+		$(".box1").children() 所有$(".box1-1")的所有直接子集
+		$(".box1").children(".box1-1") 所有$(".box1-1")的所有符合条件的直接子集
+		$(".box1").find("*") 所有$(".box1-1")的所有子集
+		$(".box1").find(".box1-1") 所有$(".box1-1")的所有符合条件的子集
+	(二)找父级
+		$(".box1-1").parent() 所有$(".box1-1")的直接父集
+		$(".box1-1").parents() 所有$(".box1-1")的所有父集
+		$(".box1-1").parents(".box1") 所有$(".box1-1")的所有符合条件的父集
+	(三)找兄级
+		$(".box3").prev() 所有$(".box3")的直接兄级
+		$(".box3").prevAll() 所有$(".box3")的所有兄级
+		$(".box3").prevUntil(".box2") 所有$(".box3")的直到$(".box2")的所有兄级,不包括$(".box2")
+	(四)找弟级
+		$(".box2").next() 所有$(".box1")的直接弟级
+		$(".box2").nextAll() 所有$(".box1")的所有弟级
+		$(".box2").nextUntil(".box3") 所有$(".box1")的直到$(".box1")的所有弟级,不包括$(".box3")
+	(五)找同级
+		$(".box1").siblings() 所有$(".box1")的所有同级
+九、jQ修改DOM结构
+	(一)向父元素内添加子元素
+		若子元素是直接子元素,则会产生移动的效果
+		1.添在末尾
+			$(".box1").append("html语句"/".box1-1")
+			$("html语句"/".box1-1").appendTo($(".box1"))
+		2.添在开头
+			$(".box1").prepend("html语句"/".box1-1")
+			$("html语句"/".box1-1").prependTo($(".box1"))
+	(二)向兄弟元素外添加兄弟元素
+		若此俩元素是兄弟级,则会产生移动的效果
+		1.添在前方
+			$(".box1").before("html语句"/".box2")
+			$("html语句"/".box2").insertBefore($(".box1"))
+		2.添在后方
+			$(".box1").after("html语句"/".box2")
+			$("html语句"/".box2").insertAfter($(".box1"))
+	(三)替换
+		若此俩元素是兄弟级,则只剩下替换者
+			$(".box1").replaceWith("html语句"/".box2")
+			$("html语句"/".box2").replaceWith($(".box1"))
+	(四)删除
+		1.清空元素的内容
+			$(".box1").empty()
+		2.移除元素
+			$(".box1").remove()
+	(五)克隆
+		1.复制整个元素结构
+			$(".box1").clone()
+		2.复制整个元素结构及各响应事件
+			$(".box1").clone(true)
+十、jQ提供的动画效果
+	速度可以写slow、normal和fast,但需要加引号,也可以直接写数值,单位为毫秒,不需要加引号和单位
+	以下所列皆为最简形式,所有效果都可以再加上回调函数结构,回调函数会在效果完成后触发
+	(一)显藏效果,自左上角收缩
+		$(".div").show(速度) //显示
+		$(".div").hide(速度) //隐藏
+		$(".div").toggle(速度) //转换显藏效果
+	(二)上下滑动效果
+		$(".div").slideDown(速度) //下滑显示
+		$(".div").slideUp(速度) //上滑隐藏
+		$(".div").slideToggle(速度) //转换上下滑动效果
+	(三)淡入淡出
+		$(".div").fadeIn(速度) //淡入显示
+		$(".div").fadeOut(速度) //淡出隐藏
+		$(".div").fadeTo(速度,透明度) //淡出至指定透明度
+	(四)结构拓展
+		$(".div").动画效果(速度, function(){
+			console.log("状态显示完成")
+		})
+	(五)自定义动画 参数：动画效果，速度，回调函数
+		$(".div").animate({
+			"样式名1":"样式值",
+			"样式名2":"样式值",
+			"样式名3":"样式值"
+		},
+			速度, function() {
+				回调函数
+		})

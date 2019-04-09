@@ -1,0 +1,680 @@
+                           		JavaScript
+                                 Java脚本
+一、JS的输出方式
+	(一)弹框效果
+		alert(内容)
+	(二)可选弹框效果
+		confirm(内容)
+	(三))输出到页面上
+		document.write(内容)
+	(四)输出在控制台console面板里
+		console.log(内容)
+	(五)弹出一个输入框
+		prompt(内容)
+		console.log(内容)
+	例: var userName = prompt("请输入用户名")
+	注: 内容里的变量不用加引号,其他内容需要加引号,两者之间用+连接
+二、JS的标准格式
+	(一)行内样式
+		<div onclick="js语句"></div>
+	例: <div onclick="document.write('输出的内容')"></div>
+		点击div区域触发弹窗效果
+	(二)内联样式
+		<script>
+			js语句
+		</script>
+	(三)外联样式
+		<script src="index.js"></script>
+		导入外部js文件,双标签内部不能添加任何内容,外部js文件不能包含<script></script>标签
+三、JS的数据类型
+	(一)常量
+		每一个具体的数据类型都是常量,输出时需要加引号
+	(二)变量
+		变量只能代表一个值,但值是可以改变的,输出时不需要加引号
+		需要里外同时加引号时,可以单引号双引号岔开使用,也可使用转义符号/放在内部引号的前面
+		1.定义一个变量
+			var 变量名1,变量名2=值
+			对已定义过的变量,可直接使用 变量名=值 来修改值
+		2.变量命名规范
+			(1)严格区分大小写
+			(2)遵循驼峰命名法
+			(3)只能使用字母、数字、$和_,但数字不能放开头
+			(4)不能使用关键字和保留字命名
+		3.变量的作用域
+			(1)全局变量,函数体内外均可访问
+			(2)局部变量,只作用于当前的函数体
+			(3)变量的提升,在函数内不用var来声明,直接变量名=值,作用域为全局,但需要调用后才生效
+		4.变量的分类
+			(1)本地对象
+				对象类型：String,Number,Boolean,Array,Object(对象),Date,RegExp,Error,所有的内置对象
+				都可以通过new关键词进行实例化
+			(2)内置对象
+				对象类型：Global(全局),Math
+				Math在任何地方都可以直接引用
+			(3)宿主对象
+   			对象类型：DOM,BOM(有一个宿主环境)
+		5.字符串类型变量:String
+   		(1)str.length 获取字符串的长度
+			(2)str.indexOf(搜索对象[,开始下标]) 正序查找字符,返回首个对应下标,未找到返回-1
+			(3)str.lastIndexOf(搜索对象[,开始下标]) 倒序查找字符,返回首个对应下标,未找到返回-1
+			(4)str.charAt(下标) 查找指定下标对应的字符,未找到返回空字符
+			(5)str.charCodeAt(下标) 查找指定下标对应的字符的Unicode编码,中文编码在4E00-9F5A,每个字符都有唯一对应的编码,未找到返回非数值NaN
+			(6)str.search(搜索对象/正则表达式) 搜索并返回下标,返回首个该对象的下标或首个符合该正则表达式的对象的下标,不能执行全局匹配,未找到返回-1
+			(7)str.match(搜索对象/正则表达式) 搜索并返回字符串数组,返回首个该对象的字符串数组或首个符合该正则表达式的对象的字符串数组,可加g使用全局匹配所有符合的值,未找到返回null
+			(8)str.replace(替换对象/正则表达式,新字符串) 替换,替换首个该对象或首个符合该正则表达式的对象,只替换一次,可加g使用全局匹配替换所有符合的值
+			(9)str.toUpperCase() 转换为大写
+			(10)str.toLowerCase() 转换为小写
+			(11)str.concat(str1,str2,...,strn) 连接多个字符串
+			(12)str.split(分割对象/正则表达式[,长度]) 以特定对象分割字符串并以数组形式显示,分割对象不再显示,长度为显示数组元素的个数,超出不显示,以""为分割对象会将所有字符拆开
+			(13)str.slice(开始下标[,结束下标]) 抽取从开始下标开始的字符,下标可以写负值,-1为最后一个,结束下标不写默认到末尾
+			(14)str.substr(开始下标[,长度]) 抽取从开始下标开始的字符,下标可以写负值,-1为最后一个,长度不写默认到末尾
+			(15)str.substring(开始下标[,结束下标]) 抽取从开始下标开始的字符,下标不可以写负值,结束下标不写默认到末尾
+			(16)str.trim() 去掉两边的所有空格,一般用来判断输入框内是否只有空格,即str.trim()=""
+			(17)str.trimLeft() 去掉左边所有空格
+			(18)str.trimRight() 去掉右边所有空格
+		6.数值类型变量:Number
+			(1)num.toString([几进制]) 把数值转化为字符串,不写几进制默认十进制
+			(2)num.toLocaleString([几进制]) 把数值转化为本地字符串,不写几进制默认十进制
+			(3)num.valueOf() 直接输出数值,此功能系统自动完成
+			(4)num.toFixed([小数点后几位]) 四舍五入,num即为保留几位小数,不写默认整数
+			(5)运算
+				a.数学运算符
+					+加 -减 *乘 /除 %取余
+				b.赋值运算符
+					=  
+					+= 即num=nume+15
+					-= 即num=nume-15
+					*= 即num=nume*15
+					/= 即num=nume/15
+					%= 即num=nume%15
+				c.自增和自减
+					++ 即num=num+1
+					-- 即num=num-1
+				例: num1=5,num2=num1++=5,num=++num1=6
+					符号在数字后,先赋值,后运算;符号在数字前,先运算,后赋值
+				d.比较运算符
+					运算结果正确为true,错误为false
+					相等 == === //采用三个符号就要求变量类型亦相同
+					不等 != !==
+					大于 >
+					小于 <
+					大于等于 >=
+					小于等于 <=
+				e.逻辑运算符
+					逻辑和 &&
+					逻辑或 ||
+					逻辑非 !
+					多种情况需要整体分开写
+				例: 要写成p_obj.innerText.indexOf("+")==-1&&p_obj.innerText.indexOf("-")==-1)
+						而不是p_obj.innerText.indexOf("+"&&"-")==-1
+				效果等同于单条件判断
+				条件表达式?为true的结果:为false的结果
+		7.算数类型对象:Math
+			(1)Math.round(2.3) 四舍五入
+			(2)Math.ceil(2.3) 向上取整
+			(3)Math.floor(2.3) 向下取整
+			(4)Math.max(数值1,数值2,数值3...) 取最大值
+			(5)Math.min(数值1,数值2,数值3...) 取最小值
+			(6)Math.pow(x,y) 幂运算,x的y次方
+			(7)Math.random() 随机数,0到1之间的随机小数
+			(8)Math.PI π
+			(9)Math.abc() 取绝对值
+		8.逻辑类型变量:Boolean
+			(1)true 转换为数值类型后为1
+			(2)false 转换为数值类型后为0
+    	(3)bool.toString() 把布尔值转化为字符串
+		9.数组类型变量:Array
+			(1)写法
+				var arrName=[值1,值2,值3...]
+				var arrName=new Array(值1,值2,值3...)
+				添加或修改值
+				arrName[1]='值1' 用数字作为下标的数组为索引数组
+				arrName[name]='值2' 用字符串表示下标的数组是关联数组
+			(2)取出数组里的数
+				document.write(arrName[下标])
+			(3)arr.length() 获取数组元素的数目,只对索引数组生效,即下标按序排列
+			(4)arr.indexOf(搜索对象[,开始下标]) 正序查找元素,返回首个该字符对应的数值下标,未找到返回-1
+			(5)arr.lastIndexOf(搜索对象[,开始下标]) 倒序查找元素,返回首个该字符对应的数值下标,未找到返回-1
+			(6)arr.concat(arr2[,arr3,arr4,...]) 连接多个数组
+			(7)arr.join("分隔符") 把数组里的元素用分隔符连接成字符串,不写分隔符会用逗号连接,写""则无缝连接
+			(8)arr.push(元素1[,元素2,元素3...]) 向数组末尾添加元素,返回当前数组长度
+			(9)arr.unshift(元素1[,元素2,元素3...]) 向数组头部添加元素,返回当前数组长度
+			(10)arr.pop() 删除数组的最后一个元素,返回删除元素
+			(11)arr.shift() 删除数组的第一个元素,返回删除元素
+			(12)arr.reverse() 颠倒数组中元素的顺序
+			(13)arr.sort([函数]) 对数组的元素进行排序,若无参数将按字母顺序排序,函数写为function(a,b){return a-b},a-b从小到大排列,b-a从大到小排列
+			(14)arr.slice(开始下标[,结束下标]) 截取对应元素,包括开始下标对应元素,不包括结束下标对应元素,结束下标可以为负数,不写默认到结尾
+			(15)arr.splice(开始下标,元素数量[,新元素1,新元素2...]) 删除开始下标后给定元素数量的元素,包括开始下标对应元素,返回被删除的部分,可以在该位置再次添加新元素
+			(16)arr.toString() 把数组转化为字符串
+			(17)多维数组
+				var arr1=['apple',18,false]
+				var arr2=[arr,[1,2,3,4],20,true,'banana']
+				var arr3=[arr2,[1,2,3,4,5]]
+				arr3[0][0][2]=false
+		10.正则表达式类型变量:RegExp
+			(1)创建对象语法
+				var reg=new RegExp(/"匹配对象描述"[,"修饰符"]/)
+			(2)直接量语法
+				var pat=/匹配对象描述/[修饰符]
+				var reg=new RegExp(pat)
+			(3)描述
+				a.方括号
+					[0-9]所有数字;[a-z]所有小写字母,还可写作[a-h]或[k-z],不要求封顶,但要满足字母顺序;[A-Z]所有大写字母;[0-9]所有数字;(3|5|7|8|9),只能是35789中的
+				b.元字符
+					\w单词字符;\W非单词字符;\d数字字符;\D非数字字符;\s空白字符;\S非空白字符
+				c.量词
+					n*,匹配所有n字母;n$,匹配结尾处的n字母;^n,匹配开头处的n字母;^n$,匹配从开头到结尾的字母;n{6},检测6次;n{6,10},检测6到10次;n{6,},检测最少6次
+				d.常用验证
+					(a)用户名,可以有字母数字或_,不超过10个字符
+						var pat=/^[a-zA-Z0-9_]{0,10}$/
+					(b)密码,6位数字
+						var pat=/^\d{6}$/
+					(c)性别
+						var pat=/^(男|女|保密)$/
+					(d)昵称,第一个必须为字母,其余可以为数字、字母和下划线,长度至少6位
+						var pat=/^[a-zA-Z][a-zA-Z0-9_]{5,}$/
+					(e)手机号
+						var pat=/^[1](3|5|7|8|9)[0-9]{0,9}$/
+					(f)邮箱
+						var pat=/^[0-9a-zA-Z]{6,11}[@](qq|163|126|sina)[.com]{4}$/
+				e.修饰符,用来定义匹配的方式,包括g全局匹配和i不区分大小写匹配
+			(4)reg.test(字符串|表单控件的值) 检测一个字符串是否匹配当前正则表达式,符合true,不符合false
+		11.日期类型变量:Date
+			(1)写法
+				var today=new Date() 当前日期
+				var date1=new Date("2018/11/11 11:11:11") 指定日期
+			(2)获取年份
+				var year=today.getFullYear()
+			(3)获取月份
+				var month=today.getMonth()+1 月份是个数组,获取的是月份的下标,所以八月得到的是7
+			(4)获取日期
+				var day=today.getDate()
+			(5)获取星期
+				var week=today.getDay()
+			(6)获取时
+				var hour=today.getHours()
+			(7)获取分
+				var minute=today.getMinutes()
+			(8)获取秒
+				var second=today.getSeconds()
+			(9)获取此时距离未来某一特定日期有多久
+				var time=new Date().getTime() 距离1970年7月1日有多少毫秒
+				var endTime=new Date("2018 11 11").getTime()
+				console.log((endTime-time)/86400000)
+		12.json
+			(1)json字符串
+				a.写法,必须使用双引号
+					{"name":"jack","姓名":"张三"}
+				b.不能直接调用,需要转换格式后调用
+			(2)JS对象
+				a.写法
+					Object{name:"jack",姓名:"张三"}
+				b.调用
+					Object.name
+					Object['name']
+			(3)将json字符串转化为JS对象
+				JSON.parse(json字符串)
+			(4)将JS对象转化为json字符串
+				JSON.stringify(JS对象)
+		13.空类型变量:Null
+			声明的对象无法找到就是null
+		例: html内没有没有id名title2
+			var h2_obj=document.getElementById('title2')
+		14.未定义类型变量:Undefined
+			声明的变量没有值就是Undefined
+		例: var d
+四、JS的公共方法
+	(一)检验数据类型
+		typeof(变量名/值) 
+		typeof 变量名/值
+	(二)类型转换
+		1.显式转换
+			String() 强制转换为字符串类型
+			Number() 强制转换为数值类型
+			Boolean() 强制转换为布尔类型
+		2.隐式转换
+			在运算中被自动转换
+五、JS操作HTML DOM
+	document.write()可用于直接向HTML输出内容
+	(一)获取DOM元素
+		此处document为默认的所有元素的父级,也可以在此处写其他父级名,搜索该父级中包含的符合条件的DOM元素
+		1.通过id名来获取
+			var elem=document.getElementById('idName')
+		2.通过class名来获取
+			var elem=document.getElementsByClassName('ClassName')
+		3.通过标签名来获取
+			var elem=document.getElementsByTagName('TagName')
+		4.通过name属性来获取
+			var elem=document.getElementsByName('Name')
+		5.通过css选择器来获取,样式和css里的父级选择器一样
+			var uName=document.querySelector("input[name=uName]") 可以通过name值来选取
+			var obj_1=document.querySelector(".headerline1 .list li") 只获取第一个
+			var obj_2=document.querySelectorAll(".headerline1 .list li") 获取全部
+		6.直接获取
+			document.body
+			document.title
+		只有通过id名和querySelector获得的不是数组
+	(二)修改DOM元素的属性
+		通过 变量名.属性名=值 修改
+		1.获取了单个元素
+			var div_obj=document.getElementById('box1')
+			div_obj.width="200" 修改行内样式,可以用 .id和 .className修改id名和class名
+			div_obj.style.width="200px" 修改内联样式
+		2.获取了包括多个元素的数组
+			var box_obj=document.getElementsByClassName('con1')
+			box_obj[0].style.lineHeight='40px' 属性名用驼峰命名法
+			box_obj[0].style["lineHeight"]='40px' 属性名用驼峰命名法
+			box_obj[0].className="" 清空样式
+			box_obj[0].className+=' autoW' 直接增删class名,需要在前面加空格
+			box_obj[0].className-=' autoW'
+			box_obj[0].classList.add("autoW") 通过classlist进行增删
+			box_obj[0].classList.remove("autoW")
+		3.通过点击按钮改变样式
+			通过在onclick属性调用函数,函数内具体修改
+			<input type="button" value="红色" onclick="colors('red')">
+		4.常用属性名
+			var i=pro_sel.options.selectedIndex options可获取数组中有几个元素,selectedIndex可获取当前被选中的元素的索引下标
+		例: 省市联动效果,分别定义两个数组,城市使用二维数组,数组内的元素按相互对应的顺序排列,再将省的数组和第一个城市数组放入下拉框中,最后调取省的数组中被选中的元素的索引下标,输出对应下标的城市组
+	(三)修改DOM元素的内容
+		1.获取DOM元素的内容
+			list_obj.innerHTML 包括标签和文本内容,HTML必须大写
+			list_obj.innerText 纯文本内容
+		2.修改DOM元素的内容
+			list_obj.innerHTML="<font color=red>古诗词第一行</font>" 可以修改标签和文本内容
+			list_obj.innerText="古诗词第一行" 只能修改文本内容
+		3.清空内容
+			list_obj.innerHTML="" 清空所有标签和文本内容
+			list_obj.innerText="" 只能清空文本内容
+	(四)修改DOM表单元素的值
+		1.获取表单的值
+			var uName_obj=document.querySelector("input[name=uName]") 通过[name=uName]找到
+			document.forms 数组集合
+			document.forms["表单名"]
+			document.forms[0]
+		2.获取表单里的控件
+			document.forms["表单名"]["控件名"]
+		3.获取表单控件的值
+			document.forms["表单名"]["控件名"].value
+	(五)JS操作DOM事件
+		1.常用事件
+			(1)浏览器事件
+				a. onscroll 滚动,需要调用document.body.scrollTop||document.documentElement.scrollTop,两属性皆为滚动条距离顶部距离,为了应对兼容问题,所以两者都需要
+				b. onload 加载,页面加载完成触发事件
+				例：window.onload=function(){
+							调用函数
+						}
+			(2)表单事件
+				a. oninput 输入事件,当用户输入内容时,可以调用textarea_obj.value.length来获取输入文字的实时长度
+				b. onblur 失去焦点
+				c. onfocus 获得焦点
+				d. onchange 内容改变
+				e. onsubmit 表单提交
+			(3)键盘事件
+				a. onkeydown 键盘按下
+				b. onkeyup 键盘弹起
+			(4)鼠标事件
+				a. onclick 单击
+				b. ondblclick 双击
+				c. onmouseover 鼠标移入
+				d. onmouseout 鼠标移出
+			(5)移动端事件
+				a. ontouchstart 触摸屏幕时
+				b. ontouchmove 在屏幕上滑动时
+				c. ontouchend 结束触摸屏幕时
+		2.常规处理事件
+			(1)在标签里添加事件,可以直接写js语句,也可以调用定义好的函数
+				<p onclick="fun1()" class="box"></p>
+				<script>
+					function fun1(){
+
+					}
+				</script>
+				添加多个事件写为onclick="fun1();fun2()"
+			(2)用js语句给标签添加事件属性
+				<script>
+					a. 通过匿名函数来完成
+						var p_obj=document.getElementById("box")
+						p_obj.onclick=function(){
+
+						}
+					b. 只写函数名来调用函数
+						p_obj.ondblclick=fun1
+						function fun1(){
+
+						}
+				</script>
+			(3)移除事件
+				<script>
+					p_obj.onclick=""
+				</script>
+		3.事件监听器处理事件,主流浏览器
+			(1)绑定事件监听器
+				<script>
+					p_obj.addEventListener(事件类型,事件处理函数[,布尔值])
+					此处事件类型不加on,事件处理函数可写函数名或一个新的匿名函数,布尔值选择捕获true还是默认的冒泡false
+				</script>
+			(2)移除事件监听器
+				<script>
+					p_obj.removeEventListener(事件类型,事件处理函数[,布尔值])
+					此处事件类型不加on,事件处理函数只能写函数名,布尔值选择捕获true还是默认的冒泡false
+				</script>
+		4.事件监听器处理事件,老款ie浏览器
+			(1)绑定事件监听器
+				<script>
+					p_obj.attachEvent(事件类型,事件处理函数)
+					此处事件类型要加on,事件处理函数可写函数名或一个新的匿名函数
+				</script>
+			(2)移除事件监听器
+				<script>
+					p_obj.detachEvent(事件类型,事件处理函数)
+					此处事件类型要加on,事件处理函数只能写函数名
+				</script>
+		5.事件流定义
+			(1)捕获,布尔值为true,先父级后子级
+			(2)目标,var current=event.srcElement||event.target,两个值应对兼容问题,指向当前选中的子级对象,在事件冒泡里不会变化
+			(3)冒泡,布尔值为false,先子级后父级,可在父级中选取相同类型的子级
+    6.阻止事件冒泡,防止触发子级事件时同时触发父级事件,加在子级函数结构体中,采用event相关方法时需要设置形参event
+			(1)阻止事件冒泡,主流浏览器
+        a. event.stopPropagation();
+        b. return false;
+        c. event.preventDefault(); 存在兼容问题
+			(2)阻止事件冒泡,老款ie浏览器
+        a. event.cancelBubble=true;
+        b. event.returnValue=false;
+		7.this,指向当前正在被操作的对象,this指向不是在定义的时候确定的,而是在真正运行此函数时确定的,在ES5的strict模式下,this被规定不会指向全局window,而是undefined
+			(1)面向对象中的this,指向该对象,可以在对象内部调用其属性和方法,但只有在函数作为对象的属性时被调用才生效
+				<script>
+					var Object={
+						num:6,
+						getNum:function(){
+							alert(this===Object); //true
+							alert(this.num); //6
+						}
+					}
+					Object.getNum()
+				</script>
+			(2)普通函数中的this,指向window对象,若采用变量接受面向对象中的方法也会使其变为一个普通函数
+				<script>
+					window.num=7;
+
+					var getNum1=function(){
+						return this.num;
+					}
+					console.log(getNum1()) //7
+
+					var Object={
+						num:6,
+						getNum2:function(){
+							return this.num;
+						},
+						getNum3:function(){
+							console.log(this.num); //6
+							function getNum4(){
+								console.log(this.num); //7
+							}
+							getNum4();
+						}
+					}
+					var a=Object.getNum2;
+					console.log(a()); //7
+					console.log(Object.getNum2()); //6
+					Object.getNum3();
+				</script>
+		8.call,用来修改this的指向,若另有用途第一个参数可以写null
+			<script>
+				var Object={
+					name:'jack'
+				}
+				window.name='rose'
+
+				var getName=function(age,city){
+					console.log(this.name+'今年'+age+'岁,来自'+city)
+				}
+				getName(24,'南京'); //rose今年24岁,来自南京
+				getName.call(Object,24,'南京') //jack今年24岁,来自南京
+			</script>
+		9.apply,使用方法同上,区别是第二个参数必须是数组或类数组,里面包括了需要的参数
+			getName.call(Object,[24,'南京'])
+		10.bind,写在一个函数后面,会指定该函数的this指向
+			<script>
+				var Object={
+					test:function(){
+						var self=this;
+						var a=function(){
+							console.log(this.word); // 此处的this指向window
+						}.bind(this); // 此处的this指向Object,也可写成bind(Object)
+						a();
+					},
+					word:"Hello World!"
+				};
+				Object.test(); //Hello World！
+			</script>
+		11.event
+			当触发事件时,浏览器会自动创建一个event对象,传入事件函数,默认是第一个参数
+			主流浏览器:event||window.event
+			老款ie浏览器:e=window.event||arguments[0]
+			定义目标元素:var target=event.srcElement||event.target;
+	(六)定时器
+		1.设置定时器
+			setInterval(函数名,间隔时间) <!-- 无限循环 -->
+			setTimeout(函数名,延迟时间) <!-- 只执行一次 -->
+			var t1=setInterval(fun1,1000) 时间单位为毫秒,1秒=1000毫秒
+			var t2=setTimeout(fun2,2000)
+		2.清除定时器
+			在特定的循环结束处清除定时器来终止循环
+			clearInterval(t1) 
+			clearTimeout(t2)
+		3.网页定时跳转
+			window.location="目标网页地址"
+			写在函数里,函数写在定时器里
+六、流程控制语句
+	(一)if多条件判断
+		<script>
+			if (条件1){
+				条件1执行的结果
+			}else if(条件2){
+				条件2执行的结果
+			}else{
+				其他情况的结果
+			}
+		</script>
+	(二)function函数
+		1.函数的分类
+			(1)命名函数
+				<script>
+					//a.声明定义,声明和赋值自动存储在最前端,可在任意位置调用
+					function 函数名(形参1,形参2...){
+						执行结构体
+					}
+					函数名(实参1,实参2...)
+					//b.直接量函数,声明自动存储在最前端,但赋值在本地,需在函数后调用
+					var 函数名=function(形参1,形参2,...){
+						执行结构体
+					}
+					函数名(实参1,实参2...)
+					//c.函数对象,用new关键词创建
+					var 函数名=new Function("形参1","形参2",...,"执行结构体")
+					函数名(实参1,实参2...)
+				</script>
+			(2)匿名函数
+				直接赋给对象,可以自调,可以作为返回值直接返回
+				<script>
+					btn.onclick=function(){
+						执行结构体
+					}
+				</script>
+			(3)自调函数,属于匿名函数,函数声明完自动调用,主要用在闭包
+				<script>
+					(function(形参1,形参2...){执行结构体})(实参1,实参2...)
+				</script>
+			(4)回调函数callback,属于匿名函数,可以采用多线程模式,需要使用jq方法,常见的回调函数有定时器和jq里的显示状态方法
+				主函数体内嵌套的函数是回调函数,由主函数决定什么时候来调用
+		2.arguments对象
+			(1)定义
+				是函数的一个内置对象,格式与数组相同,但不能使用数组原生方法,只能通过arguments[下标]访问实参
+			(2)概念
+				arguments 类数组形式的实参
+				arguments.length 实参个数
+				arguments.callee 函数本身
+				arguments.callee.length 形参个数
+			(3)实际运用
+				a.实参个数与形参个数不同时,提示"请输入正确数量的参数"
+				b.为了精简,将两个数的积运算与三个数的和运算写在一个函数内,根据实参个数的不同,引入不同的运算
+				c.求多个数的和时可以不写形参,利用for循环循环"实参最大个数"次,再利用下标挨个计算
+		3.closure闭包
+			在父函数内套子函数,子函数可以调用父函数内的变量,子函数内修改该变量不会影响父函数内的该变量
+			for循环内套用事件函数,函数只能调用最后循环出来的变量,此时需要闭包,父函数可以使用自调函数,设置形参,以for循环内定义的变量为实参,可以实时接收
+		4.return返回值
+			return 变量名+"中文描述"
+			终止函数,函数的值将被返回值取代,打印函数显示的即为return的值
+			可在表单提交时设置返回值为false,使之不能提交,true则可提交,同时可对表单的控件设置返回值,直接对比函数与返回值vaildataPass()=="true"
+		例: <script>
+				function pay(price,num){
+					return "总价格为"+price*num
+				}
+				document.write(pay(20,5)) //总价格为100
+			</script>
+	(三)for循环
+		<script>
+			for (变量初始值;限定条件;变换的步长) {
+				循环执行的结构体 //可在循环结构中放入一个变量i++来计算执行了多少次
+			}
+		</script>
+	(四)for...in数组循环遍历
+		key可视为一个按序排列的下标
+		<script>
+			for(key in arr){
+				document.write("下标"+key+":"+arr[key]+"<hr>")
+			}
+		</script>
+	(五)while循环语句
+		<script>
+			变量初始化
+			while(条件){
+				循环体
+				变换步长
+			}
+		</script>
+	(六)do...while循环语句
+		先执行,后判断,所以该语句至少会执行一次
+		<script>
+			变量初始化
+			do{
+				循环体
+				变换步长
+			}while(限定条件)
+		</script>
+	(七)switch多种选择
+		只能比较值是否相等
+		<script>
+			switch(值/条件表达式){
+				case 值1:结果1;break;
+				case 值2:结果2;break;
+				case 值3:结果3;break;
+				...
+				default:其他结果;
+			}
+		</script>
+	(八)其他
+		1.循环嵌套
+			各循环之间可以相互嵌套,但是要注意各元素的位置
+		2.break
+			使语句结束,跳出循环
+		2.continue
+			略过本次循环
+七、JS高级
+	(一)异常处理
+		1.什么是错误?
+			程序执行过程出错了,那么Error接收错误信息
+		2.错误对象
+			(1)ReferenceError:引用错误
+			(2)SyntaxError:语法错误
+			(3)RangeError:范围错误
+			(4)TypeError:类型错误
+			(5)evalError: eval()方法错误
+			(6)URLError:路径错误
+		3.异常处理
+			可以预知的错误,使用if...else...
+			无法预知的错误,使用try...catch,如兼容性问题,和文件版本问题
+		4.如何自定义错误类型和信息
+		<script>
+			var rs = new Error('错误信息');
+			rs.name = 'TypeError';
+			throw rs; 
+		</script>
+	(二)面向对象技术
+		1.封装,把属性和方法存储在父级对象中
+			以变量的方式自定义属性,以函数的方式自定义方法,需要利用return返回值才能直接使用方法名
+			参数可以采用直接量方法,创建json对象,之后用调用属性的方法即可
+		例: this.showMsg({title:"消息",msg:msg,btns:{yes:"确认",no:"取消"},fn:callback})
+			(1)存储方法
+				a.直接量方法,json对象
+					var 对象名={
+						属性名1:值,
+						属性名2:值,
+						方法名1:function([形参1,形参2,...]){
+							执行结构体,结构体内需要调用当期函数内的属性或方法必须使用this.属性名或this.方法名的格式
+						}
+					}
+				b.定义一个新对象
+					var 对象名=new Object()
+						对象名.属性名=值
+						对象名.属性名=值
+						对象名.方法名=function([形参1,形参2,...]){
+							执行结构体,结构体内需要调用当期函数内的属性或方法必须使用this.属性名或this.方法名的格式
+						}
+				c.工厂模式
+					function 父级名(形参1,形参2,...){
+						var对象名=new Object();
+						对象名.属性名1=形参1
+						对象名.属性名2=形参2
+						Object.prototype.方法名1=function(){
+							执行结构体,结构体内需要调用当期函数内的属性或方法必须使用this.属性名或this.方法名的格式
+						}
+						return 对象名
+					}
+					var 对象名1=父级名(实参1,实参2,...)
+					var 对象名2=父级名(实参1,实参2,...)
+				d.构造函数
+					function 父级名(形参1,形参2,...){
+						this.属性名1=形参1
+						this.属性名2=形参2
+						父级名.prototype.方法名1=function([形参1,形参2,...]){
+							执行结构体,结构体内需要调用当期函数内的属性或方法必须使用this.属性名或this.方法名的格式
+						}
+					}
+					父级名()
+					var 对象名1=new 父级名(实参1,实参2,...)
+					var 对象名2=new 父级名(实参1,实参2,...)
+				a和b创建的都是单个的实际对象,复制需要利用克隆函数;c和d创建的是模板,可以重复调用
+			(2)调用属性和方法
+				a.打印(对象名.属性名)
+				b.打印(对象名["属性名"])
+				c.对象名.方法名([实参1,实参2,...][,回调函数]) 添加回调函数可以在完成该方法后再执行
+			(3)添加或修改属性和方法
+				a.对象名.属性名=值 
+				b.父级名.prototype.方法名=function([形参1,形参2,...]){
+					执行结构体,结构体内需要调用属性必须使用this.属性名的格式
+				}
+			(4)克隆,针对a、b两种存储方法
+				function cloneObj(oldObj){
+					var newObj=new Object()
+					for(key in oldObj){
+						newObj[key]=oldObj[key]
+					}
+					return newObj
+				}
+				var 对象名1=cloneObj(obj)
+				var 对象名2=cloneObj(obj)
+				原对象修改属性,无论写在哪原对象都会改变,写在克隆函数前面会影响副本,后面则不影响
+		2.继承,把子级存储在父级中,子集自动继承父级的属性和方法
+			(1)父级为函数,子级是对象
+				var 对象名=new 父级名([实参1,实参2,...])
+			(2)父级和子级皆为函数
+				a.构造函数继承
+					function 子级函数名(){
+						父级函数名.apply(this[,实参1,实参2,...])
+					}
+				b.原型继承
+					子级函数名.prototype=new 父级函数名([实参1,实参2,...])
+		3.多态,编写能以多种方法运行的函数或方法的能力

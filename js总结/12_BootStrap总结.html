@@ -1,0 +1,183 @@
+BootStrap
+一、响应式页面
+  (一)概念
+    响应式页面指的是可以在不同的分辨率和尺寸下正常浏览的页面
+  (二)编写步骤
+    1.设置name='viewport'的meta标签
+    2.避免绝对单位如px,使用相对单位如%、em、rem和auto
+    3.使用float流式布局
+    4.图片大小自适应
+      img{max-width:50%;min-width:30%;}
+    5.媒体查询,CSS Media Query技术,根据浏览器屏幕的特性,有选择的执行CSS样式
+      (1)Media,浏览页面的设备如pad,phone,PC,TV,屏幕阅读器
+      (2)Query,浏览页面的设备的特性如宽度 ,高度 ,分辨率
+      (3)用法
+        <style>
+          @media screen and (max-width:719px){
+            .box1{
+              color: red;
+            }
+          }
+          @media screen and (max-width:1080px) and (min-width:720px){
+            .box1{
+              color: yellow;
+            }
+          }
+          @media screen and (min-width:1081px){
+            .box1{
+              color: blue;
+            }
+          }
+        </style>
+二、BootStrap
+  (一)概念
+    1.BootStrap是一个CSS样式框架,适用于移动端,参考网址www.bootcss.com,制作了代码片段boot
+    2.于HTML,为H5已有标签扩展了一些自定义属性
+      data-自定义属性名="自定义值"
+    3.于CSS,CSS Reset里有上千个class可以调用
+    4.于JS,基于jQuery提供了十几个插件
+  (二)全局CSS样式,栅格系统Grid Layout
+    1.基本结构
+      容器-行-列-内容,容器需要设置类名container或container-fluid,容器内可放多行,每行设置类名row,行内最多可放12列,列内还可以继续放行,每列设置类名col,具体的布局修饰写在列中
+    2.应对屏幕不同大小
+      分col-lg大、col-md中、col-sm小、col-xs超小四种情况,可以对一个元素设置四个类名来对应这四种情况,若占比相同可以只写最小的
+    3.列的宽度占比,从1到12
+      col-md-数字
+    4.隐藏列
+      hidden-lg|md|sm|xs
+    5.偏移列,可以偏移1到12,若设置为0起取消偏移的效果
+      col-lg|md|sm|xs-offset-数字
+    6.水平移动列,push向右,pull向左,可以移动1到12,若设置为0起取消移动的效果
+      col-lg|md|sm|xs-pull-数字
+  (三)Bootlint工具
+    1.概念
+      是一个官方提供的检测工具,用于检测HTML和CSS的错误,需要引入bootlint.js文件
+    2.引入,通过写作末尾的自调函数引入
+      <script>
+        (function(){
+          var s=document.createElement('script');
+          s.onload=function(){
+            bootlint.showLintReportForCurrentDocument([]);
+          }
+          s.src='./js/bootlint.js';
+          document.body.appendChild(s);
+        })()
+      </script>
+  (四)组件-图标字体
+    1.概念
+      BootStrap提供了大量的图标字体供我们使用,图标字体不是图片,是一种特殊字体,参考网址v3.bootcss.com/components/
+    2.注意事项
+      (1)只能用于空元素,一般写在span内
+      (2)图标和文本之间要添加一个空格
+      (3)图标类不能在同一个元素上与其他类共同存在
+  (五)组件-导航栏
+      <!-- 导航栏navbar，固定在顶部navbar-fixed-top|固定在底部navbar-fixed-bottom|静止在顶部navbar-static-top，反色的导航条navbar-inverse -->
+      <div class="navbar navbar-static-top navbar-inverse">
+        <!-- 定义容器 -->
+        <div class="container">
+          <!-- 导航条头部 -->
+          <div class="navbar-header">
+            <!-- LOGO，竖直居中navbar-brand -->
+            <a href="#" class="navbar-brand">LOGO</a>
+            <!-- 菜单折叠按钮 -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#box">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <!-- 导航条折叠部分 -->
+          <div class="navbar-collapse collapse" id="box">
+            <ul class="navbar-nav nav">
+              <li class="active"><a href="#">公司介绍</a></li>
+              <li><a href="#">产品版权</a></li>
+              <li class="dropdown">
+                <a href="#" data-toggle="dropdown">招聘职位</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header"><a href="#">技术类</a></li>
+                  <li><a href="#">前端开发</a></li>
+                  <li><a href="#">后端开发</a></li>
+                  <li><a href="#">UI美工</a></li>
+                </ul>
+              </li>
+            </ul>
+            <button type="button" class="navbar-btn btn btn-success navbar-right">注册</button>
+            <!-- 空格 -->
+            <span class="navbar-text navbar-right"></span>
+            <button type="button" class="navbar-btn btn btn-info navbar-right">登录</button>
+            <div class="navbar-form navbar-right">
+              <div class="form-group has-feedback">
+                <input type="text" placeholder="请输入内容" class="form-control" >
+                <span class="glyphicon glyphicon-search form-control-feedback "></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  (六)定制-Less
+    1.概念
+      Less是一门css预处理语言,其后缀就是.less,可以动态的处理样式,增加了变量、函数、混合、引入等功能,最后会自动生成一个css,这让css更易维护扩展,Less参考网址lesscss.cn,定制Less参考网址v3.bootcss.com/customize/
+    2.操作
+      (1)定义变量,@变量名:值;
+        @base:blue;
+        .box1{
+          color: @base;
+        }
+      (2)变量计算
+        @grey:#999;
+        @width:100px;
+        .box2{
+          color:#999/@grey;
+          width:@width*2;
+        }
+      (3)变量|样式的混合,直接调用定义好的样式,将其样式名写在样式内,效果类似公共类
+        .box3(@width2:30px){
+          background:#333;
+          border-radius:50%;
+          width: @width2;
+        }
+        .box4{
+          .box3(40px);
+        }
+      (4)嵌套规则,标签层级结构清晰,代码量少
+        div{
+          font-size: 20xp;
+          position: relative;
+          p{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+          }
+          a{
+            text-decoration: none;
+            color: red;
+            &:hover{
+              color: blue;
+            }
+          }
+        }
+      (5)作用域,全局变量与局部变量
+        @con:red;
+        div{
+          @con:black;
+          a{
+            color: @con;
+          }
+        }
+      (6)在less中使用css3的Media Query
+        div{
+          @media(max-width:600px){
+            width: 200px;
+          }
+          @media(min-width:401px) and (max-width:799px){
+            width: 300px;
+          }
+          @media(min-width:800px){
+            width: 400px;
+          }
+        }
+      (7)@import指令,在less中可以引入外部less文件,就可以使用a.less中定义的变量
+        @import './a.less';
+        div{
+          color: @aaa;
+        }

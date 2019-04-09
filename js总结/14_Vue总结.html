@@ -1,0 +1,854 @@
+Vue
+一、概念
+  Vue是一个轻量级的以数据驱动的MVVM框架,M是Model,V是View,VM是ViewModel,它的核心是一个响应式的数据绑定系统,它和jq最大的不同在于jq通过操作DOM来改变页面内容,而vue是通过操作数据来改变页面,常用于开发SPA,当数据发生改变时,视图也会发生改变,视图发生改变时,也会改变数据,这是一个双向数据绑定官网:cn.vuejs.org
+二、开发环境的部署
+  (一)引入vue.js文件
+    1.vue.js,开发版本
+    2.vue.min.js,生成版本,无报错
+  (二)通过npm安装vue
+三、vue实例的生成
+  <!-- {{}}内部可以直接写变量,也可以写变量及API,还可以调用方法 -->
+  <div id="app">{{msg}}</div>
+  <script>
+    //创建一个vue实例
+    new Vue({
+      //挂载的DOM节点,通过选择器获取
+      el:'#app',
+      //数据对象,必须为json对象形式
+      data:{
+        msg:'Hello!'
+      },
+      //方法对象,通过事件调用
+      methods:{
+        clickEvent(){
+          alert(this.msg);
+        }
+      }
+    })  
+  </script>
+四、vue指令,是vue新定义的属性
+  (一)输出data中的内容
+    1.输出文本内容,效果同{{}},但使用此方法出错时页面上不会有{{}}
+      v-text='data中的自定义key名'
+    2.输出文本内容及标签,其他同上
+      v-html='data中的自定义key名'
+  (二)事件处理
+    1.写法,有省略写法
+      v-on:事件名='已定义的函数名'
+      @事件名='已定义的函数名'
+    2.事件修饰符
+      (1)阻止事件冒泡触发,加在子级
+        stop
+      (2)阻止元素本身事件触发,如a标签不会跳转
+        prevent
+      (3)添加事件捕获触发,加在父级
+        capture
+      (4)阻止事件流触发,捕获和冒泡均不生效,只有完全的自身才会触发,加在父级
+        self
+      (5)只生效一次
+        once
+      (6)综合写法
+        @事件名.事件修饰符='已定义的函数名'
+  (三)条件渲染
+    1.判断是否加载,可以只写v-if,若需要再加,中间不能有间隔,v-if='true|大于0的数|值为true的自定义属性名|结果为true的运算'时只显示第一个,v-if='false|0|值为false的自定义属性名|结果为false的运算'则向下判断
+      <p v-if='true'>{{first}}</p>
+      <p v-else-if='true'>{{second}}</p>
+      <p v-else>{{third}}</p>
+    2.判断是否显示
+      v-show='true'
+    3.两者比较
+  (四)数组遍历展示,加在子级
+    v-for='(value,index) in 数组名'
+  (五)双向数据绑定
+    1.写法
+      <p>{{msg}}</p>
+      <input type="text" v-model='msg'>
+    2.数据绑定修饰符
+      (1)懒加载,在失去焦点后才同步
+        lazy
+      (2)数字加载,只同步数字,出现其他字符即停止
+        number
+      (3)同步时自动去掉开头所有空格
+        trim
+      (4)综合写法
+        v-model.数据绑定修饰符='字符串名'
+    3.实例
+      (1)单选按钮绑定一个值
+        <input type="radio" v-model='gender' id="man" value="男">
+        <label for="man">男性</label>
+        <input type="radio" v-model='gender' id="female" value="女">
+        <label for="woman">女性</label>
+        <p>{{gender}}</p>
+      (2)多选按钮绑定一个数组
+        <input type="checkbox" v-model='color' id="red" value="红">
+        <label for="red">红色</label>
+        <input type="checkbox" v-model='color' id="yellow" value="黄">
+        <label for="yellow">黄色</label>
+        <input type="checkbox" v-model='color' id="blue" value="蓝">
+        <label for="blue">蓝色</label>
+        <p>{{color}}</p>
+  (六)给HTML绑定属性,有省略写法
+    data:{
+      imgSrc: './images/模型图.png',
+      baidu: 'http://www.baidu.com',
+      className: 'header',
+      is_ok:true,
+      class1:'style1',
+      class2:'style2',
+      styleObj:{
+        fontSize:'28px',
+        color:'red',
+        background:'green'
+      }
+    }
+    1.图片路径
+      <img v-bind:src="imgSrc">
+    2.链接路径
+      <a :href='baidu'>百度一下</a>
+    3.行内样式
+      <div :style='styleObj'>this is v-bind</div>
+    4.class类名
+      <div :class='className'>className</div>
+    5.绑定class类名时进行第一种判断,{}内不能加变量,需要直接写值
+      <div :class='{style1:is_ok}'>绑定样式进行判断</div>
+    6.绑定class类名时进行第二种判断
+      <div :class='!is_ok?class1:class2'>绑定样式进行判断</div>
+五、vue的选项
+  (一)概念
+    vue构造器中配置功能的前缀,如el、data、methods、template...
+  (二)el,绑定依赖元素,通过选择器绑定
+  (三)data,存放参数
+  (四)methods,存放方法,最好不用箭头函数,this指向不对
+  (五)template
+    1.直接写在选项模板中,可以直接写{{data内定义的key}},替换el绑定的元素
+      <div id='app1'></div>
+      <script>
+        new Vue({
+          el: '#app1',
+          data: {msg:'777'},
+          template:`
+            <div style='color:red'>选项模板{{msg}}</div>
+          `
+        })
+      </script>
+    2.写在template标签中,必须要有根节点,也就是说template标签中只有一个子集,且真正的内容放在该子级中,只能通过id绑定,替换该子级
+      <template id="temp01">
+        <div>
+          <p><a :href='baidu'>百度一下{{msg}}</a></p>
+        </div>
+      </template>
+      <script>
+        new Vue({
+          el: '#app2',
+          data: {
+            msg:'4396',
+            baidu:'http://www.baidu.com'
+          },
+          template:'#temp01'
+        })
+      </script>
+    3.写在script标签中,但不能跨文件引用,只能通过id绑定,放在script标签内部
+      <script type="x-template" id="temp02">
+        <p><a :href='baidu'>百度一下{{msg}}</a></p>
+      </script>
+      <script>
+        new Vue({
+          el: '#app3',
+          data: {
+            msg:'4396',
+            baidu:'http://www.baidu.com'
+          },
+          template:'#temp02'
+        })
+      </script>
+  (六)computed,计算属性
+    1.概念
+      当依赖的属性值发生变化,计算属性会重新计算,若无变化,计算属性不会重新计算,随着变量发生变化,但其本身是个变量,区别于普通方法,可以节省内存,只要依赖的变量不变,就不会重新计算,调用时也作为变量调用
+    2.写法
+      <div id='app'>
+        {{newMsg}}
+      </div>
+      <script>
+        new Vue({
+          el: '#app',
+          data: {
+            msg:'Hello Vue!'
+          },
+          computed:{
+            newMsg(){
+              return this.msg.split('').reverse().join('');
+            }
+          }
+        })
+      </script>
+  (七)watch
+    1.概念
+      观察者模式,随着监听对象值的变化执行对应的逻辑,需要以监听对象的名字为监听方法名
+    2.写法
+    <div id='app'>
+      <p>今日温度:{{set}}</p>
+      <p>建议:{{suggest}}</p>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          tem:14,
+          suggest:'长袖'
+        },
+        watch:{
+          tem(newValue,oldValue){
+            if(newValue>27){
+              this.suggest='短袖'
+            }else if(newValue<=27&&newValue>=10){
+              this.suggest='长袖'
+            }else{
+              this.suggest='大衣'
+            }
+          }
+        }
+      })
+    </script>
+  (八)生命周期函数,也称钩子函数
+    1.概念
+      vue实例有一个完整的生命周期,从开始创建到初始化数据、编译模板、挂载DOM,再到渲染、更新交替,到最后卸载实例,在这个过程中存在着钩子函数,让我们可以执行自定义逻辑
+    2.钩子函数种类
+      (1)创造前
+        beforeCreate
+      (2)创建
+        created
+      (3)挂载前
+        beforeMount
+      (4)挂载后
+        mounted
+      (5)数据变化前
+        beforeUpdated
+      (6)变化后
+        update
+      (7)销毁前
+        beforeDestory
+      (8)销毁后
+        destroyed
+六、组件
+  (一)概念
+    组件就是可复用的vue实例,制作组件其实就是制作自定义的标签,命名时最好用-连接或驼峰命名,组件在定义好后,就可以直接在作用域内通过标签调用,但引用时必须要有根元素
+  (二)注册,注册的名字不能有大写
+    1.全局注册,通过Vue.component创建,需要写在创建实例之前,可被多次引用
+    <script>
+      Vue.component('my-comp',{
+        template:`<div style='background:red'>这是一个全局注册的组件{{msg}}</div>`,
+        data(){
+          return {msg:'777777'}
+        }
+      })
+    </script>
+    2.局部注册,在实例中添加components选项创建
+    <script>
+      new Vue({
+        el: '#app',
+        template:`
+          <div style='background:red'>
+            <comp-first></comp-first>
+            <comp-second></comp-second>
+            <div is='comp-first'></div>
+          </div>`,
+        components:{
+          'comp-first':{
+            template:`<div style='color:blue'>这是第一个局部注册的组件{{msg}}</div>`,
+            data:{msg:'first'}
+          },
+          'comp-second':{
+            template:`<div style='color:blue'>这是第二个局部注册的组件{{msg}}</div>`,
+            data:{msg:'second'}
+          }
+        }
+      })
+    </script>
+  (三)组件的选项,不可以使用el,data需改为使用return的函数,具体对象写在返回的json内,这是为了每次调用生成的是相互无影响的独立元素
+  <script>
+    Vue.component('myComp',{
+      data(){
+        return{
+          msg:'77777'
+        }
+      },
+      template:`<p style='color:red'>{{msg}}</p>`
+    })
+    new Vue({
+      el: '#app',
+      template:`
+      <div>
+        <myComp></myComp>
+        <myComp></myComp>
+        <myComp></myComp>
+      </div>`
+    })
+  </script>
+  (四)组件中使用指令和事件
+  <script>
+    new Vue({
+      el: '#app',
+      template:`<div>
+        <my-comp></my-comp>
+        </div>`,
+      components:{
+        'my-comp':{
+          data(){
+            return {
+              msg:777,
+              bgColor:{background:'black',color:'white'}
+            }
+          },
+          methods:{
+            change(){
+              console.log(this.msg)
+            }
+          },
+          template:`
+          <div>
+            <p :style='bgColor'>账号组件</p>
+            <a href='#' @click.prevent='change'>登录</a>
+            <a href='#'>注册</a>
+          </div>`
+        }
+      }
+    })
+  </script>
+  (五)父子组件,在Vue.component中添加components选项,父级与子级的data数据相互不能直接调用
+    1.写法
+    <script>
+      Vue.component('my-comp',{
+        data(){
+          return {
+            msg:555
+          }
+        },
+        template:`
+        <ul class='ulList'>
+          <comp-first></comp-first>
+          <comp-second></comp-second>
+          <li>{{msg}}</li>
+        </ul>
+        `,
+        components:{
+          'comp-first':{
+            template:`
+            <li>
+              <a href='http://www.4399.com'>4399</a>
+            </li>`
+          },
+          'comp-second':{
+            template:`
+            <li>
+              <a href='http://www.7k7k.com'>7k7k</a>
+            </li>`
+          }
+        }
+      })
+    </script>
+    2.父子间组件的通信
+      (1)父级调用子级,在子级中定义props选项,在该选项的数组中添加一个和父级自定义属性同名的驼峰命名的自定义属性来接收,父级的自定义属性还可以使用-,如show-msg可转换为showMsg,接收变量需要绑定,而常量直接设置即可
+      <script>
+        Vue.component('my-comp',{
+          data(){
+            return {
+              msg:'1.父级组件的变量'
+            }
+          },
+          template:`
+            <ul style='color:red'>
+              <comp-first :showMsg1='msg' showMsg2='2.父级组件的常量'></comp-first>
+            </ul>
+          `,
+          components:{
+            'comp-first':{
+              template:`<div>
+                <li style='background:black'>{{showMsg1}}</li>
+                <li style='background:black'>{{showMsg2}}</li>
+              </div>`,
+              props:{
+                'showMsg1':{
+                  default:'1.变量默认值',
+                  type:String
+                },
+                'showMsg2':{
+                  default:'2.常量默认值',
+                  type:String
+                }
+              }
+              //写法2,不推荐
+              //props:['showMsg1','showMsg2']
+            }
+          }
+        })
+        new Vue({
+          el: '#app'
+        })
+      </script>
+      (2)子级调用父级,子级通过$emit()方法向父级派发一个自定义事件,向父级传递数据,父级用v-on来绑定
+      <script>
+        new Vue({
+          el: '#app',
+          data:{
+            msg:'Hello!',
+            temp:''
+          },
+          template:`
+            <div>
+              <p>这是父级的内容{{msg}}</p>
+              <p>{{temp}}</p>
+              <child-comp @getTemp='setTemp'></child-comp>
+            </div>  
+          `,
+          methods:{
+            setTemp(data){
+              //第一个自定义的参数就是接收的childTemp
+              console.log(data)
+              this.temp=data;
+            }
+          },
+          components:{
+            'child-comp':{
+              template:`<button @click='add'>子级按钮</button>`,
+              data(){
+                return {
+                  childTemp:'子级的data'
+                }
+              },
+              methods:{
+                //调用$emit方法,该方法只向父级派发
+                add(){
+                  this.$emit('getTemp',this.childTemp)
+                }
+              }
+            }
+          }
+        })
+      </script>
+  (六)组件插槽slot
+    1.概念
+      写在template内的一个标签<slot></slot>,可以在调用组件双标签时,使标签内的内容显示在插槽内
+    2.写法
+    <script>
+      new Vue({
+        el:"#app",
+        template:`
+        <div>
+          <h2>我是父组件标题</h2>
+          <my-comp>
+            <p>这是第一次引用</p>
+          </my-comp>
+          <my-comp>
+            <p>这是第二次引用</p>
+          </my-comp>
+        </div>`,
+        components:{
+          'my-comp':{
+            template:`
+            <div>
+              <h3>我是子组件标题</h3>
+              <slot></slot>
+            </div>`,
+          }
+        },
+      });
+    </script>
+  (七)组件的引用
+    1.概念
+      组件之间的交互基本通过props、$emit和slot,但需要直接访问时需要使用ref为组件定义一个引用ID,用$refs.ID来访问
+六、全局API,是Vue本身的方法
+  (一)扩展实例构造器的方法,参数是一个对象,最后使用$mount挂载
+    Vue.extend({
+      选项
+    })
+    new extend().$mount(app)
+  (二)在构造器外部操作内部的数据、属性和方法,这是由于js的限制,只修改数组的一个元素,不能立即更新数据
+    Vue.set(数组模板,下标,值)
+    Vue.set(this.arr,0,'#797979')
+七、路由Vue-router
+  (一)安装,可在Vue-cli中选择自动安装路由
+    npm i vue-router --save
+  (二)写法
+    1.HTML写法
+    <!-- 在线引入相关模块 -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <div id="app">
+      <!-- router-link会被渲染为a标签进行超链接,to属性后写地址 -->
+      <router-link to="/foo">Go to Foo</router-link>|
+      <!-- 也可在:to属性后写路由名字进行链接 -->
+      <router-link :to="{name:'bar'}">Go to Bar</router-link>|
+      <!-- 模糊匹配/children/:name路径时需要传递参数 -->
+      <router-link :to="{name:'children',params:{name:jack}}"></router-link><br>
+      <!-- router-view视图是路由的出口,路由匹配到的组件会渲染在这,视图可以设置name属性,默认为default,若需要多个视图并列显示就需要不同的name,同时路由的component改为components进行书写 -->
+      <router-view></router-view>
+    </div>
+    2.JavaScript写法,首先需要明确route是单个路由,routes是多个路由的数组,router是路由管理器
+    <script>
+      //创建router实例
+      const router = new Router({
+        //选择Router的模式,默认为hash可以不写,但哈希路径中带#不好看,可改为history,但history模式依赖后台编写
+        mode: 'history',
+        routes: [
+          //这就是单个的route
+          {
+            path: '/', //路径
+            name: 'home', //路由名称
+            component: Home, //顶部引入的组件名
+          },
+          {
+            path: '/color', //动态路径
+            name: 'color',
+            component: Color,
+            //配置子路由
+            children:[
+              {
+                path: 'red', //路径不用加/,默认就在/color/后
+                name: 'red',
+                component: Red,
+              },
+              {
+                path: 'blue',
+                name: 'blue',
+                component: Blue,
+              }
+            ]
+          },
+          {
+            path: '/user/:id', //动态路径
+            name: 'user',
+            component: User,
+          },
+        ]
+      })
+      const app = new Vue({
+        router //是router:router的缩写
+      }).$mount('#app')
+    </script>
+    3.路由与路由器的API
+      (1)跳转页面push
+        router.push('home') 直接写路由名称
+        router.push(`/user/${id}`) 直接写路径
+      (2)跳转页面replace,用法与前者相同,但不会向history添加新记录
+      (3)前进go,后退就是-1
+        router.go(1)
+    4.注入完成后的外部调用,写在HTML内不加this,API亦可使用
+      (1)当前路由器
+        this.$router
+      (2)当前路由
+        this.$route
+      (3)动态路径
+        this.$route.params
+九、Vuex
+  (一)安装
+    npm i vuex --save
+  (二)主体store
+    <script>
+      import Vue from 'vue';
+      import Vuex from 'vuex';
+      //引入4个单独定义的属性
+      import state from './state';
+      import mutations from './mutation';
+      import getters from './getter';
+      import actions from './action';
+
+      Vue.use(Vuex);
+
+      //创建Vuex仓库实例并输出
+      export default new Vuex.Store({
+        state,
+        mutations,
+        getters,
+        actions,
+      });
+    </script>
+  (三)子页面的调用
+    1.直接通过{{$store.state.count}}渲染
+    2.在computed选项中利用返回方法调用,通过{{GetCount}}渲染
+      computed:{
+        GetCount(){
+          return this.$store.state.count
+        }
+      }
+    3.使用语法糖,调用时state和getters需要放在computed选项中调用,mutations和actions需要放在methods选项中调用
+    <template>
+      <div class="child">
+        <p>{{count}}</p>
+        <p>{{setCount}}</p>
+        <button @click="add(10)">加</button>
+        <button @click="reduce">减</button>
+        <button @click="addAction">复合</button>
+      </div>
+    </template>
+    <script>
+      import {mapState,mapMutations,mapGetters,mapActions} from 'vuex' //首先需要引入模块内的四个暴露点
+      export default{
+        methods:{
+          ...mapMutations({
+            add:'ADD', //使用新的变量接收
+            reduce:'REDUCE'
+          }),
+          ...mapActions(['addAction'])
+        },
+        computed:{
+          ...mapState(['count']),
+          ...mapGetters(['setCount'])
+        },
+      }
+    </script>
+  (四)State,状态
+    <script>
+      const state={
+        count:0
+      }
+      export default state;
+    </script>
+  (五)Mutation,更改state的唯一方法就是提交mutation
+    1.mutation.js文件
+      <script>
+        import { ADD, REDUCE } from './mutation types';
+        const mutations = {
+          [ADD](state,num) {
+            state.count+=num;
+          },
+          [REDUCE](state) {
+            state.count--;
+          }
+        }
+        export default mutations;
+      </script>
+    2.mutation types.js文件,使用常量替代时需要此文件
+      <script>
+        const ADD = 'ADD';
+        const REDUCE = 'REDUCE';
+        export { ADD, REDUCE }
+      </script>
+  (六)Getter,可视为state的computed计算属性const getters={
+    <script>
+      const getters={
+        setCount(state){
+          return state.count*2;
+        }
+      }
+      export default getters;
+    </script>
+  (七)Action,可以异步提交多个mutation来修改state
+    <script>
+      const actions = {
+        addAction(context) {
+          context.commit('ADD',5);
+          context.commit('REDUCE');
+        }
+      }
+      export default actions;
+    </script>
+九、Vue-cli2.9
+  (一)安装
+    cnpm install vue-cli -g
+  (二)初始化项目
+    1.vue init template-name project-name
+      vue init webpack democli
+    2.设置选项
+      (1)小写项目名称,project name
+      (2)项目描述,project description
+      (3)作者,Author
+      (4)安装,install vue-router
+      (5)不使用ESLint代码,Use ESLint to lint youer code
+      (6)是否安装单元测试工具,setup unit tests width Karma+Mocha
+  (三)启动项目,Get Start
+    1.进入项目目录
+      cd democli
+    2.运行
+      npm run dev
+    3.进入出现的网址出现vue
+十、Vue-cli3.0
+  (一)安装
+    1.全局安装该工具
+      npm i @vue/cli -g
+    2.创建一个项目,完成后按照提示继续输入两条命令
+      vue create 自定义项目名
+    3.激活项目,之后的每次打开都需要先激活
+      vue ui
+    4.在弹出的网页上选择自己需要的插件进行配置,路由文件必须配置,运行任务中的build和serve,最后通过启动app打开网页
+    5.安装完成后的两种打开方式,需要切换至想要打开的项目文件夹下
+      (1)执行第三步
+      (2)输入pack.json内对应的指令
+        npm run serve
+  (二)项目脚手架结构
+    项目文件夹
+      dist,执行npm run bulid完成项目打包生成的文件,可以本地测试
+      public,静态资源应急存放处
+      node_modules,node的依赖模块存放处
+      src,核心代码存放处
+        assets,静态资源如css、外部js存放处
+        components,公用的组件如页头、页脚、弹出框之类的存放处
+        views,引用子组件的存放处
+        App.vue,引用各子组件的主组件
+        main.js,加载主组件和各组件的程序入口
+        router.js,配置路径跳转的路由文件
+      .browserslistrc,浏览器的兼容配置文件
+      .editorconfig,代码格式定义文件
+      .eslintrc.js,代码书写规范文件
+      .gitignore,git不上传的文件清单
+      babel.config.js,用js做的babel配置文件
+      package-lock.json,记录已下载模块的版本号,更新时被引用
+      package.json,记录已下载模块,检测当前下载模块是否存在时被引用
+      postcss.config.js,用js做的postcss配置文件
+      README.md,说明文件
+  (三)实际操作
+    1.main.js
+      <script>
+        //引入vue模块,from命令后只有vue、axios这样的模块名,会自动到node_modules中加载,完整写法为import Vue from "../node_modules/vue/dist/vue.js";
+        import Vue from 'vue';
+        //引入主组件
+        import App from './App.vue';
+        //引入路由文件,js后缀可省略
+        import router from './router';
+        //引入状态管理模式Vuex
+        import store from './store/index';
+
+        //关闭生产模式下给出的提示
+        Vue.config.productionTip = false;
+
+        //实例化vue对象,面向对象写法,顶部引入的除了模块都需要作为属性注入
+        new Vue({
+          router, //注入路由
+          store, //注入状态管理模式
+          render: h => h(App), //render选项传递了createElement作为参数,最终创建元素节点,并以App渲染
+        }).$mount('#app'); //手动挂载元素,效果等同el:"#app"
+      </script>
+    2.router.js,详见前文,存在些许区别
+      <script>
+        import Vue from 'vue';
+        import Router from 'vue-router';
+        //引入组件,需与component一一对应
+        import Home from './views/Home.vue';
+
+        //使用顶部引入的vue-router模块
+        Vue.use(Router);
+        
+        //需要导出
+        export default new Router({
+          mode: 'history',
+          base: process.env.BASE_URL, //设置环境变量
+          routes: [
+            {
+              path: '/',
+              name: 'home',
+              component: Home, //与顶部引入对应
+            },
+            {
+              path: '/about',
+              name: 'about',
+              //使用懒加载引入组件,不需要顶部引入
+              component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+            },
+          ]
+        })
+      </script>
+    3.所有.vue组件
+      <template>
+        <div id="app">
+          路由出口或链接
+        </div>
+      </template>
+      <script>
+        js语句
+      </script>
+      <style lang="less">
+        /* css样式 */
+      </style>
+十一、Webpack
+  (一)概念
+    现代JS应用程序的模块化管理和打包工具,参考网址https://www.webpackjs.com/concepts/
+  (二)安装
+    1.选择一个文件夹
+    2.初始化文件夹,-y为全选yes
+      npm init -y
+    3.安装Webpack
+      npm i webpack webpack-cli --save-dev
+  (三)创建并配置webpack.config.js文件
+    需要在package.json内的scripts下写"build": "webpack --config webpack.config.js",在npm run build,之后会自动生成一个dist文件夹,内部就是合并后的文件
+  (四)入口起点entry,主要定义入口文件路径
+  (五)出口output,主要定义打包后的文件名与路径
+  (六)插件plugins,需要以数组的形式
+    1.生成HTML模板的插件,html-webpack-plugin
+      (1)安装
+        npm i --save-dev html-webpack-plugin
+      (2)写法
+        new HtmlWebpackPlugin({
+          filename:'index.html', //指定名字
+          minify:{ //压缩代码
+            collapseWhitespace:true //去除空格
+          }
+        })
+    2.自动清空打包文件夹,clean-webpack-plugin
+      (1)安装
+        npm i --save-dev clean-webpack-plugin
+      (2)写法
+        new CleanWebpackPlugin('dist')
+  (七)加载器loaders,处理JS外的静态文件,处理vue就用vue-loader,处理css就用css-loader
+    1.配置loader,在module对象内的rules数组中
+    2.设置配置的规则
+      (1)text,一个匹配所处理文件的正则表达式,必须设置
+      (2)use,使用某个loader,必须设置
+      (3)include/exclude,手动设置包含某个文件或不包含
+      (4)options,额外设置
+    3.安装css加载配件
+      npm i --save-dev css-loader
+      npm i --save-dev style-loader
+  (八)webpack.config.js的实际写法
+  <script>
+    //webpack中支持ES6模块化和common.js的规范
+    const path = require('path');
+    //引入外部插件
+    const HtmlWebpackPlugin=require('html-webpack-plugin');
+    const CleanWebpackPlugin=require('clean-webpack-plugin');
+    
+    //模块输出
+    module.exports = {
+      mode:'production', //此为生产模式,还有development开发模式
+      //1.打包的入口文件
+      entry:{
+        //入口文件路径
+        app:path.resolve(__dirname,'src/index.js') //dirname代表当前绝对路径
+      },
+      //2.打包的出口文件
+      output:{
+        //打包后的文件名,name引用的是app,hash:5取Hash值的前五个
+        filename:'[name]-[hash:5].js',
+        //打包文件存放路径
+        path:path.resolve(__dirname,'dist')
+      },
+      //3.设置loader匹配规则
+      module:{
+        rules:[ //使用不同的loader来匹配不同的文件
+          {
+            test:/\.css$/, //匹配以.css结尾的文件
+            use:[{
+              loader:'style-loader',
+              options:{
+                singleton:true //让style标签合并
+              }
+            },'css-loader'], //从后往前执行
+          }
+        ]
+      },
+      //4.启用插件的数组
+      plugins:[
+        new HtmlWebpackPlugin({
+          //生成的名字,此时设置的就是默认值
+          filename:'index.html',
+          //可以选择指定一个存在的模板
+          //template: './src/index.html'
+          //压缩代码的设置
+          minify:{
+            //去除空格
+            collapseWhitespace:true
+          }
+        }),
+        new CleanWebpackPlugin('dist')
+      ]
+    }
+  </script>

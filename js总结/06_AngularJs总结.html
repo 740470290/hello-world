@@ -1,0 +1,321 @@
+                                      AngularJS
+一、基本框架
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="angular/angular.min.js"></script> <!-- 导入外部AngularJS文件 -->
+</head>
+<body ng-app="app"> <!-- 定义根元素,连接到代码模块 -->
+  <div ng-controller="ctrl1"> <!-- 在父级定义当前控制器的范围 -->
+
+  </div>
+  <div ng-controller="ctrl2"> <!-- 模块内可有多个控制器 -->
+
+  </div>
+</body>
+<script>
+  var app=angular.module("app",[]); //定义模块
+  //定义控制器
+  //1.行内注入依赖
+  app.controller("ctrl1",["$scope",function($scope){
+    $scope.自定义属性名=值;
+  }]);
+  //2.推断式注入依赖
+  app.controller("ctrl2",function($scope){
+    $scope.自定义方法名=function(){
+      
+    };
+  });
+</script>
+</html>
+二、AngularJS表达式
+  {{表达式}}
+  可以直接调用控制器中定义的属性、算数运算如a+b、逻辑运算如a&&b、关系运算a>=b、三目元素?:;和字符串拼接""+"",都会直接显示最终结果
+三、AngularJS指令
+  (一)定义
+    html标签的一个扩展属性,带有前缀ng-,有AngularJS内置的指令,也可以自定义
+  (二)内置指令
+    1.定义应用的名称,所有AngularJS应用都必须有且只能有一个根元素
+      ng-app="app名"
+    2.定义绑定数据,可被表达式调用,输入框中输入的内容,选择框中选中内容的值,在控制层中调用需要$scope.自定义值名
+      ng-model="自定义值名"
+    3.定义控制器
+      ng-controller="控制器名"
+    4.显示或隐藏某个元素,true生效false不生效,控制台可见
+      ng-show/ng-hide="true|1|false|0|值为true或false的自定义属性名|自定义属性名与给定值的结果为true或false的运算"
+    5.指定元素的存在性,true存在,false不存在,效果类似隐显,不显示时占用小,控制台不可见
+      ng-if="true|1|false|0|值为true或false的自定义属性名|自定义属性名与给定值的结果为true或false的运算"
+    6.绑定数据,作用与{{表达式}}完全一样,但不会受加载顺序影响
+      ng-bind="自定义属性名"
+    7.设置默认选中,true选中,false未选中
+      ng-checked="true|1|false|0|值为true或false的自定义属性名|自定义属性名与给定值的结果为true或false的运算"
+    8.引用外部文件路径
+      ng-src="路径|{{值为路径的自定义属性名}}"
+    9.只读,不可修改
+      ng-readonly="true|1|false|0|值为true或false的自定义属性名|自定义属性名与给定值的结果为true或false的运算"
+    10.只读,不可修改
+      ng-disabled="true|1|false|0|值为true或false的自定义属性名|自定义属性名与给定值的结果为true或false的运算"
+    11.遍历数组,并将数组的每一个元素以当前节点单独显示出来,两个参数前者为下标,后者为值,也可只写值,通过{{$index}}调出下标,最后的track by $index是为了防止数组中元素相同
+      ng-repeat="[(下标参数名,]值参数名[)] in 值为数组的自定义属性名[ track by $index]"
+    12.对HTML中class的封装,true生效,false不生效
+      ng-class="{class类名:true|1|false|0|值为true或false的自定义属性名|自定义属性名与给定值的结果为true或false的运算}"
+    13.联同切换,类似省市联动效果
+      父级标签 ng-switch="自定义值|ng-model的值"
+      子级标签 ng-switch-when="1"
+    14.用于引入外部网页,如系列网页中相同的导航栏和底部,路径需要两层引号,需要从服务器访问
+      ng-include="'路径'"
+    15.初始化应用时创建一个变量
+      ng-init="变量名='值'"
+  (三)自定义指令
+    1.自定义指令名的命名规范
+      命名时遵循驼峰命名法,调用时所有大写改为-小写;
+    2.作为属性attribute或标签element使用
+      app.directive("指令名",function(){
+        return {
+          templateUrl:"返回的值,可以写标签"
+        }
+      });
+    3.作为类名class使用
+      app.directive("指令名",function(){
+        return {
+          template:"<p>这是自定义指令返回的数据</p>",
+          restrict:"EMAC"
+        }
+      });
+    4.作为注释mark使用,添加了replace:true后,若template中写有标签,此标签会替代原标签
+      app.directive("selfOrder",function(){
+        return {
+          template:"<p>这是自定义指令返回的数据</p>",
+          restrict:"EMAC",
+          replace:true
+        }
+      });
+    5.引入外部网页
+      app.directive("abc",function(){
+        return {
+          templateUrl:"插入网页地址,如./head.html"
+        }
+      });
+四、AngularJS事件
+  (一)定义
+    html标签的一个扩展属性,带有前缀ng-,可通过事件完成双向数据绑定,如通过ng-change从视图层获取ng-model的值,再发送至控制层逻辑处理,再返回视图层
+  (二)常用事件
+      1.单击
+        ng-click
+      2.鼠标进入
+        ng-mouseenter
+      3.鼠标离开
+        ng-mouseleave
+      4.变化
+        ng-change
+      5.表单提交
+        ng-submit
+五、AngularJS Scope作用域
+  (一)子作用域,根控制器绑定,作用范围是整个控制器
+    $scope
+  (二)根作用域,与app直接绑定,作用域是整个app
+    $rootScope
+  (三)写法
+  <script>
+    var app = angular.module('app', []);
+    app.controller("ctrl1",["$scope","$rootScope",function($scope,$rootScope){
+      // 每个控制器内只有$scope是恒定与当前控制器绑定的,再添加的则是与app绑定的
+      $scope.name="jack" //只可在当前控制器调用
+      $rootScope.sex="女" //可在全局调用,但在其他控制器内调用时,需要函数内有$rootScope
+    }])
+  </script>
+六、AngularJS过滤器
+  (一)定义
+    可修正表达式样式,还可以传递不同参数来决定样式
+    {{表达式|过滤器1[:参数]|过滤器2[:参数]}}
+  (二)内置过滤器
+    1.uppercase,转为大写字母
+      {{表达式|uppercase}}
+    2.lowercase,转为小写字母
+      {{表达式|lowercase}}
+    3.date,格式化时间,通过参数修改显示格式,需要先定义一个时间变量new Date()
+      {{表达式|date[:"yyyy-MM-dd hh:mm:ss"]}}
+    4.current,格式化货币及其符号,参数为显示在前面的货币符号
+      {{表达式|currency[:"￥"}]}
+    5.json,将传入的json对象以json格式展示
+      {{表达式|json}}
+    6.filter,筛选数组中包括o的,若有三个大括号在一起需要在第一个后面留个空格
+      {{表达式|filter:"o"|{name:"a"} }}
+    7.limiTo,限制数组或字符串的长度,如果参数是正数,从头开始截取,负数相反,字符串以单个字符计数,数组以单个元素计数
+      {{表达式|limitTo:4|-4}}
+    8.number,给数字添加千位分隔符,如果没有参数默认保留2位有效小数,参数修改保留几位小数,负数起四舍五入效果
+      {{表达式|number[:3]}}
+    9.orderBy,数组排序,默认数字从小到大,字母正序排列,关联数组默认不排序,需设置参数,若数组元素为json对象,添加false升序和true降序,也可以使用+和-放在第一个参数前,多方面排序要以数组的形式
+      {{表达式|orderBy:"":true}}
+      {{表达式|orderBy:["-id","+name"]}}
+  (三)自定义过滤器,采用推断式注入依赖
+    <script>
+      var app = angular.module('app', []);
+      app.filter("自定义过滤器名",function(){
+        return function(str){
+          //双向数据绑定,需要添加参数,再处理传递进来的参数str
+          var arr = str.split("");
+          arr[0] = arr[0].toUpperCase();
+          return arr.join("");
+        }
+      });
+    </script>
+七、AngularJS Service服务
+  (一)定义
+    服务就是一个可在angularJS中使用的函数或对象,需要在定义的控制器中添加对应参数,所有服务都有对应的provider进行设置
+  (二)内置服务
+    1.$timeout和$interval,定时器
+    <script>
+      var app = angular.module('app', []);
+      app.controller("ctrl",function($scope,$timeout,$interval){ //需要使用服务就需要添加对应参数
+        var id; //提前定义
+        $scope.start=function(){ //可以放在事件中,触发即调用
+          $interval.cancel(id); //通过事件触发时,最好先清除,防止多次触发时出现问题
+          id=$interval(function(){ //给当前计时器命名
+            
+          },500) //设置间隔时间
+        }
+        $scope.stop=function(){
+          console.log(id);
+          $interval.cancel(id); //停止计时器需要定时器名id
+        }
+        $timeout(function(){
+        
+        },2000); 
+      });
+    </script>
+    2.$filter,该服务可以当成9种过滤器来使用
+    <script>
+      var app = angular.module('app', []);
+      app.controller("ctrl",function($scope,$filter){
+        $scope.show2=$filter("date")(new Date(),"yyyy-MM-dd hh:mm:ss")
+        $scope.属性名=$filter("过滤器名")(常量的值|变量的值,参数)
+      });
+    </script>
+    3.$log,日志服务,用于控制台信息的输出
+    <script>
+      var app = angular.module('app', []);
+      app.controller("ctrl",function($log){
+        $log.log("打印日志信息,效果等于于控制台打印")
+        $log.info("打印普通信息")
+        $log.warn("打印警告信息")
+        $log.error("打印错误信息")
+        $log.debug("打印调错信息")
+      });
+    </script>
+    4.$location,获取地址栏相关信息
+    <script>
+      var app = angular.module('app', []);
+      app.controller("ctrl",function($scope,$location){
+        $scope.absUrl = $location.absUrl(); //绝对路径
+        $scope.url = $location.url(); //相对路径
+        $scope.host = $location.host(); //主机名
+        $scope.port = $location.port(); //端口号
+        $scope.protocol = $location.protocol(); //协议
+      })
+    </script>
+    5.$http,用于发送http请求读取远程服务器的数据,一般需要通过事件的触发来开始,本身可选择传递参数或不传递,传递的参数可以发送至远程服务器通过$_GET或$_POST进行调用
+      (1)get方式
+      <script>
+        var app = angular.module('app', []);
+        app.controller("ctrl",function($scope,$http){
+          //无参传送
+          $scope.send1=function(){
+            $http({
+              url:"./06_http1.php" //远程服务器的地址
+            }).success(function(result){ //result是远程服务器的结果
+              //对result处理的结构体
+              console.log(result);
+              $scope.students=result;
+            });
+          }
+          //有参传送
+          $scope.send2=function(){
+            $http({
+              url:"./06_http2.php",
+              params:{"name":"张三"} //传递参数
+            }).success(function(result){
+              //对result处理的结构体
+            });
+          }
+        });
+      </script>
+      (2)post方式
+      <script>
+        var app = angular.module('app', []);
+        app.controller("ctrl",function($scope,$http){
+          //无参传送
+          $scope.send1=function(){
+            $http({
+              url:"./07_post1.php",
+              method:"post" //定义传送方式为post,不定义默认get
+            }).success(function(result){
+              //对result处理的结构体
+            });
+          }
+          //有参传送
+          $scope.send2=function(){
+            $http({
+              url:"./07_post2.php",
+              method:"post",
+              headers:{"Content-Type":"application/x-www-form-urlencoded"}, //传递参数必须的一项
+              data:"uname='张三'&age='13'" //传递参数
+            }).success(function(result){
+              //对result处理的结构体
+            });
+          }
+        });
+      </script>
+  (三)自定义服务
+    1.service
+    <script>
+      var app = angular.module('app', []);
+      app.controller("ctrl",function($scope,自定义服务名){
+        $scope.show=自定义服务名.自定义方法名();
+      })
+      app.service("自定义服务名",function([需要调用过滤器时,可在此调用]){
+        this.自定义方法名=function(){
+          return new Date();
+        }
+      });
+    </script>
+    2.factory
+
+
+
+八、AngularJS路由
+  (一)定义
+    单个页面展示所有,通过ajax动态获取数据,然后进行实时渲染,将数据渲染到页面上,这个方法需要设置ng-view来动态获取template返回的值
+    when和最后的otherwise中有4个参数:
+      1.template:"[<p>]描述[</p>]",返回可写标签的字符串
+      2.templateUrl:"链接网页的路径",返回指定的视图,如不需要数据填充,可单独使用,否则需要配合controller的数据
+      3.controller:"ctrl",调用某个控制器,可将控制器中绑定的数据发送至templateUrl的视图
+      4.redirectTo:"重定向网页的路径",重定向,直接跳转
+  (二)定义
+  <body ng-app='app'>
+    <a href="#/a">aaaa</a>
+    <a href="#/b">bbbb</a>
+    <a href="#/c">cccc</a>
+    <div ng-view></div> <!-- 动态获取template返回的值,展示不同视图和数据 -->
+  </body>
+  <script>
+    var app = angular.module('app',['ngRoute']); //app的定义中需要在数组中添加'ngRoute'
+    app.config(["$routeProvider",function($routeProvider){ //利用config配置路由
+      $routeProvider.when("/",{
+        template:"这是首页"
+      }).when("/a",{
+        template:"这是a的内容"
+      }).when("/b",{
+        templateUrl:"./02_view.html" //调用了一个简单的结构网页,没有angularJS描述
+      }).when("/c",{
+        templateUrl:"./02_show.html",
+        controller:"ctrl"  //调用某个控制器,可将控制器中绑定的数据发送至templateUrl的视图
+      }).otherwise({ //对前面when的补充,可理解为else
+        redirectTo:"/" //自动返回首页
+      })
+    }]);
+  </script>

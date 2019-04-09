@@ -1,0 +1,17 @@
+一、概念
+  template模板用来将从后台获得的数据显示在前端
+二、ArtTemplate用法
+  (一)引入模板
+    <script src="./temp/template-native.js"></script>
+  (二)定义模板,需要将整个模板写在一个单独的script标签内,标签内不能有其他东西,需要为该标签设置id,同时设置type="text/html"来支持html语言的编写
+    1.变量,其匹配的正则表达式为reg=/<%=\s*([^%>]+\S)\s*%>/g,也可以通过字符串的查找和替换方法完成替换
+      <%= 变量名 %>
+    2.逻辑
+      <% 逻辑语句 %>
+  (三)读取模板并传入数据
+    1.数据在前端获取
+      var 自定义变量名=template('script标签的id名',数据名)
+    2.数据需要在后台获取
+      利用AJax向后台php获取数据,php中引入json文件,若需要处理json文件,可以选择在后台php处理,但此时需要先将json数据转为php格式才能使用一些专属API,最后再转回json格式,也可以在前台处理
+  (四)添加到页面上
+    document.body.innerHTML=自定义变量名;
