@@ -64,6 +64,15 @@
 				b.checked=false
 		}
 		}
+		for(var i=0,len=a.length;i<len;i++){
+			a[i].onclick=function(){
+				if(a[0].checked==true&&a[1].checked==true&&a[2].checked==true&&a[3].checked==true){
+					b.checked=true
+				}else{
+					b.checked=false
+				}
+			}
+		}
   </script>
 </body>
 </html>
