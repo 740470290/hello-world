@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		.imgBox{width: 400px;border:1px solid red;margin:20px auto;}
+		/* 大图 */
+		.imgBox>img{width: 400px;height: 220px;}
+		/* 小图 */
+		.imgBox .smallBox img{width: 96px;height: 96px;}
+	</style>
+</head>
+<body>
+	<div class="imgBox">
+		<img src="../images/01.jpeg">
+		<div class="smallBox">
+			<img src="../images/01.jpeg">
+			<img src="../images/02.jpeg">
+			<img src="../images/03.jpeg">
+			<img src="../images/04.jpeg">
+		</div>
+	</div>
+	<script type="text/javascript">
+		var a=document.querySelectorAll('.smallBox>img')
+		var b=document.querySelector('.imgBox>img')
+		for(var i=0,len=a.length;i<len;i++){
+			a[i].onclick=function(){
+				b.setAttribute('src',this.src)
+			}
+		}
+	</script>
+</body>
+</html>
