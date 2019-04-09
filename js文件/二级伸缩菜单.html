@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>1. 实现伸缩二级菜单</title>
+<meta charset="utf-8" />
+<style>
+    li{
+	    list-style:none;
+    }
+    li span{
+        padding-left:20px;
+        cursor:pointer;
+        background:url("../images/add.png") no-repeat center left;
+    }
+    li ul{display:none;}
+    .open{ background:url("../images/minus.png") no-repeat center left;}
+    .open+ul{ display:block;}
+</style>
+</head>
+<body>
+	<ul class="tree">
+		<li>
+			<span class="open">考勤管理</span>
+			<ul>
+				<li>日常考勤</li>
+				<li>请假申请</li>
+				<li>加班/出差</li>
+			</ul>
+		</li>
+		<li><span class="open">信息中心</span>
+			<ul>
+				<li>通知公告</li>
+				<li>公司新闻</li>
+				<li>规章制度</li>
+			</ul>
+		</li>
+		<li><span>协同办公</span>
+			<ul>
+				<li>公文流转</li>
+				<li>文件中心</li>
+				<li>内部邮件</li>
+				<li>即时通信</li>
+				<li>短信提醒</li>
+			</ul>
+		</li>
+	</ul>
+  <script>
+	var a=document.querySelectorAll('span')
+		for(var i=0,len=a.length;i<len;i++){
+			a[i].onclick=function(){
+				if(this.className!=''){
+					this.className=''
+				}else{
+					this.className+='open'
+				}
+			}
+		}
+  </script>
+</body>
+</html>

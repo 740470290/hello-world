@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>读取并修改元素的属性</title>
+<meta charset="utf-8" />
+<style>
+    *{
+	margin:0;
+	padding: 0;
+}
+#tab li{
+	float: left; list-style: none;
+}
+#tab li a{
+  display:inline-block;
+  text-decoration:none;
+  width: 80px; height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color:#000;
+}
+#container{
+	position: relative;
+}
+#content1,#content3,#content2{
+	width: 300px;
+	height: 100px;
+	padding:30px;
+	position: absolute;
+	top: 40px;
+	left: 0;
+}
+#tab li:first-child,#content1{
+	background-color: #ffcc00;
+}
+#tab li:first-child+li,#content2{
+	background-color: #ff00cc;
+}
+#tab li:first-child+li+li,#content3{
+	background-color: #00ccff;
+}
+.c1{
+  z-index: 10;
+}
+</style>
+</head>
+<body>
+	<h2>实现多标签页效果</h2>
+  <div class="tabs">
+    <ul id="tab">
+      <li><a href="#content1" data-toggle="tab">10元套餐</a></li>
+      <li><a href="#content2" data-toggle="tab">30元套餐</a></li>
+      <li><a href="#content3" data-toggle="tab">50元包月</a></li>
+    </ul>
+    <div id="container">
+      <div id="content1">
+        10元套餐详情：<br />&nbsp;每月套餐内拨打100分钟，超出部分2毛/分钟
+      </div>
+      <div id="content2">
+        30元套餐详情：<br />&nbsp;每月套餐内拨打300分钟，超出部分1.5毛/分钟
+      </div>
+      <div id="content3">
+        50元包月详情：<br />&nbsp;每月无限量随心打
+      </div>
+    </div>
+  </div>
+  <script>
+    var a=document.querySelectorAll('#tab>li>a')
+    var b=document.querySelectorAll('#container>div')
+		for(let i=0,len=a.length;i<len;i++){
+			a[i].onclick=function(){
+				for(var j=0,leng=b.length;j<leng;j++){
+                    b[j].className=''
+				}
+                b[i].className+='c1'
+			}
+		}
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <select name="province" id="pro" onchange="f()">
+        <!-- <option value="0">aa</option>-->
+        <option value="0">--请选择--</option>
+        <option value="1">江苏省</option>
+        <option value="2">浙江省</option>
+    </select>
+    <select name="city" id="city">
+        <!-- <option value="0">bb</option>-->
+        <option value="0">--请选择--</option>
+    </select>
+    <script>
+        function f () {
+          if(pro.value==1){
+            city.innerHTML='<option value="1">南京市</option><option value="2">苏州市</option><option value="3">无锡市</option>'
+          }else if(pro.value==2){
+            city.innerHTML='<option value="1">杭州市</option><option value="2">宁波市</option><option value="3">温州</option>'
+          }else{
+            city.innerHTML='<option value="0">--请选择--</option>'
+          }
+        }
+    </script>
+</body>
+</html>
