@@ -1,0 +1,229 @@
+六、路由
+  (一)安装,可在Vue-cli中选择自动安装路由
+    npm i vue-router --save
+  (二)写法
+    1.HTML写法
+    <!-- 在线引入相关模块 -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <div id="app">
+      <!-- router-link会被渲染为a标签进行超链接,to属性后写地址 -->
+      <router-link to="/foo">Go to Foo</router-link>|
+      <!-- 也可在:to属性后写路由名字进行链接 -->
+      <router-link :to="{name:'bar'}">Go to Bar</router-link>|
+      <!-- 模糊匹配/children/:name路径时需要传递参数 -->
+      <router-link :to="{name:'children',params:{name:jack}}"></router-link><br>
+      <!-- router-view视图是路由的出口,路由匹配到的组件会渲染在这,视图可以设置name属性,默认为default,若需要多个视图并列显示就需要不同的name,同时路由的component改为components进行书写 -->
+      <router-view></router-view>
+    </div>
+    2.JavaScript写法,首先需要明确route是单个路由,routes是多个路由的数组,router是路由管理器
+    <script>
+      //创建router实例
+      const router = new Router({
+        //选择Router的模式,默认为hash可以不写,但哈希路径中带#不好看,可改为history,但history模式依赖后台编写
+        mode: 'history',
+        routes: [
+          //这就是单个的route
+          {
+            path: '/', //路径
+            name: 'home', //路由名称
+            component: Home, //顶部引入的组件名
+          },
+          {
+            path: '/color', //动态路径
+            name: 'color',
+            component: Color,
+            //配置子路由
+            children:[
+              {
+                path: 'red', //路径不用加/,默认就在/color/后
+                name: 'red',
+                component: Red,
+              },
+              {
+                path: 'blue',
+                name: 'blue',
+                component: Blue,
+              }
+            ]
+          },
+          {
+            path: '/user/:id', //动态路径
+            name: 'user',
+            component: User,
+          },
+        ]
+      })
+      const app = new Vue({
+        router //是router:router的缩写
+      }).$mount('#app')
+    </script>
+    3.路由与路由器的API
+      (1)跳转页面push
+        router.push('home') 直接写路由名称
+        router.push(`/user/${id}`) 直接写路径
+      (2)跳转页面replace,用法与前者相同,但不会向history添加新记录
+      (3)前进go,后退就是-1
+        router.go(1)
+    4.注入完成后的外部调用,写在HTML内不加this,API亦可使用
+      (1)当前路由器
+        this.$router
+      (2)当前路由
+        this.$route
+      (3)动态路径
+        this.$route.params
+七、Vuex
+  (一)安装
+    npm i vuex --save
+  (二)设置写法
+    <script>
+      import Vue from 'vue';
+      import Vuex from 'vuex';
+      Vue.use(Vuex);
+      //创建Vuex仓库并输出
+      export default new Vuex.Store({
+        //存放状态
+        state: {
+          count: 0,
+        },
+        //存放改变状态的方法
+        mutations: {
+          add(state,num){
+            state.count+=num;
+          },
+          reduce(state){  
+            state.count--;
+          }
+        }
+      });
+    </script>
+  (三)引入写法
+    <template>
+      <div class='child'>
+        {{ count }}
+        <p>
+          <button @click='add(10)'>点击增加</button>
+          <button @click='reduce()'>点击减少</button>
+        </p>
+      </div>
+    </template>
+    <script>
+      //引入vuex提供的语法糖mapState
+      import {mapState,mapMutations} from "vuex";
+      export default {
+        data() {
+          return {
+            msg: "Hi, I am CompTwo Page!"
+          };
+        },
+        computed: {
+          setCount() {
+            //定义一个计算方法
+            return this.$store.state.count;
+          },
+          //扩展 mapState
+          ...mapState(["count"])
+        },
+        methods: {
+          ...mapMutations(['add','reduce']),
+        }
+      };
+    </script>
+八、Vue-cli3.0
+  (一)安装
+    1.全局安装该工具
+      npm i @vue/cli -g
+    2.创建一个项目,完成后按照提示继续输入两条命令
+      vue create 自定义项目名
+    3.激活项目,之后的每次打开都需要先激活
+      vue ui
+    4.在弹出的网页上选择自己需要的插件进行配置,路由文件必须配置,运行任务中的build和serve,最后通过启动app打开网页
+    5.安装完成后的两种打开方式,需要切换至想要打开的项目文件夹下
+      (1)执行第三步
+      (2)输入pack.json内对应的指令
+        npm run serve
+  (二)项目脚手架结构
+    项目文件夹
+      dist,执行npm run bulid完成项目打包生成的文件,可以本地测试
+      public,静态资源应急存放处
+      node_modules,node的依赖模块存放处
+      src,核心代码存放处
+        assets,静态资源如css、外部js存放处
+        components,公用的组件如页头、页脚、弹出框之类的存放处
+        views,引用子组件的存放处
+        App.vue,引用各子组件的主组件
+        main.js,加载主组件和各组件的程序入口
+        router.js,配置路径跳转的路由文件
+      .browserslistrc,浏览器的兼容配置文件
+      .editorconfig,代码格式定义文件
+      .eslintrc.js,代码书写规范文件
+      .gitignore,git不上传的文件清单
+      babel.config.js,用js做的babel配置文件
+      package-lock.json,记录已下载模块的版本号,更新时被引用
+      package.json,记录已下载模块,检测当前下载模块是否存在时被引用
+      postcss.config.js,用js做的postcss配置文件
+      README.md,说明文件
+  (三)实际操作
+    1.main.js
+      <script>
+        //引入vue模块,from命令后只有vue、axios这样的模块名,会自动到node_modules中加载,完整写法为import Vue from "../node_modules/vue/dist/vue.js";
+        import Vue from 'vue';
+        //引入主组件
+        import App from './App.vue';
+        //引入路由文件,js后缀可省略
+        import router from './router';
+        //引入状态管理模式Vuex
+        import store from './store/index';
+
+        //关闭生产模式下给出的提示
+        Vue.config.productionTip = false;
+
+        //实例化vue对象,面向对象写法,顶部引入的除了模块都需要作为属性注入
+        new Vue({
+          router, //注入路由
+          store, //注入状态管理模式
+          render: h => h(App), //render选项传递了createElement作为参数,最终创建元素节点,并以App渲染
+        }).$mount('#app'); //手动挂载元素,效果等同el:"#app"
+      </script>
+    2.router.js,详见前文,存在些许区别
+      <script>
+        import Vue from 'vue';
+        import Router from 'vue-router';
+        //引入组件,需与component一一对应
+        import Home from './views/Home.vue';
+
+        //使用顶部引入的vue-router模块
+        Vue.use(Router);
+        
+        //需要导出
+        export default new Router({
+          mode: 'history',
+          base: process.env.BASE_URL, //设置环境变量
+          routes: [
+            {
+              path: '/',
+              name: 'home',
+              component: Home, //与顶部引入对应
+            },
+            {
+              path: '/about',
+              name: 'about',
+              //使用懒加载引入组件,不需要顶部引入
+              component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+            },
+          ]
+        })
+      </script>
+    3.所有.vue组件
+      <template>
+        <div id="app">
+          路由出口或链接
+        </div>
+      </template>
+      <script>
+        js语句
+      </script>
+      <style lang="less">
+        /* css样式 */
+      </style>
