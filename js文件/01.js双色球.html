@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS 实例</title>
+</head>
+<body>
+<script type="text/javascript">
+    var red_ball=[],blue_ball=[parseInt(Math.random()*16+1)]
+    var ball=[]
+      // for(i=0;i<6;i++){
+      //   ball[ball.length]=parseInt(Math.random()*33+1)
+      // }
+      // ball=[...new Set(ball)]
+    while(ball.length<6){
+      ball[ball.length]=parseInt(Math.random()*33+1)
+      ball=[...new Set(ball)]
+    }
+    red_ball=ball.sort(f)
+    console.log(red_ball)
+    console.log(blue_ball)
+    //----------------------
+    // while(red_ball.length<6){
+    //   var r=parseInt(Math.random()*33+1)
+    //   console.log(r)
+    //   for(i=0;i<red_ball.length;i++){
+    //     if(red_ball[i]==r){
+    //       break
+    //     }else if(i==red_ball.length-1){
+    //       red_ball[red_ball.length]=r
+    //     }
+    //   }
+    // }
+    function f (a,b) {
+      return a-b
+    }
+</script>
+</body>
+</html>
