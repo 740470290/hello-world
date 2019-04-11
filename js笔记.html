@@ -34,3 +34,12 @@ this.list.unshift(car)//从末尾或者头部添加
 a.onclick=function(){
       a.innerHTML=Math.random().toString(32).substr(2,6)
     }
+//双色球
+var ball=[]
+  var i=0;
+  while(i<10){
+    ball[i]=parseInt(Math.random()*32+1)
+    i++
+  }
+  ball=[...new Set(ball)].slice(0,6).sort(function(a,b){return a-b})
+  console.log(ball)
