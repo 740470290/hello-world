@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS 实例</title>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        div.c1,div#d1{
+            width: 100px;
+            height: 100px;
+            background: aquamarine;
+            float: left;
+            margin: 10px;
+        }
+        nmsl{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<p class="c1">
+    <button id="b1">[attr]</button>
+    <button id="b2">[attr='val']</button>
+    <button id="b3">[attr!='val']</button>
+    <button id="b4">[attr^='val']</button>
+    <button id="b5">[attr$='val']</button>
+    <button id="b6">[attr*='val']</button>
+</p>
+<ul class="c1">
+    <li><a href="">1</a></li>
+    <li><a href="">2</a></li>
+    <li><a href="">3</a></li>
+</ul>
+<form action="#">
+    <p class="c1">
+        <input type="text" name="uname">
+    </p>
+    <p>
+        <input type="password" name="upwd">
+    </p>
+    <p>
+        <input type="button" value="点我">
+    </p>
+    <p>
+        <input type="submit" value="登录" >
+    </p>
+</form>
+<script type="text/javascript">
+  //   $("p").click(function(){
+  //   $(this).hide();
+  // });
+  //   $('button').css('color','red').css('background','blue')
+
+    // $('#b1').click(function(){$('#d1 div').css('background','blue')})
+    // $('#b2').click(function(){$('#d1>div').css('color','red')})
+    // $('#b3').click(function(){$('.c1~div').css('border-radius', '50%')})
+    // $('#b4').click(function(){$('*').css('box-shadow','20px 20px')})
+    // $('#b5').click(function(){$('#d1,.c1').css('border','2px solid black')})
+
+    // $('#b1').click(function(){$('[name]').css('outline','none')})
+    // $('#b2').click(function(){$("[type=text]").css('color','red')})
+    // $('#b3').click(function(){$("[value!='']").css('font-size','30px')})
+    // $('#b4').click(function(){$("[name^=u]").css('width','300px')})
+    // $('#b5').click(function(){$("[type$=t]").css('border-radius','10px')})
+    // $('#b6').click(function(){$("[name*=u]").css('background','red')})
+
+    $('li:has(.c1)')
+</script>
+</body>
+</html>
+状态选择器
+  :checked  匹配被选中的
+  :selected 匹配被选中的  (下拉列表)
+  :disabled 匹配禁用的元素
+  :enable   匹配所有可用的input元素
+5)基本过滤选择器
+  :first          匹配到第一个元素--------------一个大的集合里的
+  :last           匹配到最后一个元素------------^
+  :eq(i)          匹配的是第几个,下标从0开始
+  :lt(i)          匹配的是小于i的元素,下标是从0开始
+  :gt(i)          匹配的是大于i的元素,下标是从0开始
+  :odd            匹配的是所有下标值为奇数的元素,下标从0开始
+  :even           匹配的是所有下标值为偶数的元素,下标从0开始
+  :not(selector)  取反//例子: td>input:not(:checked);
+  $('li:not(:first)')
+特点:吧所有选中的元素放到一个大集合中,下标从0开始,不管他们是不是在同一个父元素下   
+6)子代过滤选择器
+  :first-child-------------------独自的
+  :last-child-------------------^
+  :nth-child(i)   匹配父元素下第i个子元素    下标从1开始(独自的)
+  li:only-child    匹配独生子
+  $('ul:has(.c1)')  匹配子元素有c1类的父元素ul
+jq的属性
+//设置类
+$('p:first').attr('class')
+$('p:first').attr('class','c2')
+//设置内容
+$('div').html()
+$('div').html('修改的内容')
+$('div').text()
+//设置值
+$('div').val('值')
+//得到css
+$('p:first').css('color')
+//操作css
+$('p:first').css({
+'color':'red',
+'font-size':'50px'
+})
+$('p:first').css('color','red').css('font-size','50px')
