@@ -1,0 +1,23 @@
+//生成package.json,导入很多的包,4.0版本后需要webpack-cli
+npm init -y
+//在项目中安装webpack
+npm install webpack --save-dev
+npm install --save-dev  webpack-cli
+//直接全局安装
+npm install webpack -g
+npm install --global webpack-cli
+//安装某个包
+npm i jquery -s
+//把自己的js文件webpack一下
+webpack ./src/main.js -o ./dist/bundle.js
+//在根目录创建webpack.config.js,内容如下,然后直接打webpack
+const path = require('path')
+module.exports={
+    entry:path.join(__dirname,'./src/main.js'),
+    output:{
+        path:path.join(__dirname,'./dist'),
+        filename:'bundle.js'
+    }
+}
+
+npm i webpack-dev-server -D
