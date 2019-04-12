@@ -92,6 +92,7 @@
   $('ul:has(.c1)')  匹配子元素有c1类的父元素ul
 jq的属性
 //设置类
+//获取class属性的值
 $('p:first').attr('class')
 $('p:first').attr('class','c2')
 //设置内容
@@ -108,3 +109,26 @@ $('p:first').css({
 'font-size':'50px'
 })
 $('p:first').css('color','red').css('font-size','50px')
+//类的方法
+$('p').addClass('c1')
+$('p').removeClass('c1')
+$('p').addClass('c1')
+$('p').hasClass('c1')
+//dom
+$('p').parent()
+//后代
+$('p').children()
+$('p').find()
+//兄弟
+$('p').next()
+$('p').prev()
+$('p').nextAll()
+$('p').siblings()
+//过滤
+$("p").first()
+$("p").last()
+$("p").eq(1)
+$("p").filter(".c1")
+$("p").not(".c1")
+//元素在兄弟中的下标
+var a=$(this).index()
