@@ -69,10 +69,14 @@ app同级目录static存放css,js,images
 python manage.py migrate
 16,json读写
 import json
-# json文件格式需要unf-8无bom
+# json文件格式需要unf-8无bom,先加入信息,然后重新写入
 with open("./t.json",'r',encoding='utf-8') as f:
     json_dict = json.load(f)
     print(json_dict)
     print(json_dict['message'][0]['id'])
+    json_dict['message'].append({"id":2,"name":"sss"})
+    # 从任意位置插入
+    json_dict['message'].insert(0,{"id":2,"name":"sss"})
+# 防止写入中文乱码
 with open("./t.json", 'w', encoding='utf-8') as w:
     json.dump(json_dict, w,ensure_ascii = False)    
