@@ -56,6 +56,7 @@
     <br>
     <button id="d1">play...</button>
     <button id="d2">stop...</button>
+    <canvas id="d3" width="500px" height="500px" style="background: #ddd"></canvas>
 </div>
 <script type="text/javascript">
     // v1=document.getElementById('v1')
@@ -99,6 +100,37 @@
     v1.onended =function () {
       $('.p').attr('src','./img/play.png')
     }
+    var ctx=d3.getContext("2d")
+    ctx.lineWidth=1
+    ctx.strokeStyle='red'//描边样式
+    ctx.fillStyle='red'//填充样式
+    ctx.strokeRect(10,10,100,100)//边框矩形
+    // ctx.beginPath();
+    // ctx.moveTo(100, 10);
+    // ctx.lineTo(100, 80);
+    // ctx.stroke();
+    // ctx.fillRect(0,0,100,100)
+    // ctx.fillStyle='blue'//填充样式
+    // ctx.fillRect(400,0,100,100)
+    // ctx.fillStyle='yellow'//填充样式
+    // ctx.fillRect(400,400,100,100)
+    // ctx.fillStyle='green'//填充样式
+    // ctx.fillRect(0,400,100,100)
+    // ctx.clearRect(0,0,200,200)
+    var x=0;
+    var step=40
+    ctx.fillRect(x,0,100,100)
+    var a=setInterval(function () {
+      ctx.clearRect(0,0,500,500)
+        x+=step
+        ctx.fillRect(x,0,100,100)
+      if(x>400-1){
+        step=-40
+      }else if(x<5){
+        step=40
+      }
+    },100)
+
 </script>
 </body>
 </html>
