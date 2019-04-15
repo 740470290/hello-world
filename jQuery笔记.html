@@ -132,3 +132,12 @@ $("p").filter(".c1")
 $("p").not(".c1")
 //元素在兄弟中的下标
 var a=$(this).index()
+//animate动画并发进行
+$('#btn').click(function () {
+    $('.c1').animate({
+      width:400,
+      height:400,
+      marginLeft:300
+    })
+})
+//匹配正在执行动画的元素
