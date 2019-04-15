@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+           *{margin:0;padding:0;}
+		    html,body{
+                font-family:'微软雅黑';
+            }
+		    dl.menu{
+                width:240px;
+                border:1px solid #333;
+			    margin:10px auto;
+                line-height:40px;
+            }
+            .menu dt{
+                background:#333;
+                color:white;
+        	    font-size: 18px;
+                text-indent:20px;
+            }
+            .menu dd{
+                background:#efefef;
+                border-bottom:1px dashed #ccc;
+                font-size:16px;
+                color:#444;
+                text-align:center;
+            }
+        </style>
+        <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <dl class="menu">
+            <dt>图书</dt>
+                <dd>青年文摘</dd>
+                <dd>科幻小说</dd>
+                <dd>HTML+CSS</dd>
+            <dt>电子产品</dt>
+                <dd>Iphone</dd>
+                <dd>三星</dd>
+                <dd>华为荣耀</dd>
+            <dt>服装</dt>
+                <dd>男装</dd>
+                <dd>女装</dd>
+                <dd>童装</dd>
+                <dd>婴幼儿</dd>
+            <dt>电器</dt>
+                <dd>冰箱</dd>
+                <dd>洗衣机</dd>
+        </dl>
+    <script type="text/javascript">
+        $('dt').prev().css('border-bottom','0')
+        $('dd:last').css('border-bottom','0')
+        $('dt').click(function () {
+          $(this).nextUntil('dt').slideToggle()
+        })
+    </script>
+    </body>
+</html>
