@@ -1,31 +1,31 @@
-1.ÁĞ±í¿ÉÒÔĞŞ¸Ä
-2.Ôª×é=ÁĞ±í£¬²»ÄÜĞŞ¸Ä£¬×Ö·û´®²»ÄÜĞŞ¸Ä
-3.×ÖµäÓÃµÄÊÇÖ÷¼ü£¬1=a,2=b ÒıÓÃ1¾ÍÊÇa 
+1.åˆ—è¡¨å¯ä»¥ä¿®æ”¹
+2.å…ƒç»„=åˆ—è¡¨ï¼Œä¸èƒ½ä¿®æ”¹ï¼Œå­—ç¬¦ä¸²ä¸èƒ½ä¿®æ”¹
+3.å­—å…¸ç”¨çš„æ˜¯ä¸»é”®ï¼Œ1=a,2=b å¼•ç”¨1å°±æ˜¯a 
 d = {key1 : value1, key2 : value2 }
-3.µü´úÊÇPython×îÇ¿´óµÄ¹¦ÄÜÖ®Ò»
-4.PythonÅÀ³æ¼Ü¹¹
-µ÷¶ÈÆ÷¡¢URL¹ÜÀíÆ÷¡¢ÍøÒ³ÏÂÔØÆ÷¡¢ÍøÒ³½âÎöÆ÷¡¢Ó¦ÓÃ³ÌĞò
-5.±¨´í£º¿ÕĞĞ£¬ÉÙÓï¾ä£¬¡°¡±Ğ´³ÉÁË¡®¡¯£¬ÍøÕ¾°Ñ±¾»úip·âÁË
-6.ÖØµãget,head·½·¨-requests
-7.ÕıÔòre¼Ófind_all¼ìË÷ĞÅÏ¢£¬reÓÃÓÚ¼ò½à±í´ï×Ö·û´®
-8.soupÓÃÓÚ´¦ÀíhtmlÎÄ±¾
+3.è¿­ä»£æ˜¯Pythonæœ€å¼ºå¤§çš„åŠŸèƒ½ä¹‹ä¸€
+4.Pythonçˆ¬è™«æ¶æ„
+è°ƒåº¦å™¨ã€URLç®¡ç†å™¨ã€ç½‘é¡µä¸‹è½½å™¨ã€ç½‘é¡µè§£æå™¨ã€åº”ç”¨ç¨‹åº
+5.æŠ¥é”™ï¼šç©ºè¡Œï¼Œå°‘è¯­å¥ï¼Œâ€œâ€å†™æˆäº†â€˜â€™ï¼Œç½‘ç«™æŠŠæœ¬æœºipå°äº†
+6.é‡ç‚¹get,headæ–¹æ³•-requests
+7.æ­£åˆ™reåŠ find_allæ£€ç´¢ä¿¡æ¯ï¼Œreç”¨äºç®€æ´è¡¨è¾¾å­—ç¬¦ä¸²
+8.soupç”¨äºå¤„ç†htmlæ–‡æœ¬
 9.scrapy:
-½¨Á¢¹¤³ÌºÍSpiderÄ£°å
+å»ºç«‹å·¥ç¨‹å’ŒSpideræ¨¡æ¿
 scrapy startproject BaiduStocks
 cd BaiduStocks
 scrapy genspider stocks baidu.com
-ĞŞ¸Ästocks.pyÎÄ¼ş
-±àĞ´Spider
-±àĞ´ITEM PipelinesºÍSettings
-10.ÅÀÈ¡ĞÅÏ¢µÄ2¸öforÑ­»·ÔÚµÚ¶ş¸öÑ­»·Àï£¬Ã¿´Î¶¼»á¼ìË÷µÚÒ»ÌõĞÅÏ¢£¬Ôì³É¶àÓàµÄ²Ù×÷£¬²»ÄÜÓÃliskLink.append
-11.Òş²Ø×Ô¼ºµÄ·ÃÎÊ
-ÉèÖÃ´úÀíip
-ÉèÖÃuser-agent
-12.¶à½ø³Ì£¬½ø³Ì³Ø£¬Á¬½Ó³Ø£¬asyncio¼ì²éIO£¬aiohttp·¢httpĞ­Òé£¬gevent,grequests,twisted,tornado
-13.mysqlÊı¾İ¿â²Ù×÷
-É¾³ı¡°¸öÌå¡±¡°¸öÈË¡±×Ö·ûĞ¡ÓÚ8
-delete from company where name like '%¸öÌå%';
-È¥ÖØ
+ä¿®æ”¹stocks.pyæ–‡ä»¶
+ç¼–å†™Spider
+ç¼–å†™ITEM Pipelineså’ŒSettings
+10.çˆ¬å–ä¿¡æ¯çš„2ä¸ªforå¾ªç¯åœ¨ç¬¬äºŒä¸ªå¾ªç¯é‡Œï¼Œæ¯æ¬¡éƒ½ä¼šæ£€ç´¢ç¬¬ä¸€æ¡ä¿¡æ¯ï¼Œé€ æˆå¤šä½™çš„æ“ä½œï¼Œä¸èƒ½ç”¨liskLink.append
+11.éšè—è‡ªå·±çš„è®¿é—®
+è®¾ç½®ä»£ç†ip
+è®¾ç½®user-agent
+12.å¤šè¿›ç¨‹ï¼Œè¿›ç¨‹æ± ï¼Œè¿æ¥æ± ï¼Œasyncioæ£€æŸ¥IOï¼Œaiohttpå‘httpåè®®ï¼Œgevent,grequests,twisted,tornado
+13.mysqlæ•°æ®åº“æ“ä½œ
+åˆ é™¤â€œä¸ªä½“â€â€œä¸ªäººâ€å­—ç¬¦å°äº8
+delete from company where name like '%ä¸ªä½“%';
+å»é‡
 DELETE
 FROM
 	company
@@ -43,27 +43,36 @@ WHERE
 					name
 			) dt
 	)
-×Ö·ûĞ¡ÓÚ8
+å­—ç¬¦å°äº8
 DELETE FROM company WHERE length(name) < 20;
 select * FROM company WHERE length(name) < 20;
-ÖØĞÂÅÅĞòid
+é‡æ–°æ’åºid
 alter table table_name drop id;
 alter table table_name add id int(11) primary key auto_increment first;
 14.scrapy
-1.ĞÂ½¨scrapyºÍspiders
-2.Ğ´items,¶¨ÒåÒª×¥È¡µÄ¶«Î÷
-¶¨Òåuser-agent
-½«Êı¾İyieldµ½pipelinesÀïÃæ
-½âÎöÏÂÒ»Ò³¹æÔò£¬È¡ºóÒ»Ò³µÄxpath
+1.æ–°å»ºscrapyå’Œspiders
+2.å†™items,å®šä¹‰è¦æŠ“å–çš„ä¸œè¥¿
+å®šä¹‰user-agent
+å°†æ•°æ®yieldåˆ°pipelinesé‡Œé¢
+è§£æä¸‹ä¸€é¡µè§„åˆ™ï¼Œå–åä¸€é¡µçš„xpath
 15.django
 django-admin startproject HelloWorld
 python manage.py startapp cmdb
-urlsÌí¼ÓÓòÃûindex
-viewsĞ´ÓòÃûº¯Êı
-ÔÚappÍ¬¼¶Ä¿Â¼ĞÂ½¨tmplates£¬´æ·Åhtml
-Ğ´htmlÎÄ¼ş
-python manage.py runserver 127.0.0.1:8000 ÔËĞĞapp
-appÍ¬¼¶Ä¿Â¼static´æ·Åcss,js,images
+urlsæ·»åŠ åŸŸåindex
+viewså†™åŸŸåå‡½æ•°
+åœ¨appåŒçº§ç›®å½•æ–°å»ºtmplatesï¼Œå­˜æ”¾html
+å†™htmlæ–‡ä»¶
+python manage.py runserver 127.0.0.1:8000 è¿è¡Œapp
+appåŒçº§ç›®å½•staticå­˜æ”¾css,js,images
 
-´´½¨sqliteÊı¾İ¿âµÄ±ípython manage.py makemigrations
+åˆ›å»ºsqliteæ•°æ®åº“çš„è¡¨python manage.py makemigrations
 python manage.py migrate
+16,jsonè¯»å†™
+import json
+# jsonæ–‡ä»¶æ ¼å¼éœ€è¦unf-8æ— bom
+with open("./t.json",'r',encoding='utf-8') as f:
+    json_dict = json.load(f)
+    print(json_dict)
+    print(json_dict['message'][0]['id'])
+with open("./t.json", 'w', encoding='utf-8') as w:
+    json.dump(json_dict, w,ensure_ascii = False)    
