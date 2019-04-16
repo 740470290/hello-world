@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS 实例</title>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">-->
+    <style>
+        .c1 .p{
+            position: absolute;
+            top: 101px;
+            left: 288px;
+        }
+        .p1{
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            top: 65.5px;
+            left: 105.5px;
+            display: none;
+        }
+        .c1{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form action="">
+        <input type="range" max="10">
+        <input type="date">
+        <input type="color">
+        <input type="text" list="mylist">
+        <datalist id="mylist">
+            <option value="">12</option>
+            <option value="">12</option>
+            <option value="">12</option>
+        </datalist>
+        <progress></progress>
+        <meter value="40" max="100"></meter>
+    </form>
+    <audio src="./img/Kalimba.mp3" controls></audio>
+    <!--<embed src="./img/oceans-clip.mp4" type="" autostart=true width="500px" height="300px">-->
+    <br>
+    <audio controls>
+        <source src="./img/mine.mp3">
+        <source src="./img/Kalimba.mp3">
+    </audio>
+    <br>
+    <div class="c1">
+        <video src="./img/oceans-clip.mp4" id="v1">
+        </video>
+        <img src="./img/play.png" alt="" class="p">
+        <img src="./img/oceans-clip.png" alt="" class="p1">
+    </div>
+    <br>
+    <button id="d1">play...</button>
+    <button id="d2">stop...</button>
+    <canvas id="d3" width="500px" height="1500px" style="background: #ddd"></canvas>
+</div>
+<script type="text/javascript">
+    // v1=document.getElementById('v1')
+    d1.onclick=function () {
+      v1.play()
+    }
+    d2.onclick=function () {
+      v1.pause()
+    }
+    v1.onplay=function () {
+      console.log('play')
+    }
+    v1.onpause=function () {
+      console.log('stop')
+    }
+    $('.p').click(function () {
+      if($(this).attr('src').includes('play')){
+        $('.p').attr('src','./img/pause.png')
+         $('#v1').playAll()
+      }else{
+        $('.p').attr('src','./img/play.png')
+         v1.pause()
+        $('.p1').css('display','block')
+      }
+    })
+    $('.p1').click(function () {
+      $(this).css('display','none')
+    })
+    $('#v1').mouseleave(function () {
+      $('.p').css('display','none')
+    })
+    $('#v1').mouseenter(function () {
+      $('.p').css('display','block')
+    })
+    $('.p').mouseleave(function () {
+      $('.p').css('display','none')
+    })
+    $('.p').mouseenter(function () {
+      $('.p').css('display','block')
+    })
+    v1.onended =function () {
+      $('.p').attr('src','./img/play.png')
+    }
+    var ctx=d3.getContext("2d")
+    ctx.lineWidth=1
+    ctx.strokeStyle='red'//描边样式
+    ctx.fillStyle='red'//填充样式
+    ctx.strokeRect(10,10,100,100)//边框矩形
+    // ctx.beginPath();
+    // ctx.moveTo(100, 10);
+    // ctx.lineTo(100, 80);
+    // ctx.stroke();
+    // ctx.fillRect(0,0,100,100)
+    // ctx.fillStyle='blue'//填充样式
+    // ctx.fillRect(400,0,100,100)
+    // ctx.fillStyle='yellow'//填充样式
+    // ctx.fillRect(400,400,100,100)
+    // ctx.fillStyle='green'//填充样式
+    // ctx.fillRect(0,400,100,100)
+    // ctx.clearRect(0,0,200,200)
+    // var x=0;
+    // var step=40
+    // ctx.fillRect(x,0,100,100)
+    // var a=setInterval(function () {
+    //   ctx.clearRect(0,0,500,500)
+    //     x+=step
+    //     ctx.fillRect(x,0,100,100)
+    //   if(x>400-1){
+    //     step=-40
+    //   }else if(x<5){
+    //     step=40
+    //   }
+    // },100)
+    ctx.beginPath()
+    ctx.moveTo(100, 220);
+    ctx.lineTo(250, 80);
+    ctx.stroke();
+    ctx.lineTo(200, 280);
+    ctx.stroke();
+    ctx.lineTo(110, 110);
+    ctx.stroke();
+    ctx.lineTo(300, 190);
+    ctx.stroke();
+    ctx.lineTo(100, 220);
+    ctx.stroke();
+    ctx.closePath()
+
+    ctx.beginPath()
+    ctx.moveTo(400, 20);
+    ctx.lineTo(400, 200);
+    ctx.stroke();
+    ctx.lineTo(490, 200);
+    ctx.stroke();
+    ctx.lineTo(400, 20);
+    ctx.stroke();
+    ctx.closePath()
+    // ctx.fill();
+
+    ctx.beginPath()
+    ctx.arc(300,300,100,0,Math.PI)
+    ctx.closePath()
+    ctx.stroke();
+
+    // ctx.fillText('哈哈哈',)
+    ctx.font="60px sans-serif"
+    ctx.textBaseline="top"
+    var str = '哈哈哈'
+    ctx.strokeText(str,100,500)
+    ctx.fillText(str,100,600)
+    var wid = ctx.measureText(str).width
+    ctx.strokeText(str,500-wid,500)
+
+</script>
+</body>
+</html>
