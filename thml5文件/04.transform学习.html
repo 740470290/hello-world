@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .c1{
+            width: 500px;
+            height: 500px;
+            /*opacity: 0;*/
+            /*transform: translateX(100%);*/
+            background-color: red;
+            /*transform:scale(1,2);*/
+            transform: rotate(40deg) translateX(40px);
+        }
+        .c2{
+            width: 500px;
+            height: 500px;
+            background-color: blue;
+            transform: translateX(40px) rotate(40deg);
+            transition: all 0.8s ease;
+        }
+        .c2:hover{
+            /*transform: scale(20);*/
+            transform: skew(20deg);
+        }
+        .c3{
+            width: 500px;
+            height: 500px;
+            background-color: yellow;
+            transition: all 5s ease;
+        }
+        .c3:hover{
+            transform:translateX(200px) translateZ(200px) rotate(135deg) skew(45deg) scale(1.5);
+        }
+    </style>
+</head>
+<body>
+<div class="c1"></div>
+<div class="c2"></div>
+<div class="c3"></div>
+</body>
+</html>
