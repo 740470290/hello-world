@@ -1,0 +1,30 @@
+相邻兄弟
+p+a
+通用兄弟
+p~a
+2.属性选择器
+[attr]
+[type=text]
+3.伪类选择器
+目标伪类:匹配被激活的锚点
+img:target{display:block}
+匹配在父元素中属于第n个子元素
+:ntn-child(n)
+匹配没有子元素的元素
+:empty
+匹配独生子
+:only-child
+否定伪类,前面需要是复数
+input:not(:checked){}
+li:not(:first-child){
+    list-style: none;
+}
+li:first-child{
+    color: red;
+}
+元素之前
+:before
+元素之后
+:after
+内容属性,向匹配到的位置添加内容,字符串/url()
+content 
