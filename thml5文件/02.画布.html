@@ -143,7 +143,6 @@
     ctx.lineTo(100, 220);
     ctx.stroke();
     ctx.closePath()
-
     ctx.beginPath()
     ctx.moveTo(400, 20);
     ctx.lineTo(400, 200);
@@ -153,13 +152,13 @@
     ctx.lineTo(400, 20);
     ctx.stroke();
     ctx.closePath()
-    // ctx.fill();
 
+
+    // ctx.fill();
     ctx.beginPath()
     ctx.arc(300,300,100,0,Math.PI)
     ctx.closePath()
     ctx.stroke();
-
     // ctx.fillText('哈哈哈',)
     ctx.font="60px sans-serif"
     ctx.textBaseline="top"
@@ -169,6 +168,25 @@
     var wid = ctx.measureText(str).width
     ctx.strokeText(str,500-wid,500)
 
+    ctx.beginPath()
+    ctx.arc(80,350,70,0,6)
+    ctx.closePath()
+    ctx.stroke();
+
+    ctx.beginPath()
+    ctx.arc(50,330,10,0,6)
+    ctx.closePath()
+    ctx.stroke();
+    ctx.beginPath()
+    ctx.arc(110,330,10,0,6)
+    ctx.closePath()
+    ctx.stroke();
+// Latin1_General_CI_AS_KS_WS
+//     ctx.strokeStyle='blue'
+    ctx.beginPath()
+    ctx.arc(80,410,40,3.8,5.63)
+    // ctx.closePath()
+    ctx.stroke();
 </script>
 </body>
 </html>
