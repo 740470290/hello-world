@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title>
+<style> 
+div
+{
+    width:100px;
+    height:100px;
+    background:red;
+    position:relative;
+    animation:myfirst 5s linear 2s infinite alternate;
+}
+@keyframes myfirst
+{
+    0%   {background:red; left:0px; top:0px;}
+    25%  {background:yellow; left:200px; top:0px;}
+    50%  {background:blue; left:200px; top:200px;}
+    75%  {background:green; left:0px; top:200px;}
+    100% {background:red; left:0px; top:0px;}
+}
+</style>
+</head>
+<body>
+<div></div>
+<canvas id="d3" width="1000px" height="1000px" style="background: #ddd"></canvas>
+<script>
+var ctx=d3.getContext("2d")
+     ctx.lineWidth=1
+    ctx.strokeStyle='red'//描边样式
+    ctx.beginPath();
+    ctx.moveTo(500, 500);
+    setInterval(function(){
+        ctx.lineTo(Math.random()*1000, Math.random()*1000);
+        ctx.closePath()
+    ctx.stroke();
+}, 10)
+    
+</script>
+</body>
+</html>
