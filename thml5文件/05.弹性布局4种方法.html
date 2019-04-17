@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+		html,body{width:100%;height:100%;margin:0;padding:0;}
+		.cf:after{content:"";display:block;height:0;clear:both;}
+		.wrap{width:100%;height:200px;}
+		.left{width:400px;background:red;}
+		.center{background:#ececec;}
+		.right{width:400px;background:yellow;}
+		/*float法*/
+		.float .left{float:left;height:200px;}
+		.float .center{margin:0 400px;height:200px;}
+		.float .right{float:right;height:200px;}
+		/*position法*/
+		.position{position:relative;}
+		.position .left{position:absolute;top:0;left:0;height:200px;}
+		.position .center{height:200px;margin:0 400px;}
+		.position .right{position:absolute;top:0;right:0;height:200px;}
+		/*table法*/
+		.table{display:table}
+		.table .inner{display:table-cell;}
+		/*flex法*/
+		.flex {display:flex;display:-webkit-box;display:-moz-box;display:-moz-box;}
+		.flex .left{height:200px;}
+		.flex .center{-webkit-box-flex:1;box-flex:1;-moz-box-flex:1;}
+		.flex .right{height:200px;}
+  </style>
+ </head>
+ <body>
+ 	<div class="wrap float cf">
+		<div class="left"></div>
+		<div class="right"></div>
+		<div class="center">
+			欢迎来到德莱联盟1！
+		</div>
+	</div><br/>
+	<div class="wrap position">
+		<div class="left"></div>
+		<div class="center">
+			欢迎来到德莱联盟2！
+		</div>
+		<div class="right"></div>
+	</div><br/>
+	<div class="wrap table">
+		<div class="inner left"></div>
+		<div class="inner center">
+			欢迎来到德莱联盟3！
+		</div>
+		<div class="inner right"></div>
+	</div><br/>
+	<div class="wrap flex">
+		<div class="left"></div>
+		<div class="center">
+			欢迎来到德莱联盟4！
+		</div>
+		<div class="right"></div>
+	</div><br/>
+ </body>
+</html>
