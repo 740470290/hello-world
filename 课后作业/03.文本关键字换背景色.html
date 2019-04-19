@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="d1">青春是....,青春是........</div>
+<script>
+    function mark (keyword,bgc) {
+      var p=new RegExp(keyword,'g')
+      d1.innerHTML=d1.innerHTML.replace(p,'<font style=background:'+bgc+'>'+keyword+'</font>')
+    }
+    mark('青春','blue')
+</script>
+</body>
+</html>
