@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#article{
+			width: 350px;
+			height: 350px;
+			background-color: #eee;
+			padding: 50px;
+            font-size: 36px;
+		}
+		#pages{
+			width: 450px;
+
+		}
+		input{
+			margin: 0 5px;
+		}
+	</style>
+	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="article">
+</div>
+<p id="pages">
+</p>
+<script>
+var str = "爱的魔力转圈圈1,爱的魔力转圈圈2,爱的魔力转圈圈3,爱的魔力转圈圈4,爱的魔力转圈圈5";
+var font_num = 9
+var page_num = parseInt(str.length/font_num)+1
+var current_page = 1
+article.innerHTML=str.substr(0,font_num)
+var p_html = '<input type="button" value="上一页">'
+	for(i=1;i<page_num+1;i++){
+		p_html+='<input type="button" value='+i+'>'
+	}
+	p_html+='<input type="button" value="下一页">'
+	pages.innerHTML=p_html
+
+		$('input').click(function () {
+			var p = $(this).index()
+			if(p>0 && p<page_num+1){
+				article.innerHTML=str.substr((p-1)*font_num,font_num)
+				current_page = $(this).index()
+			}else if(p==0 && current_page>1){
+				article.innerHTML=str.substr((current_page-2)*font_num,font_num)
+				current_page--
+			}else if(p==page_num+1 && current_page<page_num){
+				article.innerHTML=str.substr((current_page)*font_num,font_num)
+				current_page++
+			}else {
+				return
+			}
+
+	})
+</script>
+</body>
+</html>
