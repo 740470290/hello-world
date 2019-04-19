@@ -43,3 +43,14 @@ var ball=[]
   }
   ball=[...new Set(ball)].slice(0,6).sort(function(a,b){return a-b})
   console.log(ball)
+// 数组排序
+var arr = [10,30,15,10,20,15,30]
+document.write([...new Set(arr)])
+document.write('<br>')
+var a=[]
+for(i of arr){
+if(a.indexOf(i)==-1){
+  a.push(i)
+}
+}
+document.write(a)
