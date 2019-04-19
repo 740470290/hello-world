@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            font-size: 50px;
+            font-weight: bold;
+        }
+        input{
+            height: 50px;
+            width: 300px;
+            font-size: 20px;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="d1">123456</div>
+<input type="text" placeholder="输入验证码" id="d2" autofocus>
+<button id="b1">换个验证码</button>
+<p id="p1"></p>
+<script>
+    // function f (min,max) {
+    //   return parseInt(Math.random()*(max-min+1)+min)
+    // }
+    // document.write(f(10,20))
+    // function f () {
+    //   return 'rgb('+Math.random()*255+','+Math.random()*255+','+Math.random()*255+')'
+    // }
+    // d1.style.color=f()
+    // console.log(f())
+    var str = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789我你它是'
+    var len = str.length
+    function f () {
+      var str1 = ''
+    for(i=0;i<6;i++){
+      var j = parseInt(Math.random()*len)
+      str1 += str[j]
+    }
+    d1.innerHTML = str1
+    }
+    f()
+    b1.onclick=f
+    d2.onblur=function () {
+      if(d2.value.toLowerCase()==d1.innerHTML.toLowerCase()){
+        p1.innerHTML='输入正确'
+      }else{
+         p1.innerHTML='输入错误'
+      }
+    }
+</script>
+</body>
+</html>
