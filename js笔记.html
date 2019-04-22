@@ -54,3 +54,12 @@ if(a.indexOf(i)==-1){
 }
 }
 document.write(a)
+//元素当前下标,原生js
+var obj = document.querySelectorAll('#list li')
+for(i=0;i<obj.length;i++){
+obj[i].index=i
+obj[i].onclick=function (index) {
+  // this.style.display='none'
+  console.log(this.index)
+}
+}
