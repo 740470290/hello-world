@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<ul id="list">
+  <li>列表1</li>
+  <li>列表2</li>
+  <li>列表3</li>
+  <li>列表4</li>
+</ul>
+<script>
+//原生js
+//li添加单击事件:获取li的下标
+var li_obj = document.querySelectorAll('#list li');
+console.log(li_obj);//数组
+for(var i=0;i<li_obj.length;i++){
+  function cc(){
+    var j=i
+    return function () {
+      console.log(j++)
+    }
+  }
+
+  //每个li : li_obj[i]
+  //利用自执行函数,把i变量传递到匿名函数里
+  li_obj[i].onclick = cc()
+
+}
+console.log(i)
+
+
+
+
+</script>
+</body>
+</html>
