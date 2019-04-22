@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+	赞:<button id="btn_zan">+0</button>
+	踩:<button id="btn_cai">+0</button>
+  <script>
+		//1. 用外层函数包裹受保护的变量和内层函数
+		function factory(){
+			var i=0;
+			//2. 外层函数返回内层函数对象
+			return function(){
+				this.innerHTML="+"+ ++i;
+			}
+		}
+		//3. 使用者必须调用外层函数，获得内层函数对象
+		btn_zan.onclick=factory();
+		btn_cai.onclick=factory();
+	</script>
+ </body>
+</html>
