@@ -66,9 +66,24 @@ obj[i].onclick=function (index) {
   console.log(this.index)
 }
 }
-
-
-
+//arguments实参
+console.log(arguments)
+console.log(arguments[0])
+console.log(arguments.length)
+//形式参数
+console.log(arguments.callee)
+console.log(arguments.callee.length)
+//闭包,变量长期保存在内存中
+function f6 () {
+var num=10;
+return function () {
+  num++;
+  console.log(num)
+}
+}
+var aa=f6()
+aa()//11
+aa()//12
 
 
 
