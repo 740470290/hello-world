@@ -84,7 +84,43 @@ return function () {
 var aa=f6()
 aa()//11
 aa()//12
-
-
-
-
+//数组去重
+[...new Set(array)]
+//短路逻辑,三目
+return x>100?'above 100':'below 100'
+return x>100?(x>200?'above 200':'batween 100-200'):'balow 100'
+//逻辑运算,只看turn和false
+return (this.state.data || 'Fetching Data')
+//转换boolean
+!0;//ture
+//转string
+1+""
+//转number
++"15"
+//按位不运算
+~15=-16
+~~15=15
+//乘方
+3**2;//9
+//float转int,直接去掉小数点后的数
+23.9 | 0;
+//箭头函数,都是匿名函数
+x=>x**2
+function(x){
+return x**2;
+}
+()=>{}
+//数组截取
+a=[1,2,3,4,5,6,7,8]
+a.length=3;//a=[1,2,3]
+//对于中文的截取
+'吉'.at(0)  // '吉'
+//返回布尔值
+includes(), startsWith(), endsWith()
+//repeat函数
+'x'.repeat(3) // "xxx"
+//padStart()，padEnd()
+'1'.padStart(10, '0') // "0000000001"
+//forEach函数
+let obj = {a: 1, b: 2, c: 3}
+Object.values(obj).forEach(value=>console.log(value)) // 1, 2, 3
