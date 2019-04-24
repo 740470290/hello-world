@@ -41,15 +41,15 @@
     Array.prototype.unRepeat=function () {
       // console.log(this[0])
       var a=[]
-      for(i of this[0]){
+      for(i of this){
         if(a.indexOf(i)==-1){
           a.push(i)
         }
         }
       return a
     }
-    var a=new Array([1,2,3,3,4,4,66])
-    a.unRepeat()
+    a=[1,2,3,3,4,4,66]
+    console.log(a.unRepeat())
 </script>
 </body>
 </html>
