@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+  // function Dog (name, age, color) {
+  //   this.name = name
+  //   this.age = age
+  //   this.color = color
+  //   this.behavior = function (eat, play) {
+  //     console.log('吃' + eat + ',表演' + play)
+  //   }
+  // }
+  //
+  // var a = new Dog('tom', 5, 'red')
+  // var b = new Dog('mimi', 3)
+  // console.log(a)
+  // console.log(a.behavior('狗粮', '唱歌'))
+
+  function obj (id, name) {
+    var Dog = new Object()
+    Dog.id = id
+    Dog.name = name
+    Dog.fun = function () {
+      return name
+    }
+    return Dog
+  }
+  var a=obj(1,'tom')
+  console.log(a.fun())
+
+  // function sum (a,b) {
+  //   return a+b
+  // }
+  sum = (a, b) => a + b
+  console.log(sum(6, 9))
+  // function mul (a,b) {
+  //   return a*b
+  // }
+  mul = (a, b) => a * b
+  console.log(mul(8, 9))
+
+</script>
+</body>
+</html>
