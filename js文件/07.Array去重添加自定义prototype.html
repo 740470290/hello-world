@@ -50,6 +50,21 @@
     }
     a=[1,2,3,3,4,4,66]
     console.log(a.unRepeat())
+    // String去空格添加自定义prototype
+    String.prototype.unSpace=function(){
+      return this.replace(/\s/g,'')
+    }
+    var str='  as ddff dfg     '
+    console.log(str+'---------')
+    console.log(str.unSpace()+'---------')
+    String.prototype.unLeftSpace=function () {
+      return this.replace(/\s+/,'')
+    }
+    console.log(str.unLeftSpace()+'---------')
+    String.prototype.unRightSpace=function () {
+      return this.replace(/\s+$/,'')
+    }
+    console.log(str.unRightSpace()+'---------')
 </script>
 </body>
 </html>
