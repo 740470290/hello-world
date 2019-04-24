@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function Person(name){
+                this.name=name;
+                this.addr=function () {
+                    console.log(123)
+                }
+            }
+
+            Person.prototype.share=[];
+            Person.prototype.school='北京大学'
+
+            Person.prototype.printName=function(){
+                console.log('我是Per');
+            }
+
+            var person1=new Person('Byron');
+            var person2=new Person('Frank');
+
+            person1.school.concat('南京大学')
+            person1.share.push(1);
+            // person2.share.push(2);
+            console.log(person2.share); //[1,2]
+            console.log(person1.school);
+            console.log(person2.school);
+
+            person1.printName=function(){
+                console.log('我是1hao');
+            }
+            person1.printName()
+
+    Array.prototype.unRepeat=function () {
+      // console.log(this[0])
+      var a=[]
+      for(i of this[0]){
+        if(a.indexOf(i)==-1){
+          a.push(i)
+        }
+        }
+      return a
+    }
+    var a=new Array([1,2,3,3,4,4,66])
+    a.unRepeat()
+</script>
+</body>
+</html>
