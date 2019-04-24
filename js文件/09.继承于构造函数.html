@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+//练习1:描述学校
+// 学校名
+// 地址
+function School () {
+    School.prototype.schoolName='南京大学'
+    School.prototype.addr='南京市'
+  }
+//练习2:描述学生类
+// 学号
+// 姓名
+// 年龄
+// 读书行为
+// 运动行为
+// 学习行为
+function Students (id,name,age) {
+    Students.prototype.id=id
+    Students.prototype.name=name
+    Students.prototype.age=age
+    Students.prototype.read=function (book) {
+      return '读:'+book
+    }
+    Students.prototype.sport=function (sport) {
+      return '喜欢的运动:'+sport
+    }
+    Students.prototype.study=function (study) {
+      return '喜欢的科目:'+study
+    }
+  }
+//练习3:实现继承
+Students.prototype=new School()
+var a=new Students(1,'小明',18)
+console.log(a.schoolName)
+console.log(a.name)
+
+//练习4:描述mp3
+// 特征:颜色,品牌,内存
+// 功能:播放,暂停,删除,下载
+function Mp3 (color,brand,Ram) {
+    Mp3.prototype.color=color
+    Mp3.prototype.brand=brand
+    Mp3.prototype.Ram=Ram
+    Mp3.prototype.play=function (song) {
+      return '播放:'+song
+    }
+    Mp3.prototype.pause=function (song) {
+      return '暂停:'+song
+    }
+    Mp3.prototype.delete=function (song) {
+      return '删除:'+song
+    }
+    Mp3.prototype.download=function (song) {
+      return '下载:'+song
+    }
+  }
+
+
+
+</script>
+</body>
+</html>
