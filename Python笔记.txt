@@ -81,3 +81,29 @@ with open("./t.json",'r',encoding='utf-8') as f:
 with open("./t.json", 'w', encoding='utf-8') as w:
     json.dump(json_dict, w,ensure_ascii = False)    
 list=json.dumps(row, ensure_ascii=False)
+python继承,构造函数,重构
+# 父类
+class Person(object):
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+        self.weight='weight'
+    def talk(self):
+        print('person is talking')
+# 子类
+class Student(Person):
+    def __init__(self,name,age,language):
+        # 这里继承父类
+        Person.__init__(self,name,age)
+        self.language=language
+    def walk(self):
+        print('student is walking')
+    # 重构父类的方法
+    def talk(self):
+        print('Student is talking')
+
+c=Student('tom',15,'Chinese')
+c.talk()
+c.walk()
+print(c.language)
+print(c.weight)
