@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h1>小明</h1>
+<script>
+// 父类
+function Father() {
+  this.father='爸爸'
+  this.eat=function (food) {
+  return 'eat '+food
+}
+
+}
+function Son(name,age) {
+  this.name=name
+  this.age=age
+}
+Son.prototype=new Father()
+Son.prototype.book='swan'
+var a=new Son('小明',18)
+  console.log(a)
+  console.log(a.__proto__)
+  console.log(a.__proto__.constructor)
+  console.log(a.eat('sanwitch'))
+  var b=new Son('小红',15)
+  console.log(b.eat('bnanna'))
+  console.log(Array.isArray([1,2]))
+// 判断前者是后者的实例
+  console.log(a instanceof Object)//true
+  console.log(Array instanceof Object)//true
+// 判断原型对象的指向
+  console.log(Son.prototype.isPrototypeOf(a))//true
+  console.log(Father.prototype.isPrototypeOf(a))//true
+  console.log(Son.prototype)
+  console.log(Father.prototype)
+// 判断自己是否有某个私有属性
+  console.log(a.hasOwnProperty('name'))//true
+// 反过来判断,判断的是公有属性
+  console.log('name' in a)//true
+  // 存在且是公有属性
+  console.log('name' in a&&!a.hasOwnProperty('name'))
+  // 删除属性
+  delete a.name
+  console.log(a.book)
+delete a.book
+  console.log(a.book)
+
+
+</script>
+</body>
+</html>
