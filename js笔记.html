@@ -124,3 +124,15 @@ includes(), startsWith(), endsWith()
 //forEach函数
 let obj = {a: 1, b: 2, c: 3}
 Object.values(obj).forEach(value=>console.log(value)) // 1, 2, 3
+const arr=[1,2,3,4,5]
+const nameArr=[]
+arr.forEach(item =>{
+  nameArr.push(item)
+})
+//[1,2,3,4,5]
+//map方法,必须写return
+const arr=[1,2,3,4,5]
+const g=arr.map(item =>{
+  return item+'...'
+})
+console.log(g)//["1...", "2...", "3...", "4...", "5..."]
