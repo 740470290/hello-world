@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1 id="d1">这是一个H1</h1>
+<h1>这是一个H1</h1>
+<h1>这是一个H1</h1>
+<script>
+function Tags(selector) {
+  this.elms=document.querySelectorAll(selector)
+}
+function $(sele){
+  return new Tags(sele)
+}
+Tags.prototype.css=function (key,value) {
+  var elms=this.elms
+  if(arguments.length==1){
+    // 传入一个参数,而且是字符串
+        if(typeof key=='string'){
+         return window.getComputedStyle(elms[0])[key]
+        }else {
+          // 传入一个参数,是对象类型{color:'red',display:'float'}
+          for (i of elms){
+              for(j in key){
+                i.style[j]=key[j]
+              }
+          }
+        }
+        // 传入二个参数,('color','red')
+      }else if(arguments.length==2){
+        for(i of elms){
+          i.style[key]=value
+        }
+      }
+}
+$('h1').css('color','red')
+</script>
+</body>
+</html>
