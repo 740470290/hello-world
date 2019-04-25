@@ -1,0 +1,18 @@
+class Animal{
+      constructor(name,age){
+          this.name=name
+          this.age=age
+      }
+      show(){
+          console.log('大家好')
+      }
+  }
+  class Dog extends Animal{
+      // 子类新建构造器,一定要把值传给父类,不然是undefined
+      constructor(name,age){
+          super(name,age)
+      }
+  }
+  const a=new Dog('tom',15)
+  console.log(a)
+  a.show()
