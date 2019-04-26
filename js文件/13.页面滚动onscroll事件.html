@@ -47,9 +47,11 @@
     <a href="#">添加采集</a>
 </div>
 <script>
+// 页面的滚动事件,也可以写winodw.onscroll
 document.body.onscroll=function () {
     var a=document.getElementById('top')
     var nav=document.getElementById('nav')
+    // 页面滚动到一定位置,显示回到顶部按钮
     if(document.documentElement.scrollTop>300){
         a.style.display='block'
         nav.style.background='#ff915f'
