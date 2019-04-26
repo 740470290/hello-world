@@ -21,7 +21,7 @@ a.classList.remove('c2')
 //css选择器
 var a=document.querySelector('#app')
 var a=document.querySelectorAll('p')[0]
-//方法监听,使用id不需要先声明
+//方法监听,使用id不需要先声明,区别在于可以同时添加多个方法,传统的方法,后一个会覆盖前面的方法
 a.addEventListener('click',f)
 a.removeEventListener('click',f)//移除
 a.onclick=function(){}
