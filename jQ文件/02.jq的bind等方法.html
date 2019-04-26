@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+<script>
+    $(function () {
+        $('input:eq(0)').bind('click mouseover',() => console.log('按钮1'))
+        $('input:eq(0)').unbind('click');
+        $('input:eq(1)').on('click mouseover',() => console.log('按钮2'))
+        $('input:eq(1)').unbind('click');
+        $('input:eq(2)').one('click mouseover',() => console.log('按钮3'))
+    });
+
+</script>
+</body>
+</html>
