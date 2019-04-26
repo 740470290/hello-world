@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #nav{
+            height: 60px;
+            background-color: pink;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        #btns{
+            position: fixed;
+            bottom: 50px;
+            right: 100px;
+        }
+        #btns a{
+            display: block;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ff915f;
+            text-decoration: none;
+            margin: 20px 0;
+            text-align: center;
+            color: blue;
+        }
+        #content{
+            height: 2000px;
+            padding-top: 80px;
+        }
+        #btns #top{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="nav">头部导航条</div>
+<div id="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio dolorem exercitationem id in nihil perferendis. Est ex illum laborum libero, molestiae mollitia obcaecati odio officiis possimus quas, temporibus tenetur voluptatibus!</div>
+<div id="btns">
+    <a href="#content" id="top">回到顶部</a>
+    <a href="#">帮助中心</a>
+    <a href="#">添加采集</a>
+</div>
+<script>
+document.body.onscroll=function () {
+    var a=document.getElementById('top')
+    var nav=document.getElementById('nav')
+    if(document.documentElement.scrollTop>300){
+        a.style.display='block'
+        nav.style.background='#ff915f'
+    }else{
+        a.style.display='none'
+        nav.style.background='pink'
+    }
+    console.log(document.documentElement.scrollTop)
+}
+
+</script>
+</body>
+</html>
