@@ -136,3 +136,22 @@ const g=arr.map(item =>{
   return item+'...'
 })
 console.log(g)//["1...", "2...", "3...", "4...", "5..."]
+//表单oninput事件的运用
+<body>
+<form action="">
+    <textarea name="" id="artical" cols="30" rows="10"></textarea><br>
+    还可以输入<span id="mess">100</span>个字
+</form>
+<script>
+    artical.oninput=function () {
+        console.log(this.value.length)
+        mess.innerText=100-this.value.length
+    }
+</script>
+</body>
+
+
+
+
+
+
