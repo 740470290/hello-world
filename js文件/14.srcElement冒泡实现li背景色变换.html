@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #list{
+            border: 3px solid red;
+        }
+        li{
+            border: 1px dashed blue;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<ul id="list">
+    <li>第一行</li>
+    <li>第二行</li>
+    <li>第三行</li>
+    <li>第四行</li>
+</ul>
+<script>
+    var li=document.querySelectorAll('li')
+    list.onclick=(e)=>{
+        // 二者相等
+        // console.log(e.srcElement)
+        console.log(e.target)
+        // for(i of li){
+        //     i.style.background=''
+        // }
+        li.forEach(i=>{
+            i.style.background=''
+        })
+        e.target.style.background='pink'
+    }
+</script>
+</body>
+</html>
