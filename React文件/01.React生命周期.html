@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Hello React!</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+<div id="app"></div>
+<script type="text/babel">
+class Button extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={data:0}
+        this.setNewNumber=this.setNewNumber.bind(this)
+    }
+    setNewNumber(){
+        this.setState({data:this.state.data+1})
+    }
+    render(){
+        return(
+            <div>
+                <button onClick={this.setNewNumber}>增加</button>
+                <Content myNumber={this.state.data}></Content>
+            </div>
+        )
+    }
+}
+class Content extends React.Component{
+    componentWillMount(){
+        console.log('component will mount')
+    }
+    componentDidMount(){
+        console.log('component did mount')
+    }
+    componentWillReceiveProps(newProps){
+        console.log('component will receive props '+newProps.myNumber)
+    }
+    shouldComponentUpdate(newProps,newState){
+        console.log('shouldComponentUpdate '+newProps.myNumber+' '+newState)
+        return true
+    }
+    componentWillUpdate(newProps,newState){
+        console.log('componentWillUpdate '+newProps.myNumber+' '+newState)
+    }
+    componentDidUpdate(prevProps,prevState){
+        console.log('component Did Update '+prevProps.myNumber+' '+prevState)
+    }
+    componentWillUnmount(){
+        console.log('component Will Unmount')
+    }
+    render(){
+        return(
+            <div>
+                <h2>{this.props.myNumber}</h2>
+            </div>
+        )
+    }
+}
+ReactDOM.render(
+    <Button />,
+    app
+)
+
+</script>
+
+</body>
+</html>
