@@ -167,8 +167,12 @@ window.location.href="https://www.baidu.com"
 window.history.forward()
 window.history.back()
 window.history.go(-2)
-
-
+//apache开启容许访问
+httpd.conf文件中
+allow from ...改为
+allow from all
+//php中文乱码,开头加
+header('Content-Type: text/html; charset=utf-8');
 
 
 
