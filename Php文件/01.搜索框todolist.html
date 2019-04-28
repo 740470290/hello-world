@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h4>在输入框中输入一个名字,如:Anna:</h4>
+<form>
+    姓名:
+    <input type="text" oninput="showHint(this.value)">
+</form>
+<p>返回值:<span id="txtHint"></span></p>
+<script>
+    function showHint(str) {
+        xmlhttp=new XMLHttpRequest()
+        xmlhttp.onreadystatechange=function () {
+            txtHint.innerHTML=xmlhttp.responseText;
+        }
+        xmlhttp.open("GET","01.php?q="+str,true)
+        xmlhttp.send()
+    }
+</script>
+</body>
+</html>
