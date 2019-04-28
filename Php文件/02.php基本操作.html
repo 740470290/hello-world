@@ -2,20 +2,24 @@
 header('Content-Type: text/html; charset=utf-8');
 $str="<p style='border:1px solid red;'><a href='#'>首页</a></p>";
 echo $str;
+// 2)整数/浮点数: 单价:15.64 数目:10 计算总价
 $price=15.64;
 $num=10;
 $cost=$price*$num;
 echo $cost;
 echo '<br>';
-define('PI',M_PI);
-echo PI;
+// 3)数组:存储一下购物车商品信息
 $shopCar=array(
     array(1001,"iPhone",900,10),
     array(1002,"洗衣机",1100,2),
     array(1003,"冰箱",2000,3),
     array(1004,"壁灯",1500,4),
 );
+//4)常量: 圆周率
+define('PI',M_PI);
+echo PI;
 echo '<hr>';
+//二:流程语句练习
 $tab="<table cellspacing=0 border=1><tr><td>商品编号</td><td>商品名</td><td>商品价格</td><td>商品数目</td></tr>";
 for($i=0;$i<count($shopCar);$i++){
     if($i%2==0){
