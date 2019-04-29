@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    form[name=register]{line-height: 24px;}
+    form[name=register] p {overflow: hidden;}
+    form[name=register] p *{
+      float: left;
+    }
+    form[name=register] label{
+      display: inline-block;
+      width: 80px;
+    }
+    form[name=register] span{
+      display: inline-block;
+      width: 200px;height: 24px;
+      border: 1px solid pink;
+      color:red;
+      margin-left: 5px;
+      }
+  </style>
+</head>
+<body>
+<form name="register" action="04.php" onsubmit="return check()" method="post">
+  <fieldset>
+    <legend>注册</legend>
+    <p><label>用户名:</label><input type="text" name="uname"><span></span></p>
+    <p><label>密码: </label><input type="password" name="upass"><span></span></p>
+    <p><label>确认密码:</label><input type="password" name="repass"><span></span></p>
+    <p><input type="submit"></p>
+  </fieldset>
+</form>
+<!--
+  需求:输入框失去焦点时做验证(后台php页面验证)
+    提示信息显示到后边的span里
+  1)用户名:
+    不为空
+    不能超过11个字符
+    不能使用已注册的用户名
+  2)密码:
+    不为空
+    长度必须为8
+    不能出现特殊字符@/#(自己查手册)
+  3)确认密码
+    不为空
+    必须与密码一致
+  4)可选做:表单提交时输入框必须都正确,才可以提交
+-->
+<script>
+  var tags=document.querySelectorAll('input')
+  for(i=0;i<3;i++){
+  tags[i].oninput=function () {
+    xmlhttp=new XMLHttpRequest()
+    if(i<2){
+      xmlhttp.open('GET','04.php?name='+this.name+'&value='+this.value)
+    }else {
+      xmlhttp.open('GET','04.php?name='+this.name+'&value='+this.value+'&pass='+tags[1].value)
+    }
+    xmlhttp.send()
+    xmlhttp.onreadystatechange= ()=> {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            this.nextSibling.innerHTML=xmlhttp.responseText;
+          console.log(xmlhttp.responseText)
+        }
+    }
+  }
+  }
+  var span=document.querySelectorAll('span')
+  function check () {
+    if(span[0].innerText=='用户名正确'&&span[1].innerText=='密码正确'&&span[2].innerText=='确认密码正确'){
+      return true
+    }
+    console.log(1234)
+    return false
+  }
+</script>
+</body>
+</html>
