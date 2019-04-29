@@ -198,14 +198,42 @@ axios.post('/user', {
     });
 //php字符串长度strlen($name)
 php,get,post得到的信息$_GET,$_POST
+//in_array方法判断数组是否包含某个元素
+$arr=array('tom','mili','ming','abc');
+in_array($name,$arr)
 //重定向,方法一
 header('location:index.html');
 方法二
 echo "<script>window.location='index.html'</script>";
-
-
-
-
+//select 改变触发事件 onchange
+//原生js实现ajax
+//get
+xmlhttp=new XMLHttpRequest()
+  xmlhttp.open("GET","04.php?act=login&method=get",true)
+  xmlhttp.send()
+  xmlhttp.onreadystatechange=function () {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          getbox.innerHTML=xmlhttp.responseText
+      }
+  }
+//post
+xmlhttp=new XMLHttpRequest()
+  xmlhttp.open("POST","04.php?method=post",true)
+  xmlhttp.setRequestHeader('content-type','application/x-www-form-urlencoded');
+  xmlhttp.send('act=login&method=post')
+  xmlhttp.onreadystatechange=function () {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          postbox.innerHTML=xmlhttp.responseText
+      }
+  }
+//ajax,readystate状态编号0,1,2,3,4
+0请求未初始化
+1请求连接成功
+2请求正在发送
+3正在处理响应
+4处理完成
+//PHP判断post或者get
+$_SERVER['REQUEST_METHOD'] == 'GET'
 
 
 
