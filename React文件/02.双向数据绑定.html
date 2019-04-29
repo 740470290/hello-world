@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>React 实例</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<script type="text/babel">
+class HelloMessage extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={value:'Hello Runoob!'}
+        this.handleChange=this.handleChange.bind(this)
+    }
+    handleChange(event){
+        this.setState({value:this.refs.txt.value})
+        console.log(this.refs.txt.value)
+    }
+    render() {
+        var value=this.state.value
+        return <div>
+            <button onClick={this.handleChange}>点我</button>
+            <input type="text" value={value} onChange={this.handleChange} ref="txt"/>
+            <h4>{value}</h4>
+        </div>
+    }
+}
+ReactDOM.render(
+    <HelloMessage />,app
+)
+
+
+
+
+
+</script>
+
+</body>
+</html>
