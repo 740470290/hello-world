@@ -17,15 +17,18 @@ class HelloMessage extends React.Component{
         this.state={value:'Hello Runoob!'}
         this.handleChange=this.handleChange.bind(this)
     }
-    handleChange(event){
+    handleChange(e){
         this.setState({value:this.refs.txt.value})
         console.log(this.refs.txt.value)
+        console.log(e.target.value)
     }
     render() {
         var value=this.state.value
+        // 第一种方法,用函数自带的(e)传递
+        // 第二种方法,用ref
         return <div>
             <button onClick={this.handleChange}>点我</button>
-            <input type="text" value={value} onChange={this.handleChange} ref="txt"/>
+            <input type="text" value={value} onChange={(e)=>this.handleChange(e)} ref="txt"/>
             <h4>{value}</h4>
         </div>
     }
