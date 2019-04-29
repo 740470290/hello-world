@@ -175,8 +175,27 @@ allow from all
 header('Content-Type: text/html; charset=utf-8');
 //表格,无间距
 <table cellspacing="0" border="1px"></table>
-
-
+//axios发送ajax
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+axios.get("01.php?q="+str)
+    .then((res)=> {
+     console.log(res);
+      txtHint.innerHTML=res.data;
+    })
+    .catch((err)=> {
+      console.log(err);
+    });
+//post方法
+axios.post('/user', {
+      firstName: 'Fred',
+      lastName: 'Flintstone'
+    })
+    .then((res)=> {
+      console.log(res);
+    })
+    .catch((err)=> {
+      console.log(err);
+    });
 
 
 
