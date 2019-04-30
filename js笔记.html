@@ -234,6 +234,13 @@ xmlhttp=new XMLHttpRequest()
 4处理完成
 //PHP判断post或者get
 $_SERVER['REQUEST_METHOD'] == 'GET'
-
-
-
+//php读取文件
+echo file_get_contents('a.xml')
+//axios获取xml
+axios.get("a.xml").then((res)=> {
+a=res.request.responseXML
+var students=a.querySelectorAll('students')
+for(i of students){
+for (j of i.children) {
+console.log(j.innerHTML)
+}}
