@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    body{
+      height: 2000px;
+    }
+    #login{
+      width: 500px;
+      height: 500px;
+      border: 2px solid dodgerblue;
+      margin: 30px;
+      padding: 30px;
+      display: none;
+      position: fixed;
+      top: 70px;
+    }
+    #regis{
+      width: 500px;
+      height: 500px;
+      border: 2px solid orangered;
+      margin: 30px;
+      padding: 30px;
+      display: none;
+      position: fixed;
+      top: 70px;
+    }
+    .glyphicon{
+      position: absolute;
+      top: 3px;
+      right: 3px;
+    }
+    .login{
+      position: fixed;
+    }
+    .regis{
+      position: fixed;
+      left: 180px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+<button class="btn btn-success login">登录</button>
+<button class="btn btn-success regis">注册</button>
+<div id="login">
+  <form action="01.php?way=login" method="post" onsubmit="return check()">
+    <span class="glyphicon glyphicon-remove" onclick="login.style.display='none'"></span>
+    用户名:<input class="form-control" type="text" placeholder="手机号/邮箱" name="name"><br>
+    密码:<input class="form-control" type="password" placeholder="密码" name="pwd"><br>
+    <p style="color: red">请输入用户名密码</p>
+    <input class="btn btn-primary" type="submit" value="登录">
+  </form>
+</div>
+  <div id="regis">
+  <form action="" method="post">
+    <span class="glyphicon glyphicon-remove" onclick="regis.style.display='none'"></span>
+    用户名:<input class="form-control" type="text" placeholder="手机号/邮箱" name="name">
+    <p style="color: red">请输入用户名</p>
+    密码:<input class="form-control" type="password" placeholder="密码" name="pwd">
+    <p style="color: red">请输入密码</p>
+    <input class="btn btn-primary" type="button" value="注册">
+  </form>
+</div>
+</div>
+<script>
+  var log=document.querySelector('.login')
+  var reg=document.querySelector('.regis')
+  log.onclick=function () {
+    regis.style.display='none'
+    login.style.display='block'
+  }
+  reg.onclick=function () {
+    login.style.display='none'
+    regis.style.display='block'
+  }
+  $('#regis input[type=button]').click(function () {
+    console.log()
+    if($('#regis p')[0].innerText=='用户名正确'||$('#regis input')[1].p=='密码正确'){
+       $.post("01.php",{name:'jack'},function(data,status){
+        console.log(data)
+         regis.style.display='none'
+        login.style.display='none'
+    });
+    }else{
+      console.log('err')
+    }
+  })
+  $('#regis input[name=name]').blur(function () {
+    var re=/^1[345789]\d{9}$/
+    if(re.test(this.value)==false){
+      $(this).next().html('用户名错误')
+      return
+    }
+    $.get("01.php?way=check",(data,status,xhr)=>{
+        if(data.includes(this.value)){
+          $(this).next().html('用户名已注册')
+        }else{
+          $(this).next().html('用户名正确')
+        }
+		});
+  })
+  $('#login input[name=name]').blur(function () {
+    var re=/^1[345789]\d{9}$/
+    if(re.test(this.value)==false){
+      $(this).nextAll('p').html('用户名错误')
+      return
+    }
+    $.get("01.php?way=check",(data,status,xhr)=>{
+        if(data.includes(this.value)){
+          $(this).nextAll('p').html('请输入密码')
+        }else{
+          $(this).nextAll('p').html('用户名不存在')
+        }
+		});
+  })
+  $('input[name=pwd]').blur(function () {
+    var re=/^[A-z0-9_]{6,10}$/
+    if(re.test(this.value)){
+      $(this).next().html('密码正确')
+    }else{
+      $(this).next().html('密码错误')
+    }
+  })
+</script>
+</body>
+</html>
