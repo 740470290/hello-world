@@ -273,11 +273,16 @@ $("button").click(function(){
     }
   })
 });
-
-
-
-
-
+//jsonp跨域
+<?php
+echo $_GET['callback'].'()';
+?>
+<script>
+ function jsonp() {
+        console.log('jsonp')
+    }
+</script>     
+<script src="http://127.0.0.1/02.php?callback=jsonp"></script>
 
 
 
