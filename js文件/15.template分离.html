@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/art-template@4.13.2/lib/template-web.js"></script>
+    <style>
+        .c1 {
+            width: 220px;
+            height: 124px;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+            margin-left: 30px;
+        }
+
+        p {
+            font-size: 12px;
+            line-height: 16px;
+            margin: 0 12px 21px;
+            color: #a4a4a4;
+            width: 196px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        h5 {
+            font-size: 14px;
+            line-height: 16px;
+            margin: 12px 12px 10px;
+            width: 196px;
+            overflow: hidden;
+            text-overflow: inherit;
+            white-space: inherit;
+        }
+
+        .c2 h5 {
+            font-size: 16px;
+            line-height: 16px;
+            margin: 12px 12px 12px;
+            width: 445px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .c2 p {
+            font-size: 14px;
+            line-height: 14px;
+            margin: 0 12px;
+            width: 445px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div id="a"></div>
+<script>
+    $.get("http://www.yinyuetai.com/mv/get-rec?recId=8&size=8", function (data, status) {
+        console.log(data)
+        var html = $.get('template.html',function (res){
+            var render = template.compile(res);
+            var str = render(data)
+            console.log(str)
+            a.innerHTML = str
+        })
+    }, 'jsonp');
+</script>
+</body>
+</html>
