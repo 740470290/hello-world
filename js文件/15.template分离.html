@@ -69,6 +69,7 @@
         var html = $.get('template.html',function (res){
             var render = template.compile(res);
             var str = render(data)
+            //var str = template.render(res,data)
             console.log(str)
             a.innerHTML = str
         })
