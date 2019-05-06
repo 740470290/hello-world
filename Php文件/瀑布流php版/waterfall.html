@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>模板实现瀑布流</title>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./js/jquery.waterfall.js"></script>
+    <script src="https://unpkg.com/art-template@4.13.2/lib/template-web.js"></script>
+    <style>
+      body {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+        font-family: "微软雅黑";
+      }
+      .wrapper {
+        padding: 50px;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: 300px;
+      }
+      .items {
+        position: relative;
+        /* display: flex; */
+        /* flex-wrap: wrap; */
+      }
+      .item {
+        width: 228px;
+        position: absolute;
+      }
+      .tips {
+        width: 110px;
+        height: 40px;
+        margin: 30px auto 0;
+        text-align: center;
+        line-height: 40px;
+        background-color: #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .tips.loading {
+        /* background-color: transparent; */
+        background-color: #797979;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>瀑布流展示页面</h2>
+    <div class="wrapper">
+      <!-- 瀑布流的容器, 瀑布流中的元素的宽度是固定的 -->
+      <div class="items">
+      </div>
+      <p class="tips loading" onclick="getData()">加载更多...</p>
+    </div>
+    <script id="test" type="text/html">
+      {{each a val key}}
+        <div class="item">
+          <img src="{{val.path}}" alt="">
+          <p>{{val.text}}</p>
+        </div>
+      {{/each}}
+    </script>
+    <script>
+      function getData(){
+         $.get("01.php",function(data,status,xhr){
+           var data=JSON.parse(data)
+           var html = template('test',{a:data});
+           document.querySelector('.items').innerHTML += html
+           $('.items').waterfall()
+        });
+      }
+      getData()
+    </script>
+  </body>
+</html>
