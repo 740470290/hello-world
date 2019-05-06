@@ -283,9 +283,19 @@ echo $_GET['callback'].'()';
     }
 </script>     
 <script src="http://127.0.0.1/02.php?callback=jsonp"></script>
-
-
-
-
+//PHP的cors
+header('Access-Control-Allow-Origin: *');
+//flask的cors
+from flask_cors import CORS
+CORS(app, supports_credentials=True)
+//jQ跨域,jsonp,第二种方法
+$.get("http://127.0.0.1/02.php",function(data,status){
+    console.log(data)
+},'jsonp');
+//第二种方法,getJSON,jsonp的缺点:只支持get方式,http请求,没有错误处理机制
+$.getJSON("http://127.0.0.1/02.php?callback=?",function(data,status){
+          console.log(data)
+    });
+echo $_GET['callback']."(21321321)"
 
 
