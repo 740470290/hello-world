@@ -1,0 +1,14 @@
+<ul>
+        <li class="c2">
+            <img src={{priModule.image}} alt="">
+            <h5>{{priModule.title}}</h5>
+            <p style="width: 400px">{{priModule.content}}</p>
+        </li>
+        {{each details val key}}
+        <li>
+            <img class="c1" src={{val.image}} alt="">
+            <h5>{{val.title}}</h5>
+            <p>{{val.subTitle}}</p>
+        </li>
+        {{/each}}
+    </ul>
