@@ -297,5 +297,12 @@ $.getJSON("http://127.0.0.1/02.php?callback=?",function(data,status){
           console.log(data)
     });
 echo $_GET['callback']."(21321321)"
-
+// 浏览器窗口高度,滚动监听
+var h = window.innerHeight || document.documentElement.clientHeight
+document.body.onscroll=function () {
+// 滚动条距离顶部的距离 > (总高度-窗口高度)*0.8
+  if(document.documentElement.scrollTop>(document.documentElement.scrollHeight-window.innerHeight)*0.8){
+    getData()
+  }
+}
 
