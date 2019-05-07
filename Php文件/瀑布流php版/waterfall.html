@@ -60,21 +60,45 @@
     <script id="test" type="text/html">
       {{each a val key}}
         <div class="item">
-          <img src="{{val.path}}" alt="">
+          <img src={{val.path}} alt="">
           <p>{{val.text}}</p>
         </div>
       {{/each}}
     </script>
     <script>
+      function f () {
+        var num=-1;
+        return function () {
+          num++;
+          return num
+        }
+        }
+        var aa=f()
       function getData(){
          $.get("01.php",function(data,status,xhr){
            var data=JSON.parse(data)
-           var html = template('test',{a:data});
+           var arr=[]
+           var j=aa()*10
+           if(j>40){return}
+           for(var i=j;i<j+10;i++){
+             // var a=(Math.random()*50)|0
+             arr.push(data[i])
+           }
+           console.log(j)
+           var html = template('test',{a:arr});
            document.querySelector('.items').innerHTML += html
            $('.items').waterfall()
         });
       }
       getData()
+      // 浏览器窗口高度
+      var h = window.innerHeight || document.documentElement.clientHeight
+      document.body.onscroll=function () {
+        // 滚动条距离顶部的距离 > (总高度-窗口高度)*0.8
+        if(document.documentElement.scrollTop>(document.documentElement.scrollHeight-window.innerHeight)*0.8){
+          getData()
+        }
+      }
     </script>
   </body>
 </html>
