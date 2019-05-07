@@ -305,4 +305,21 @@ document.body.onscroll=function () {
     getData()
   }
 }
+//打乱数组
+var arr=[];
+for(var i=0;i<100;i++){
+      arr[i]=i;
+  }
+arr.sort(function(){ return 0.5 - Math.random() })
+var str=arr.join();
+console.log(arr)
+
+
+
+
+
+
+
+
+
 
