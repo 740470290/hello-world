@@ -347,6 +347,8 @@ function draw() {
     img.src = 'timg.jpg';
 //设置重叠
 ctx.globalCompositeOperation='lighter';
+
+                        
                         
                         
                         
