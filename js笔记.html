@@ -314,14 +314,40 @@ arr.sort(function(){ return 0.5 - Math.random() })
 var str=arr.join();
 console.log(arr)
 //canvas
-lineJoin                        
+lineJoin圆形边角                        
+function draw() {
+    var ctx = document.getElementById('canvas').getContext('2d');
+    ctx.font = "bold 48px 宋体";
+    // 水平居中
+    ctx.textAlign = "center";
+    ctx.fillStyle = 'red'
+    // 垂直居中
+    ctx.textBaseline = 'middle'
+    // 阴影
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    // 模糊程度
+    ctx.shadowBlur = 2;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.fillText("Hello World", 250, 250);
+    ctx.strokeText("Hello World", 250, 100);
+    ctx.beginPath();
+    //绘制圆
+    ctx.arc(50, 50, 30, 0, Math.PI * 2, true);
+    ctx.arc(50, 50, 15, 0, Math.PI * 2, true);
+    ctx.fill("evenodd");
+}                        
+//绘制图片
+function draw() {
+    var ctx = document.getElementById('canvas').getContext('2d');
+    var img = new Image();
+    img.onload = function(){
+      ctx.drawImage(img,0,0);
+    }
+    img.src = 'timg.jpg';
+//设置重叠
+ctx.globalCompositeOperation='lighter'; 
+
                         
-
-
-
-
-
-
-
-
-
+                        
+                        
