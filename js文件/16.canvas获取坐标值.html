@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .point {
+            position: absolute;
+            top: 10px;
+            left: 450px;
+        }
+        #c1{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400" style="background:#fff"></canvas>
+<div class="point">
+    <p>mousedown(鼠标点击时坐标)</p>
+    <p>X: <span class="pointX">0</span></p>
+    <p>Y: <span class="pointY">0</span></p>
+    <p>mousemove(鼠标移动时坐标)</p>
+    <p>X: <span class="pointX1">0</span></p>
+    <p>Y: <span class="pointY1">0</span></p>
+    <p>mouseup(鼠标释放时坐标)</p>
+    <p>X: <span class="pointX2">0</span></p>
+    <p>Y: <span class="pointY2">0</span></p>
+</div>
+<script>
+function EventTools() {
+    EventTools.prototype.mouse=function (elem,mDown,mMove,mUp) {
+        var self=this
+        elem.addEventListener('mousedown',function (e) {
+            console.log(e)
+            e.points=getPoint(e,elem)
+            mDown&&mDown.call(self,e)
+        })
+        elem.addEventListener('mousemove',function (e) {
+            e.points=getPoint(e,elem)
+            mMove&&mMove.call(self,e)
+        })
+        elem.addEventListener('mouseup',function (e) {
+            e.points=getPoint(e,elem)
+            mUp&&mUp.call(self,e)
+        })
+    }
+}
+function getPoint(e,elem) {
+    var x=e.pageX-elem.offsetLeft
+    var y=e.pageY-elem.offsetTop
+    return {
+        dx:x,
+        dy:y
+    }
+}
+var tools=new EventTools();
+var c1=document.getElementById('c1');
+var ctx=c1.getContext('2d');
+var span=document.querySelectorAll('span');
+tools.mouse(c1,mDown,mMove,mUp);
+function mDown(e) {
+    span[0].innerHTML=e.points.dx
+    span[1].innerHTML=e.points.dy
+}
+function mMove(e) {
+    span[2].innerHTML=e.points.dx
+    span[3].innerHTML=e.points.dy
+    ctx.clearRect(0,0,400,400)
+    var x=e.points.dx
+    var y=e.points.dy
+    ctx.beginPath()
+    ctx.fillStyle='red'
+    ctx.arc(x,y,10,0,Math.PI*2)
+    ctx.fill()
+    ctx.closePath()
+}
+function mUp(e) {
+    span[4].innerHTML=e.points.dx
+    span[5].innerHTML=e.points.dy
+}
+</script>
+</body>
+</html>
