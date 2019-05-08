@@ -15,10 +15,12 @@ class HelloMessage extends React.Component{
     constructor(props){
         super(props)
         this.state={value:'Hello Runoob!'}
+        // 否则指向undefined
         this.handleChange=this.handleChange.bind(this)
     }
     handleChange(e){
         this.setState({value:this.refs.txt.value})
+        // this.refs.txt.value==e.target.value
         console.log(this.refs.txt.value)
         console.log(e.target.value)
     }
