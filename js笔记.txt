@@ -347,7 +347,10 @@ function draw() {
     img.src = 'timg.jpg';
 //设置重叠
 ctx.globalCompositeOperation='lighter';
-
+//jq格式的方法,把函数
+!function (a,b) {
+    console.log(a+b)
+}(1,2)
                         
                         
                         
