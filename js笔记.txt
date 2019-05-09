@@ -354,8 +354,131 @@ ctx.globalCompositeOperation='lighter';
 解决 react onClick 方法自动执行     
 <a href="#" onClick={this.onLoadQR.bind(this, text)}><Icon type="qrcode" />下载</a>
 <a href="#" onClick={()=>this.onLoadQR(text)}><Icon type="qrcode" />下载</a>
-
-                        
+//php操作cookie
+setCookie()
+//原生js操作cookie
+var myCookie={
+    set:function (key,value,days) {
+        document.cookie = key+"="+value+';path=/;Max-Age='+days*24*3600;
+        console.log('设置成功')
+    },
+    get:function (key) {
+        var a=document.cookie.indexOf(key)
+        var b=document.cookie.indexOf(';',a)
+        if(b==-1){
+            console.log(document.cookie.slice(a+key.length+1))
+        }else{
+            console.log(document.cookie.slice(a+key.length+1,b))
+        }
+    }
+}
+//localstorage
+localStorage.setItem(key,value)
+localStorage.getItem(key)
+localStorage.removeItem(key)
+localStorage.clear()
+获取指定的key
+localStorage.key(0)
+localStorage.key('cmts')
+localStorage.valueOf(0)
+localStorage.valueOf('cmts')
+存数组或者json格式
+localStorage.setItem('ming',JSON.stringify(ming));
+//js判断一个东西的类型
+arr=[]
+Object.prototype.toString.call(arr)
+"[object Array]"
+//sessionStorage数组保存在内存中
+cookie 和session 的区别：
+1、cookie数据存放在客户的浏览器上，session数据放在服务器上。
+2、cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗
+   考虑到安全应当使用session。
+3、session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能
+   考虑到减轻服务器性能方面，应当使用COOKIE。
+4、单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。
+5、所以个人建议：
+   将登陆信息等重要信息存放为SESSION
+   其他信息如果需要保留，可以放在COOKIE中
+// 新建indexedDB
+var request = window.indexedDB.open('db');
+// 三大事件    
+request.onupgradeneeded = function(event) {
+  db = event.target.result;
+  var objectStore = db.createObjectStore('person', { keyPath: 'id',
+      autoIncrement: true });
+  //指定可以被索引的字段，unique字段是否唯一
+  objectStore.createIndex('name', 'name', { unique: false });
+  objectStore.createIndex('email', 'email', { unique: true });
+}
+// request.result==event.target.result
+request.onsuccess = function (event) {
+  db = request.result;
+  console.log('数据库打开成功');
+  console.log(event)
+  console.log(request)
+  console.log(event.target.result)
+};
+request.onerror = function (event) {
+  console.log('数据库打开报错');
+};
+//关闭
+close()
+//删除数据库
+window.indexedDB.deleteDatabase('db')
+//增加数据
+var db = window.indexedDB.open('db');
+window.onload=function (){
+var request = db.result.transaction('stu1', 'readwrite')
+.objectStore('stu1')
+.add({ id: 3, name: '李四', email: 'zhangsan@example' })
+}
+//修改数据
+var db = window.indexedDB.open('db');
+window.onload = function add() {
+    var transaction = db.result.transaction('stu1', 'readwrite')
+    var obj = transaction.objectStore('stu1')
+    var request = obj.get(3)
+    request.onsuccess = function (e) {
+        obj.put({id: 3, name: '李', email: 'zhangsan'})
+        db.result.close()
+        console.log('数据修改成功');
+    };
+    request.onerror = function (event) {
+        console.log('数据修改失败');
+        db.result.close()
+    }
+}
+//删除数据
+var db = window.indexedDB.open('db');
+window.onload = function add() {
+    var transaction = db.result.transaction('stu1', 'readwrite')
+    var obj = transaction.objectStore('stu1')
+    var request = obj.delete(3)
+    request.onsuccess = function (e) {
+        db.result.close()
+        console.log('数据删除成功');
+    };
+    request.onerror = function (event) {
+        console.log('数据删除失败');
+        db.result.close()
+    }
+}
+//查询数据
+var db = window.indexedDB.open('db');
+window.onload = function add() {
+    var transaction = db.result.transaction('stu1', 'readwrite')
+    var obj = transaction.objectStore('stu1')
+    var request = obj.get(2)
+    request.onsuccess = function (e) {
+        console.log(request)
+        db.result.close()
+        console.log('获取成功');
+    };
+    request.onerror = function (event) {
+        console.log('数据获取失败');
+        db.result.close()
+    }
+}
                         
                         
                         
