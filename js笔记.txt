@@ -351,7 +351,10 @@ ctx.globalCompositeOperation='lighter';
 !function (a,b) {
     console.log(a+b)
 }(1,2)
-                        
+解决 react onClick 方法自动执行     
+<a href="#" onClick={this.onLoadQR.bind(this, text)}><Icon type="qrcode" />下载</a>
+<a href="#" onClick={()=>this.onLoadQR(text)}><Icon type="qrcode" />下载</a>
+
                         
                         
                         
