@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<input type="text" id="d1">
+<button id="d2">百度一下</button>
+<ul id="d3"></ul>
+<script>
+    d1.oninput = function () {
+        if (this.value == '') {
+            d3.innerHTML = ''
+        } else {
+            $.get("https://www.baidu.com/sugrec?prod=pc&wd=" + this.value, function (data, status) {
+                console.log(data)
+                if (data.g) {
+                    var str = ''
+                    for (i of data.g) {
+                        str += '<li>' + i.q + '</li>';
+                    }
+                    d3.innerHTML = str
+                } else {
+                    d3.innerHTML = ''
+                }
+
+            }, 'jsonp');
+        }
+    }
+</script>
+</body>
+</html>
