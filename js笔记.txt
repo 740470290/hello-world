@@ -479,6 +479,8 @@ window.onload = function add() {
         db.result.close()
     }
 }
+//React不对html标签转义
+dangerouslySetInnerHTML={{__html: item}}
                         
                         
                         
