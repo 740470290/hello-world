@@ -1,0 +1,118 @@
+/*满屏页面*/
+html,body{
+    height: 100%;
+}
+/*定义顶部通栏*/
+.jd_topBar{
+    width: 100%;
+    height: 45px;
+    background: url("../images/header-bg.png") repeat-x;
+    background-size: 1px 44px;
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+}
+.jd_topBar > [class^="icon_"]{
+    position: absolute;
+    top: 0;
+    height: 44px;
+    width: 40px;
+    padding: 12px 10px;
+    background-clip: content-box;/*设置背景从什么位子 开始显示*/
+    background-origin: content-box;/*设置背景从什么位子 开始定位*/
+}
+.jd_topBar > .icon_back{
+    left: 0;
+    background-position: -20px 0;
+}
+.jd_topBar > .icon_menu{
+    right: 0;
+    background-position: -60px 0;
+}
+.jd_topBar > form{
+    width: 100%;
+    height: 44px;
+    padding: 0 40px;
+}
+.jd_topBar > form > input{
+    width: 100%;
+    border:1px solid #e0e0e0;
+    border-radius: 4px;
+    height: 30px;
+    margin-top: 7px;
+}
+
+/*分类盒子*/
+.jd_category{
+    height: 100%;
+    padding-top: 45px;
+    overflow: hidden;
+}
+/*左侧栏*/
+.jd_category_left{
+    width: 90px;
+    height: 100%;
+    overflow: hidden;
+    float: left;
+}
+.jd_category_left > ul{
+
+}
+.jd_category_left > ul > li{
+    width: 90px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.jd_category_left > ul > li.now{
+    border-right: none;
+
+}
+.jd_category_left > ul > li.now a{
+    color: #d8505c;
+}
+
+/*右侧栏*/
+.jd_category_right{
+    overflow: hidden;
+    height: 100%;
+}
+
+.jd_category_right_box{
+    padding: 0 10px;
+}
+
+.jd_category_right_box > .banner{
+    width: 100%;
+    padding-top: 10px;
+    display: block;
+}
+.jd_category_right_box > .banner > img{
+    width: 100%;
+}
+.hot_cat{
+    margin-top: 10px;
+}
+.hot_cat > h3{
+    font-size: 12px;
+}
+.hot_cat > ul{
+    width: 100%;
+}
+.hot_cat > ul > li{
+    width: 33.333%;
+    float: left;
+}
+.hot_cat > ul > li > a{
+    display: block;
+    text-align: center;
+    padding-top: 10px;
+}
+.hot_cat > ul > li > a > img{
+    width: 62px;
+    height: 62px;
+    margin: 0 auto;
+    display: block;
+}
+

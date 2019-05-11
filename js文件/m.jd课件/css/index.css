@@ -1,0 +1,281 @@
+body{
+    background: #f5f5f5;
+}
+/*�������*/
+.jd_layout{
+    width: 100%;
+    max-width: 640px;/*���ͼ��ԭ��  ��Ȼ���Ŵ�*/
+    min-width: 300px;/*Ϊ�˸��õĲ���*/
+    margin: 0 auto;
+    position: relative;
+}
+
+/*ͷ������*/
+.jd_header{
+    position: fixed;/*����  window ��������� ����*/
+    left: 0;
+    top: 0;
+    height: 40px;
+    width: 100%;
+    z-index: 1000;
+}
+.jd_header > .jd_header_box{
+    width: 100%;
+    max-width: 640px;/*���ͼ��ԭ��  ��Ȼ���Ŵ�*/
+    min-width: 300px;/*Ϊ�˸��õĲ���*/
+    margin: 0 auto;
+    background: rgba(201,21,35,0);
+    height: 40px;
+    position: relative;
+}
+
+.jd_header > .jd_header_box > .icon_logo{
+    width: 60px;
+    height: 36px;
+    position: absolute;
+    background-position: 0 -103px;
+    top: 4px;
+    left: 10px;
+}
+.jd_header > .jd_header_box > .login{
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 15px;
+}
+.jd_header > .jd_header_box > form{
+    width: 100%;
+    padding-left: 75px;
+    padding-right: 50px;
+    height: 40px;
+    position: relative;
+}
+.jd_header > .jd_header_box > form > input{
+    width: 100%;
+    height: 30px;
+    border-radius: 15px;
+    margin-top: 5px;
+    padding-left: 30px;
+}
+.jd_header > .jd_header_box > form > .icon_search{
+    height: 20px;
+    width:20px;
+    position: absolute;
+    background-position: -60px -109px;
+    top: 10px;
+    left: 85px;
+}
+/*�ֲ�ͼ*/
+.jd_banner{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.jd_banner > ul:first-child{
+    width: 1000%;
+    -webkit-transform:translateX(-10%);/*��������webkit�ں˵ļ���*/
+    transform: translateX(-10%);
+}
+.jd_banner > ul:first-child > li{
+    width: 10%;
+    float: left;
+}
+.jd_banner > ul:first-child > li > a{
+    width: 100%;
+    display: block;
+}
+.jd_banner > ul:first-child > li > a > img{
+    width: 100%;
+    /*
+    font-size 0
+    block
+    vertical-align: middle;
+    */
+    display: block;
+}
+.jd_banner > ul:last-child{
+    width: 118px;
+    height: 6px;
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    margin-left:-59px;
+}
+.jd_banner > ul:last-child > li{
+    width: 6px;
+    height: 6px;
+    float: left;
+    border-radius: 3px;
+    border: 1px solid #fff;
+    margin-left: 10px;
+}
+.jd_banner > ul:last-child > li.now{
+    background: #fff;
+}
+.jd_banner > ul:last-child > li:nth-child(1){
+    margin-left: 0;
+}
+/*������ģ��*/
+.jd_nav{
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+.jd_nav > ul{
+    width: 100%;
+    padding: 10px 0;
+}
+.jd_nav > ul > li{
+    width: 25%;
+    float: left;
+}
+.jd_nav > ul > li > a{
+    display: block;
+}
+.jd_nav > ul > li > a > img{
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+}
+.jd_nav > ul > li > a > p{
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    padding: 6px 0;
+}
+/*��Ʒ������*/
+.jd_product{
+    padding: 0 5px;
+}
+.jd_product > .product_box{
+    width: 100%;
+    background: #fff;
+    margin-top: 10px;
+    box-shadow:0 0 1px #e0e0e0;
+}
+.jd_product > .product_box > .product_box_tit{
+    height: 32px;
+    line-height: 32px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.jd_product > .product_box > .product_box_tit.no_border{
+    border-bottom: none;
+}
+.jd_product > .product_box > .product_box_tit > h3{
+    font-weight: normal;
+    font-size: 15px;
+    padding-left: 20px;
+    position: relative;
+    color: #666;
+}
+.jd_product > .product_box > .product_box_tit > h3::before{
+    /*
+        display block  position: absolute  float left
+    */
+    content:"";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 3px;
+    height: 12px;
+    background: #d8505c;
+}
+
+/*������ɱ second kill*/
+.jd_sk{ }
+.jd_sk .sk_icon{
+    background: url("../images/seckill-icon.png") no-repeat;
+    background-size: 16px 20px;
+    width: 16px;
+    height: 20px;
+    float: left;
+    margin-top: 6px;
+}
+.jd_sk .sk_name{
+    color: #d8505c;
+    font-size: 15px;
+    float: left;
+}
+.jd_sk .sk_time{
+    float: left;
+    margin-top:8px;
+}
+.jd_sk .sk_time > span{
+    float: left;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    margin-left: 3px;
+}
+.jd_sk .sk_time > span:nth-child(3n){
+    background: #fff;
+    color: #333;
+    width: 5px;
+}
+
+.jd_sk .product_box_con > ul{
+    width: 100%;
+    font-size: 12px;
+    padding: 10px 0;
+}
+.jd_sk .product_box_con > ul > li{
+    width: 33.333%;
+    float: left;
+    text-align: center;
+}
+.jd_sk .product_box_con > ul > li >a{
+    display: block;
+    width: 100%;
+    border-right: 1px solid #e0e0e0;
+}
+.jd_sk .product_box_con > ul > li:last-child > a{
+    border-right: 0;
+}
+.jd_sk .product_box_con > ul > li >a > img{
+    width: 64%;
+    display: block;
+    margin: 0 auto;
+}
+/*
+E:first-of-type  ѡ��Eͬ���͵�ͬ����  ��һ��Ԫ��
+E:last-of-type  ѡ��Eͬ���͵�ͬ����  ����Ԫ��
+E:nth-of-type(n)  ѡ��Eͬ���͵�ͬ����  ��n��Ԫ��
+*/
+.jd_sk .product_box_con > ul > li >p:first-of-type{
+    color: #d8505c;
+    padding-top: 5px;
+}
+.jd_sk .product_box_con > ul > li >p:last-of-type{
+    text-decoration: line-through;/*ɾ����*/
+    color: #666;
+    padding-top: 5px;
+}
+
+/*�����ʽ*/
+.w_50{
+    width: 50%;
+    display: block;
+}
+.w_50 > img{
+    display: block;
+    width: 100%;
+}
+
+.b_left{
+    border-left: 1px solid #e0e0e0;
+}
+.b_right{
+    border-right: 1px solid #e0e0e0;
+}
+.b_bottom{
+    border-bottom: 1px solid #e0e0e0;
+}
