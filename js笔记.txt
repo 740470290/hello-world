@@ -481,6 +481,10 @@ window.onload = function add() {
 }
 //React不对html标签转义
 dangerouslySetInnerHTML={{__html: item}}
+//用对象定义正则
+var re = new RegExp(i,"g")
+/我去/g
+
                         
                         
                         
