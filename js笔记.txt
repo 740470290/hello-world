@@ -484,7 +484,9 @@ dangerouslySetInnerHTML={{__html: item}}
 //用对象定义正则
 var re = new RegExp(i,"g")
 /我去/g
-
+//将下列字符串每个单词的首字母转成大写,然后输出!
+var str ="no zuo no die no can no bibi";
+str.replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
                         
                         
                         
