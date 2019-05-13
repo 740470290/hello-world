@@ -487,6 +487,28 @@ var re = new RegExp(i,"g")
 //将下列字符串每个单词的首字母转成大写,然后输出!
 var str ="no zuo no die no can no bibi";
 str.replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
+//react-transition-group
+<CSSTransition
+in={this.state.show}
+timeout={1000}
+classNames="fade"
+//可以挂载js函数
+onEntered={(el) => { el.style.color = 'blue'; }}
+//设置在打开页面时就显示动画
+appear
+>
+
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         
                         
                         
