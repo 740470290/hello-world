@@ -497,6 +497,9 @@ onEntered={(el) => { el.style.color = 'blue'; }}
 //设置在打开页面时就显示动画
 appear
 >
+报错：Expected linebreaks to be 'LF' but found 'CRLF'  linebreak-style
+原因：windows下的换行规则，在项目.eslintrc文件的，rules中添加
+"linebreak-style": [0,"error", "windows"],
 
                         
                         
