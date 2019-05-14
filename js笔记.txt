@@ -500,7 +500,13 @@ appear
 报错：Expected linebreaks to be 'LF' but found 'CRLF'  linebreak-style
 原因：windows下的换行规则，在项目.eslintrc文件的，rules中添加
 "linebreak-style": [0,"error", "windows"],
-
+//redux-thunk
+本来的store只能传对象近去
+可以传入异步的方法,输出对象
+只是简单的升级action
+//redux-saga
+可以把异步的方法都放在一个saga文件中处理
+适用于大型的项目,Api丰富
                         
                         
                         
