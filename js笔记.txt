@@ -507,6 +507,8 @@ appear
 //redux-saga
 可以把异步的方法都放在一个saga文件中处理
 适用于大型的项目,Api丰富
+//vue去掉路由中的#
+mode: 'history'
                         
                         
                         
