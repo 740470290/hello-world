@@ -509,6 +509,30 @@ appear
 适用于大型的项目,Api丰富
 //vue去掉路由中的#
 mode: 'history'
+//前端优化
+静态资源是最大的瓶颈(html,css,js,图片)
+优化:1.使用字体图标
+2.base64图片
+3.雪碧图
+4.css,js合并
+5.懒加载
+//类数组转为数组
+function f() {
+  var arr=[].slice.call(arguments)
+  console.log(arguments)
+  console.log(arr)
+}
+f(1,2,3,4,5)
+//深拷贝方法
+function cloneDeep(obj){
+      var newObj=obj instanceof Array ? [] : {};
+      //遍历obj
+      for(var key in obj){
+            newObj[key] = typeof obj[key]=='object' ? 
+            cloneDeep(obj[key]) : obj[key];
+      }
+       return newObj;
+};
                         
                         
                         
