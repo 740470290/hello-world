@@ -533,6 +533,11 @@ function cloneDeep(obj){
       }
        return newObj;
 };
+//react的html转义
+dangerouslySetInnerHTML={{__html: this.props.content}}
+//移除滚动监听
+window.addEventListener('scroll', this.props.changeScroll);
+window.removeEventListener('scroll', this.props.changeScroll);
                         
                         
                         
