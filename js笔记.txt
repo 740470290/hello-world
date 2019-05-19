@@ -538,6 +538,10 @@ dangerouslySetInnerHTML={{__html: this.props.content}}
 //移除滚动监听
 window.addEventListener('scroll', this.props.changeScroll);
 window.removeEventListener('scroll', this.props.changeScroll);
+//取消上一次的ajax请求
+ if(ajax){
+   ajax.abort();
+}
                         
                         
                         
