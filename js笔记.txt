@@ -542,6 +542,19 @@ window.removeEventListener('scroll', this.props.changeScroll);
  if(ajax){
    ajax.abort();
 }
+//vue双向绑定原理defineProperty
+let car = {}
+let val = 3000
+Object.defineProperty(car, 'price', {
+    get(){
+        console.log('price属性被读取了')
+        return val
+    },
+    set(newVal){
+        console.log('price属性被修改了')
+        val = newVal
+    }
+})
                         
                         
                         
