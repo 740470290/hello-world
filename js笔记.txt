@@ -557,6 +557,11 @@ Object.defineProperty(car, 'price', {
 })
 //cnpm安装
 npm install -g cnpm --registry=https://registry.npm.taobao.org
+//node创建文件夹
+var fs = require("fs");
+fs.mkdir('./a',function (err) {
+    err&&console.log(err)
+})
                         
                         
                         
