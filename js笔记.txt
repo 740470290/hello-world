@@ -562,6 +562,9 @@ var fs = require("fs");
 fs.mkdir('./a',function (err) {
     err&&console.log(err)
 })
+fs.appendFile('./b.txt','asdasdasd',function (err) {
+    console.log(err)
+})
                         
                         
                         
