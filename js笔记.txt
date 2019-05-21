@@ -555,6 +555,8 @@ Object.defineProperty(car, 'price', {
         val = newVal
     }
 })
+//cnpm安装
+npm install -g cnpm --registry=https://registry.npm.taobao.org
                         
                         
                         
