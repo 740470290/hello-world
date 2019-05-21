@@ -562,10 +562,79 @@ var fs = require("fs");
 fs.mkdir('./a',function (err) {
     err&&console.log(err)
 })
+//node追加文本内容
 fs.appendFile('./b.txt','asdasdasd',function (err) {
     console.log(err)
 })
-                        
+//node删除文件
+fs.unlink('1.txt',err=>console.log(err))
+//node读取文件夹
+fs.readdir('./a',function (err,files) {
+    console.log(files)
+})
+[ '新建文本文档 - 副本 (2).txt', '新建文本文档 - 副本.txt', '新建文本文档.txt' ]
+//判断是文件夹还是文件
+fs.readdir('./',{withFileTypes:true},function (err,files) {
+    console.log(files)
+    console.log(files[0].isDirectory())
+})
+两个搭配使用{withFileTypes:true},files[0].isDirectory()
+//删除文件夹
+fs.rmdir('./a',function (err) {
+    console.log(err)
+})
+//node判断文件夹或者文件
+fs.stat('./a',function (err,stats) {
+    console.log(stats)
+    console.log(stats.isDirectory())
+    console.log(stats.isFile())
+})
+//判断一个文件夹所有文件是不是文件夹,需要用到statSync同步方法
+//方法一,同步方法
+fs.readdir('./',function (err,files) {
+    console.log(files)
+    for(i of files){
+        fs.statSync(i).isDirectory()?console.log(i,'是文件夹'):console.log(i,'是文件')
+    }
+})
+//方法二,使用let
+fs.readdir('./',function (err,files) {
+    console.log(files)
+    for(let i of files){
+        fs.stat(i,function (err,stats) {
+        stats.isDirectory()?console.log(i,'是文件夹'):console.log(i,'是文件')
+    })
+    }
+})
+//方法三,递归
+fs.readdir('./',function (err,files) {
+    console.log(files)
+    const len=files.length;
+    (function a(i) {
+    if(i==len)return;
+    fs.stat(files[i],function (err,stats) {
+        console.log(i)
+        stats.isDirectory()?console.log(files[i],'是文件夹'):console.log(files[i],'是文件')
+         a(++i)
+    })
+})(0)
+})
+//node递归删除非空文件夹
+function deleteFolderRecursive(path) {
+    if( fs.existsSync(path) ) {
+        fs.readdirSync(path).forEach(function(file) {
+            var curPath = path + "/" + file;
+            if(fs.statSync(curPath).isDirectory()) { // recurse
+                deleteFolderRecursive(curPath);
+            } else { // delete file
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(path);
+    }
+};
+          
+          
                         
                         
                         
