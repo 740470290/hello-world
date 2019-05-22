@@ -633,6 +633,10 @@ function deleteFolderRecursive(path) {
         fs.rmdirSync(path);
     }
 };
+//express三种返回方法
+res.end可能会乱码
+res.send自动识别编码(推荐)
+res.render配合模板使用
           
           
                         
