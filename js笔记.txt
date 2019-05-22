@@ -637,6 +637,8 @@ function deleteFolderRecursive(path) {
 res.end可能会乱码
 res.send自动识别编码(推荐)
 res.render配合模板使用
+//原生node中文乱码
+res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
           
           
                         
