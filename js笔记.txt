@@ -639,7 +639,7 @@ res.send自动识别编码(推荐)
 res.render配合模板使用
 //原生node中文乱码
 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-//时间模块formidable
+//时间模块silly-datetime
 var sd = require('silly-datetime');
 const now=new Date();
 sd.locate('zh-cn')
