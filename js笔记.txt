@@ -687,6 +687,47 @@ const data='ejs';
 const template='这是一个<%=temp %>的{{temp}}模板';
 const res=ejs.render(template,{temp:data});
 console.log(res);
+//
+const http = require('http');
+const fs = require('fs');
+const ejs=require('ejs');
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+    // res.writeHead("text/html; charset=utf-8")
+    // 发送响应数据 "Hello World"
+    const temp='ejs';
+    const time=(new Date()).toLocaleString();
+    const arr=['苹果','香蕉','草莓'];
+    fs.readFile('./index.html',function (err,data) {
+        const result=ejs.render(data.toString(),{temp,time,arr});
+        console.log(result)
+        res.end(result)
+    })
+}).listen(5000);
+//
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>这是一个<%=temp %>的模板</h1>
+<h2>现在时间是<%=time %></h2>
+<ul> <% arr.forEach(function(item){%>
+        <li><%=item %></li>
+    <% }) %></ul>
+</body>
+</html>
+
+
+
           
           
                         
