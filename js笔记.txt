@@ -639,6 +639,54 @@ res.send自动识别编码(推荐)
 res.render配合模板使用
 //原生node中文乱码
 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+//时间模块formidable
+var sd = require('silly-datetime');
+const now=new Date();
+sd.locate('zh-cn')
+console.log(sd.format())
+console.log(sd.format(now))
+console.log(sd.fromNow(now.getTime()+10000000))
+//node上传文件formidable
+var formidable = require('formidable'),
+    http = require('http'),
+    fs = require('fs'),
+    util = require('util');
+http.createServer(function(req, res) {
+  if (req.url == '/upload' && req.method.toLowerCase() == 'post') {
+    // parse a file upload
+    var form = new formidable.IncomingForm();
+    // 用于windows跨盘符,不写不能跨盘符
+        form.uploadDir='./'
+    form.parse(req, function(err, fields, files) {
+      res.writeHead(200, {'content-type': 'text/plain'});
+      res.write('received upload:\n\n');
+      res.end(util.inspect({fields: fields, files: files}));
+      console.log(fields)
+      console.log(files)
+        const oldPath=files.upload.path
+        const name=files.upload.name
+        fs.rename(oldPath,name,function (err) {
+            console.log(err)
+        })
+    });
+    return;
+  }
+  // show a file upload form
+  res.writeHead(200, {'content-type': 'text/html'});
+  res.end(
+    '<form action="/upload" enctype="multipart/form-data" method="post">'+
+    '<input type="text" name="title"><br>'+
+    '<input type="file" name="upload" multiple="multiple"><br>'+
+    '<input type="submit" value="Upload">'+
+    '</form>'
+  );
+}).listen(8080);
+//模板引擎ejs
+const ejs=require('ejs');
+const data='ejs';
+const template='这是一个<%=temp %>的{{temp}}模板';
+const res=ejs.render(template,{temp:data});
+console.log(res);
           
           
                         
