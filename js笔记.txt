@@ -731,6 +731,7 @@ http.createServer(function (req, res) {
 Checks route params (req.params), ex: /user/:id 
 Checks query string params (req.query), ex: ?id=12 
 Checks urlencoded body params (req.body), ex: id=
+//console.dir()可以显示一个对象的所有属性和方法
 
 
 
