@@ -664,7 +664,9 @@ http.createServer(function(req, res) {
       console.log(fields)
       console.log(files)
         const oldPath=files.upload.path
+        //'uploads\\upload_eaf3aae723a63fa69532ded31e6dd10f'
         const name=files.upload.name
+        //微信截图_20190328145925
         fs.rename(oldPath,name,function (err) {
             console.log(err)
         })
