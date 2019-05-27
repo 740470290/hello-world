@@ -742,7 +742,39 @@ Checks urlencoded body params (req.body), ex: id=
 如果采用2、3种方式，由于涉及winsock通讯，需要安装客户端程序或者浏览器插件，常见的简单网页聊天室都是第1种方式
 //浏览器刷新
 location.reload();
-
+//检测数组
+a instanceof Array
+Array.isArray(a)
+Object.prototype.toString.call(a)//"[object Array]"
+//数组的一些方法
+every()：对数组中的每一项运行给定函数，如果该函数对每一项都返回 true，则返回 true。
+filter()：对数组中的每一项运行给定函数，返回该函数会返回 true 的项组成的数组。
+forEach()：对数组中的每一项运行给定函数。这个方法没有返回值。
+map()：对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组。
+some()：对数组中的每一项运行给定函数，如果该函数对任一项返回 true，则返回 true。
+以上方法都不会修改数组中的包含的值。
+//replace高级应用
+function htmlEscape(text) {
+    return text.replace(/[<>"&]/g, function (match, pos, originalText) {
+        switch (match) {
+            case "<":
+                return "&lt;";
+            case ">":
+                return "&gt;";
+            case "&":
+                return "&amp;";
+            case "\"":
+                return "&quot;";
+        }
+    });
+}
+console.log(htmlEscape("<p class=\"greeting\">Hello world!</p>"))
+&lt;p class=&quot;greeting&quot;&gt;Hello world!&lt;/p&gt;
+//split高级应用
+var colorText = "red,blue,green,yellow"; 
+var colors1 = colorText.split(","); //["red", "blue", "green", "yellow"] 
+var colors2 = colorText.split(",", 2); //["red", "blue"] 
+var colors3 = colorText.split(/[^\,]+/); //["", ",", ",", ",", ""]
 
 
           
