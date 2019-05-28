@@ -840,7 +840,16 @@ Person.prototype.sayName=function () {
 var a=new Person();
 a.sayName();//tom
 4.组合使用构造函数和原型模式
-
+function Person(name,age) {
+    this.name=name;
+    this.age=age;
+}
+Person.prototype={
+    constructor:Person,
+    sayName:function () {
+        console.log(this.name);
+    }
+}
 
 
 
@@ -850,6 +859,18 @@ mongod --dbpath D:\mongodb
 db.site.find()
 插入
 db.site.insert({id:104,name:'lily',age:14,gender:'F'})
+删除db.site.remove({'id':104})
+修改db.site.update({id:102},{$set:{'name':'tom'}})
+修改多个db.site.update({name:'tom'},{$set:{age:40}},{multi:true})
+//导入文件到mongo
+C:\Users\Administrator>mongoimport -d runoob -c site C:\data\1.json
+{"name":"aaa","age":23,"likes":["吃饭","逛街"],"score":{"html":"80","css":"85","js":"68"}}
+{"name":"bbb","age":43,"likes":["游泳","游戏"],"score":{"html":"60","css":"90","js":"90"}}
+{"name":"ccc","age":33,"likes":["写代码","直播"],"score":{"html":"70","css":"79","js":"32"}}
+//删除数据库
+db.dropDatabase()
+//条件操作,大于是$gt
+db.site.find({age:{$gt:30}})
 
           
                         
