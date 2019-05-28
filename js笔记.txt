@@ -871,6 +871,16 @@ C:\Users\Administrator>mongoimport -d runoob -c site C:\data\1.json
 db.dropDatabase()
 //条件操作,大于是$gt
 db.site.find({age:{$gt:30}})
+//window.open打开一个新窗口
+window.open("http://www.wrox.com/","wroxWindow","height=400,width=400,top=10,left=10,resizable=yes");
+//关闭窗口
+window.close()
+//打开,写入,移动,聚焦,改变大小
+myWindow=window.open('','','width=200,height=100');
+myWindow.document.write("<p>这是我的窗口</p>");
+myWindow.moveTo(0,0);
+myWindow.focus();
+myWindow.resizeTo(500,500)
 
           
                         
