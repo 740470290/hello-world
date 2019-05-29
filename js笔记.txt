@@ -883,6 +883,18 @@ myWindow.resizeTo(500,500)
 //类数组转为数组
 a=document.querySelector('body')
 Array.prototype.slice.call(a.childNodes)
+//浏览器支持给定名称和版本的功能
+document.implementation.hasFeature('XML','1.0')
+document.URL//"http://172.17.14.250:8080/computer"
+document.domain
+"172.17.14.250"
+document.referrer
+"http://172.17.14.250:8080/computer"
+document.forms
+HTMLCollection [form#[object HTMLInputElement]]
+document.links
+HTMLCollection(8) [a, a, a, a, a, a, a, a]
+
           
                         
                         
