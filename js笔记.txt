@@ -894,6 +894,8 @@ document.forms
 HTMLCollection [form#[object HTMLInputElement]]
 document.links
 HTMLCollection(8) [a, a, a, a, a, a, a, a]
+//mongodb最大连接数
+db.serverStatus().connections
 
           
                         
