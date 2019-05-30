@@ -8,3 +8,5 @@ http://www.alloyteam.com/nav/
 http://blog.fens.me/nodejs-websocket/
 基于nodejs + websocket 搭建即时通讯应用
 https://blog.csdn.net/lizhipeng123321/article/details/79480835
+//js代码压缩
+https://jsmin.51240.com/
