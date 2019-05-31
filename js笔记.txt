@@ -900,6 +900,11 @@ db.serverStatus().connections
 (new Date("2019-05-31T05:30:49.000Z")).toLocaleString()
 //div可编辑
 <div id="move" contentEditable>可编辑</div>
+//jq输出序列化表单值的结果
+$("button").click(function(){
+  $("div").text($("form").serialize());
+});
+
 
           
                         
