@@ -904,6 +904,12 @@ db.serverStatus().connections
 $("button").click(function(){
   $("div").text($("form").serialize());
 });
+//创建css元素
+var style=document.createElement('style')
+style.appendChild(document.createTextNode('body{background:red}'))
+document.head.appendChild(style)
+//后端模板引擎在js中使用
+var aa=JSON.parse('{{msgs}}'.replace(/&#34;/g,'\"'))
 
 
           
