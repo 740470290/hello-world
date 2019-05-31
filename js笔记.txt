@@ -896,6 +896,10 @@ document.links
 HTMLCollection(8) [a, a, a, a, a, a, a, a]
 //mongodb最大连接数
 db.serverStatus().connections
+//格式化时间
+(new Date("2019-05-31T05:30:49.000Z")).toLocaleString()
+//div可编辑
+<div id="move" contentEditable>可编辑</div>
 
           
                         
