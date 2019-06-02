@@ -910,6 +910,17 @@ style.appendChild(document.createTextNode('body{background:red}'))
 document.head.appendChild(style)
 //后端模板引擎在js中使用
 var aa=JSON.parse('{{msgs}}'.replace(/&#34;/g,'\"'))
+//时间捕获阶段触发事件,设置第三个参数为true
+d1.addEventListener('click',function(){
+	console.log(this.innerHTML)
+},true)
+//浏览器兼容问题
+addEventListener,removeEventListener
+attachEvent, detachEvent
+getComputedStyle, currentStyle
+stopPropagation,cancelBubble
+preventDefault,returnValue
+
 
 
           
