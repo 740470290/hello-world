@@ -920,7 +920,8 @@ attachEvent, detachEvent
 getComputedStyle, currentStyle
 stopPropagation,cancelBubble
 preventDefault,returnValue
-
+鼠标事件event.shiftKey,ctrlKey,altKey,metaKey
+有没有在点击鼠标的时候按shift键
 
 
           
