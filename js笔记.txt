@@ -919,12 +919,21 @@ addEventListener,removeEventListener
 attachEvent, detachEvent
 getComputedStyle, currentStyle
 stopPropagation,cancelBubble
-preventDefault,returnValue
+preventDefault(),returnValue=false
 鼠标事件event.shiftKey,ctrlKey,altKey,metaKey
 有没有在点击鼠标的时候按shift键
 //鼠标滚动事件
 d3.onmousewheel=function () {
    console.log(event)
+}
+//onpageshow事件,在onload事件之后
+window.onpageshow=function () {
+    alert(123)
+}
+//ondeviceorientation,移动设备的翻转事件
+window.ondeviceorientation = function () {
+    console.log("Alpha=" + event.alpha + ", Beta=" + event.beta +
+        ", Gamma=" + event.gamma + "<br>")
 }
 
 
