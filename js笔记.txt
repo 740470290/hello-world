@@ -935,7 +935,14 @@ window.ondeviceorientation = function () {
     console.log("Alpha=" + event.alpha + ", Beta=" + event.beta +
         ", Gamma=" + event.gamma + "<br>")
 }
-
+//表单的select方法
+d1.onfocus=function () {
+    this.select()
+}//input元素获得焦点时,全选里面的内容
+//鼠标选择input中的内容时触发
+d1.onselect=function () {
+    console.log(123)
+}
 
           
                         
