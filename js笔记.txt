@@ -943,8 +943,33 @@ d1.onfocus=function () {
 d1.onselect=function () {
     console.log(123)
 }
-
-          
+<input type="text" value="123456" id="d1">
+d1.setSelectionRange(0,3)
+//pattern属性,要求只输入数字
+<input type="text" pattern="\d+">
+//每个表单都有这个方法,检查输入是否符合pattern,required等规范,也可以对form使用这个方法
+input.checkValidity()
+input.validity检查有效性,返回一个对象
+ValidityState {badInput: false
+customError: false
+patternMismatch: true
+rangeOverflow: false
+rangeUnderflow: false
+stepMismatch: false
+tooLong: false
+tooShort: false
+typeMismatch: false
+valid: false
+valueMissing: false
+__proto__: ValidityState}
+//禁用表单验证novalidate
+<form action="" novalidate></form>
+给submit按钮的是formnovalidate
+//node原生crypto加密
+const crypto = require('crypto');
+const secret = '123';
+const hash = crypto.createHash('md5').update(secret).digest('base64');
+console.log(hash);
                         
                         
                         
