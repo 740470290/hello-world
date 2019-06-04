@@ -970,6 +970,19 @@ const crypto = require('crypto');
 const secret = '123';
 const hash = crypto.createHash('md5').update(secret).digest('base64');
 console.log(hash);//ICy5YqxZB1uWSwcVLSNLcA==
+//js添加select的option选项
+var n=new Option('nanjin','nanjin');
+loca.appendChild(n)//或者
+loca.add(n,undefined)//浏览器兼容性
+loca.removeChild(loca.options[0])//移除第一个option
+loca.remove(0)
+loca.options[0]=null
+loca.insertBefore(loca.options[1],loca.options[loca.options[1].index+2])//把option选项后移一位
+//页面可编辑
+<iframe src="./post.html" frameborder="0" name="aa"></iframe>
+frames['aa'].document.designMode='on'
+frames.document.designMode='on'
+document.designMode='off'
                         
                         
                         
