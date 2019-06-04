@@ -969,7 +969,7 @@ __proto__: ValidityState}
 const crypto = require('crypto');
 const secret = '123';
 const hash = crypto.createHash('md5').update(secret).digest('base64');
-console.log(hash);
+console.log(hash);//ICy5YqxZB1uWSwcVLSNLcA==
                         
                         
                         
