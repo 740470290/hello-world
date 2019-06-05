@@ -978,11 +978,24 @@ loca.removeChild(loca.options[0])//移除第一个option
 loca.remove(0)
 loca.options[0]=null
 loca.insertBefore(loca.options[1],loca.options[loca.options[1].index+2])//把option选项后移一位
-//页面可编辑
+//页面可编辑,富文本
 <iframe src="./post.html" frameborder="0" name="aa"></iframe>
 frames['aa'].document.designMode='on'
 frames.document.designMode='on'
 document.designMode='off'
+//编辑富文本
+document.execCommand('formatblock',false,'<h1>')
+document.queryCommandEnabled('bold')//检查能否使用bold命令
+document.queryCommandValue('formatblock')//"h1",获取值
+document.getSelection()//获取选中的内容
+//细化操作
+a=document.getSelection()//获取选中的内容,是个对象
+a.toString()//"ame:",字符串
+range=a.getRangeAt(0)//取得代表选区的范围,是对象
+p=document.createElement('p')
+p.style.background='red'
+range.surroundContents(p)//把选中的内容包裹在p标签里
+<p style="background: red;">me:</p>
                         
                         
                         
