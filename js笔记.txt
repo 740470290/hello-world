@@ -335,7 +335,7 @@ function draw() {
     //绘制圆
     ctx.arc(50, 50, 30, 0, Math.PI * 2, true);
     ctx.arc(50, 50, 15, 0, Math.PI * 2, true);
-    ctx.fill("evenodd");
+    ctx.fill("evenodd");//evenodd参数用于绘制空心的圆环
 }                        
 //绘制图片
 function draw() {
@@ -996,7 +996,49 @@ p=document.createElement('p')
 p.style.background='red'
 range.surroundContents(p)//把选中的内容包裹在p标签里
 <p style="background: red;">me:</p>
-                        
+//linux命令
+echo 1234 >> aa.js//追加内容,会换行
+echo 1234 > aa.js//追加内容,会替换
+cat aa.js//读取文件
+//canvas把画布转化为图片
+<canvas id="drawing" width="200" height="200"></canvas>
+//js
+var drawing=document.getElementById('drawing');
+var ctx =drawing.getContext('2d');
+ctx.fillStyle = 'red';
+ctx.arc(100, 100, 30, 0, Math.PI * 2, true);
+ctx.fill("evenodd");
+var imgURI=drawing.toDataURL('image/png');
+var img=document.createElement('img');
+img.src=imgURI;
+document.body.appendChild(img)
+//保存状态save保存restore回退
+context.fillStyle = "#ff0000";
+context.save();
+context.fillStyle = "#0000ff";
+context.fillRect(0, 0, 100, 200); //从点(100,100)开始绘制蓝色矩形
+context.restore();
+//encodeURIComponent对URL转码
+a='http://www.yourdomain.com/?redir=http://www.someotherdomain.com?a=b&c=d'
+encodeURIComponent(a)
+"http%3A%2F%2Fwww.yourdomain.com%2F%3Fredir%3Dhttp%3A%2F%2Fwww.someotherdomain.com%3Fa%3Db%26c%3Dd"
+//把错误回传到服务器
+function log(sev, msg) {
+    // sev错误严重程度,msg错误信息
+    const img=new Image();
+    img.src='http://172.17.14.250/?sev='+sev+'&msg='+msg;
+}
+try{
+    console.log(a)
+}catch (e) {
+    log(e.message)
+}
+git重置登录信息 git config --system --unset credential.helper
+//设置账号密码
+C:\users\Administrator
+vim .git-credentials
+https://740470290@qq.com:740470290@qq.com@github.com
+git config --global credential.helper store                        
                         
                         
                         
