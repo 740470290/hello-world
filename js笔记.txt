@@ -1037,13 +1037,24 @@ git重置登录信息 git config --system --unset credential.helper
 //设置账号密码
 C:\users\Administrator
 vim .git-credentials
-https://740470290@qq.com:740470290@qq.com@github.com
+https://740470290%40qq.com:740470290%40qq.com@github.com
 git config --global credential.helper store      
 //版本回退
-git log
-git reset --hard ce72613bbd9d1f23adf529a59140223fdf2963e0
-git log --pretty=oneline
-git reflog
+git log//历史记录
+git reset --hard ce72613bbd9d1f23adf529a59140223fdf2963e0//回退
+git log --pretty=oneline//历史记录,按行显示
+git reflog//本机所有历史记录
+git branch first//新建分支
+git branch//查看所有分支
+git checkout first//选择分支
+git merge v1//合并分支
+git branch -d v1//删除分支
+
+//express跨域
+app.use(function (req,res,next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  next()
+})
 
                         
                         
