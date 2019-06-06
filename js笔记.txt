@@ -1077,6 +1077,11 @@ app.__vue__.$store.dispatch('setUser', false)
 // `mapActions` 也支持载荷：
 'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
 ])
+//sessionStorage操作
+window.sessionStorage.setItem('one', 'text');
+window.sessionStorage.getItem('one')
+window.sessionStorage.removeItem('one');
+window.sessionStorage.clear();
                         
                         
                         
