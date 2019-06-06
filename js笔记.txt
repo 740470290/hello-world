@@ -1053,14 +1053,30 @@ ls ~/.ssh//查看本机密钥
 ssh-keygen -t rsa -C '740470290@qq.com'//本机生成密钥
 把公钥复制到github上
 ssh -T git@github.com//检测
-
+//关联
+git init//初始化
+//建立关联
+git remote add origin https://github.com/740470290/Packages.git
+git remote//查看关联
+git remote remove origin//删除关联
+git pull origin master//拉取文件
+git push origin master//push文件
 //express跨域
 app.use(function (req,res,next) {
   res.header('Access-Control-Allow-Origin', '*')
   next()
 })
-
-
+//查看vue对象
+app.__vue__
+修改vuex的值
+app.__vue__.$store.commit('userStatus', true)
+app.__vue__.$store.dispatch('setUser', false)
+//vueX的mapActions方法
+...mapActions([
+'increment', // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+// `mapActions` 也支持载荷：
+'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
+])
                         
                         
                         
