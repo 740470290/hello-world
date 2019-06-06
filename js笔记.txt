@@ -1049,12 +1049,17 @@ git branch//查看所有分支
 git checkout first//选择分支
 git merge v1//合并分支
 git branch -d v1//删除分支
+ls ~/.ssh//查看本机密钥
+ssh-keygen -t rsa -C '740470290@qq.com'//本机生成密钥
+把公钥复制到github上
+ssh -T git@github.com//检测
 
 //express跨域
 app.use(function (req,res,next) {
   res.header('Access-Control-Allow-Origin', '*')
   next()
 })
+
 
                         
                         
