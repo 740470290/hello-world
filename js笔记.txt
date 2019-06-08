@@ -1082,6 +1082,10 @@ window.sessionStorage.setItem('one', 'text');
 window.sessionStorage.getItem('one')
 window.sessionStorage.removeItem('one');
 window.sessionStorage.clear();
+//vue配置全局变量
+Vue.prototype.site = 'http://172.17.14.250/api'
+
+
                         
                         
                         
