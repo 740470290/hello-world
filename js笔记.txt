@@ -1094,6 +1094,8 @@ function f(){
 //预加载
 var f=document.body.addEventListener?
 	function(){}:function(){}
+//位运算
+if(i & 1)为奇数
 
 
                         
