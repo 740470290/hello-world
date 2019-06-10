@@ -1171,6 +1171,30 @@ xhr.ontimeout = function(){
 这个中间件你可以根据自己的需求进行构建，如果需要在请求中伴随认证信息（包含 cookie，session）那么你就需要指定 Access-Control-Allow-Credentials 为 true, 因为对于预请求来说如果你未指定该响应头，那么浏览器会直接忽略该响应。
 在响应中指定 Access-Control-Allow-Credentials 为 true 时，Access-Control-Allow-Origin 不能指定为 *（这个一定要注意，我就是在这个地方调了好久）
 后置中间件只有在正常响应时才会被追加响应头，而如果出现异常，这时响应是不会经过中间件的。
+//阻止修改对象preventExtensions,不可以拓展,可以修改删除
+var person = {name:'tom'}
+console.log(Object.isExtensible(person))//true
+Object.preventExtensions(person)
+console.log(Object.isExtensible(person))//false
+delete person.name
+console.log(person)//{}
+//seal密封对象,可以修改,不能删除,添加
+var person = {name:'tom'}
+Object.seal(person)
+delete person.name
+console.log(person)//{name: "tom"}
+person.name='lili'
+console.log(person)//{name: "lili"}
+//freeze冻结对象,禁止一切操作
+var person = {name:'tom'}
+Object.freeze(person)
+person.name='lili'
+console.log(person)//{name: "tom"}
+//高级定时器
+var a=setTimeout(function () {
+  console.log(123)
+  setTimeout(arguments.callee,1000)
+},1000)
 
 
 
