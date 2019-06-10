@@ -10,3 +10,5 @@ http://blog.fens.me/nodejs-websocket/
 https://blog.csdn.net/lizhipeng123321/article/details/79480835
 //js代码压缩
 https://jsmin.51240.com/
+//vue黑马项目,老师的源码地址
+https://gitee.com/vsdeveloper/vue110
