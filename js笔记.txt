@@ -1096,6 +1096,82 @@ var f=document.body.addEventListener?
 	function(){}:function(){}
 //位运算
 if(i & 1)为奇数
+//JSON.stringify高级用法
+//过滤
+var book = {
+ "title": "Professional JavaScript",
+ "authors": [
+ "Nicholas C. Zakas"
+ ],
+ edition: 3,
+ year: 2011
+ };
+var jsonText = JSON.stringify(book, ["title", "edition"]);
+"{"title":"Professional JavaScript","edition":3}"
+//传方法
+var book = {
+'title': 'Professional JavaScript',
+'authors': [
+  'Nicholas C. Zakas'
+],
+edition: 3,
+year: 2011
+}
+var jsonText = JSON.stringify(book, function (key, value) {
+switch (key) {
+  case 'authors':
+    return value.join(',')
+  case 'year':
+    return 5000
+  case 'edition':
+    return undefined
+  default:
+    return value
+}
+})
+"{"title":"Professional JavaScript","authors":"Nicholas C. Zakas","year":5000}"
+//格式化输出结果
+var book = {
+ "title": "Professional JavaScript",
+ "authors": [
+ "Nicholas C. Zakas"
+ ],
+ edition: 3,
+ year: 2011
+    };
+var jsonText = JSON.stringify(book, null, 4);
+//-----------------------------
+{
+    "title": "Professional JavaScript",
+    "authors": [
+        "Nicholas C. Zakas"
+    ],
+    "edition": 3,
+    "year": 2011
+}
+//FormData用法,可以配和ajax的post使用xhr.send(new FormData(document.forms[0]))
+<form action="">
+    <input type="text" name="name" value="admin">
+    <input type="password" name="pwd" value="123">
+    <input type="submit">
+</form>
+<script>
+ var data = new FormData(document.forms[0]);
+ console.log(data)
+</script>
+data.get('name')
+"admin"
+//ajax超时处理
+xhr.timeout = 1000; //将超时设置为 1 秒钟（仅适用于 IE8+）
+xhr.ontimeout = function(){ 
+ alert("Request did not return in a second."); 
+};
+//ajax跨域添加cookie
+对于跨域访问并需要伴随认证信息的请求，需要在 XMLHttpRequest 实例中指定 withCredentials 为 true（具体见下方jQuery ajax部分）。
+这个中间件你可以根据自己的需求进行构建，如果需要在请求中伴随认证信息（包含 cookie，session）那么你就需要指定 Access-Control-Allow-Credentials 为 true, 因为对于预请求来说如果你未指定该响应头，那么浏览器会直接忽略该响应。
+在响应中指定 Access-Control-Allow-Credentials 为 true 时，Access-Control-Allow-Origin 不能指定为 *（这个一定要注意，我就是在这个地方调了好久）
+后置中间件只有在正常响应时才会被追加响应头，而如果出现异常，这时响应是不会经过中间件的。
+
 
 
                         
