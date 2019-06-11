@@ -880,7 +880,7 @@ myWindow.moveTo(0,0);
 myWindow.focus();
 myWindow.resizeTo(500,500)
 //类数组:childNodes,arguments
-//类数组转为数组
+//类数组转为数组Array.from(arguments)
 a=document.querySelector('body')
 Array.prototype.slice.call(a.childNodes)
 //浏览器支持给定名称和版本的功能
@@ -1195,9 +1195,101 @@ var a=setTimeout(function () {
   console.log(123)
   setTimeout(arguments.callee,1000)
 },1000)
-
-
-
+//数组分块模式
+setTimeout(function(){
+ //取出下一个条目并处理
+ var item = array.shift(); 
+ process(item); 
+ //若还有条目，再设置另一个定时器
+ if(array.length > 0){ 
+ setTimeout(arguments.callee, 100); 
+ } 
+}, 100);
+//Promise异步
+new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log('第一层')
+      resolve()
+    }, 1000)
+  }).then(() => {
+    console.log('第一层结束')
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('第二层')
+        resolve()
+      }, 1000)
+    })
+  }).then(() => {
+    console.log('第二层结束')
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('第三层')
+        resolve()
+      }, 1000)
+    })
+  }).then(() => {
+    console.log('第三层结束')
+  })
+  //  fn(4).then中传2个方法,第二个是失败的方法,或者用catch代替它
+  let fn = function(num){
+    return new Promise((resolve,reject)=>{
+      if(num>5){
+        resolve('数字大于5');
+      }else{
+        throw new Error('抛出一个错误')
+      }
+    });
+  }
+  fn(4).then(msg=>{
+    console.log('resolve: ',msg);
+  },msg=>{
+    console.log('rejected: ',msg);
+  })
+  //catch方式,效果相同
+  fn(4).then(msg=>{
+    console.log('resolve: ',msg);
+  }).catch(function(err){
+    console.log('error: ',err);
+  })
+  //promise,all
+  function f (src) {
+    return new Promise((resolve,reject)=>{
+      let img=new Image();
+      img.src=src;
+      img.width=300;
+      img.onload=()=>{
+        resolve(img)
+      }
+      img.onerror=(err)=>{
+        reject(err)
+      }
+    })
+  }
+  Promise.all([f('http://es6.ruanyifeng.com/images/cover-3rd.jpg'),
+    f('https://img13.360buyimg.com/n1/jfs/t1/41185/39/1791/180632/5cc7ea4aE962765e5/cca0bb5707ce99e9.jpg')
+  ]).then(imgs=>{
+    imgs.forEach(img=>{
+       document.body.appendChild(img)
+    })
+  },err=>{
+    console.log(err)
+  })
+  //race,只要有一个完成,就跳出,只输出一个
+  Promise.race([f('http://es6.ruanyifeng.com/images/cover-3rd.jpg'),
+    f('https://img13.360buyimg.com/n1/jfs/t1/41185/39/1791/180632/5cc7ea4aE962765e5/cca0bb5707ce99e9.jpg')
+  ]).then(img=>{
+       document.body.appendChild(img)
+  },err=>{
+    console.log(err)
+  })
+//js代码规范
+变量名应为名词如 car 或 person
+函数名应该以动词开始，如 getName()。返回布尔类型值的函数一般以 is 开头，如
+isEnable()
+变量和函数都应使用合乎逻辑的名字，不要担心长度。长度问题可以通过后处理和压缩（本章
+后面会讲到）来缓解
+1.最好别分别定义module.exports和exports
+2.NodeJs开发者建议导出对象用module.exports,导出多个方法和变量用exports
                         
                         
                         
