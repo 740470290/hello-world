@@ -1290,6 +1290,68 @@ isEnable()
 后面会讲到）来缓解
 1.最好别分别定义module.exports和exports
 2.NodeJs开发者建议导出对象用module.exports,导出多个方法和变量用exports
+//代码规范
+1.尊重对象所有权,不修改内置对象Array,Object等
+2.避免全局量
+3.避免与 null 进行比较
+4. 使用常量(重复值,用户界面字符串,URLs,任意可能会更改的值)
+//高性能
+1.避免全局查找
+2. 避免 with 语句,with 语句会创建自己的作用域，
+3.原生方法较快
+4.Switch 语句较快
+5.位运算符较快
+6.多个变量声明用一个var  var count = 5, color = "blue", 
+7.插入迭代值var name = values[i++]
+8.使用数组和对象字面量
+9.使用事件代理(事件委托)
+10.服务器压缩
+11.循环的时候,do..while,switch方法性能高,参数递减性能高,如果3个左右的循环,直接打印就行,别用循环.多次应用dom,用一个常量接住
+//读取文件,如果是图片或者文字就在页面展示,并且显示进度
+<input type="file" id="files-list">
+<div id="output"></div>
+<div id="progress"></div>
+<script>
+var filesList = document.getElementById("files-list");
+filesList.addEventListener("change", function(event){
+ var info = "",
+ output = document.getElementById("output"),
+ progress = document.getElementById("progress"),
+ files = event.target.files,
+ type = "default",
+ reader = new FileReader();
+ if (/image/.test(files[0].type)){
+ reader.readAsDataURL(files[0]);
+ type = "image";
+ } else {
+ reader.readAsText(files[0]);
+ type = "text";
+ }
+ reader.onerror = function(){
+ output.innerHTML = "Could not read file, error code is " +
+ reader.error.code;
+ };
+ reader.onprogress = function(event){
+ if (event.lengthComputable){
+ progress.innerHTML = event.loaded + "/" + event.total;
+ }
+ };
+ reader.onload = function(){
+ var html = "";
+ switch(type){
+ case "image":
+ html = "<img src=\"" + reader.result + "\">";
+ break;
+ case "text":
+ html = reader.result;
+ break;
+ }
+ output.innerHTML = html;
+ };
+});
+</script>
+
+
                         
                         
                         
