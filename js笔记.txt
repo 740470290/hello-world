@@ -1358,6 +1358,40 @@ filesList.addEventListener("change", function(event){
    console.log(a(...arr))
  }
  f('add',4,5,6)
+//requestAnimationFrame
+<style>
+    #app{
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+      left: 20px;
+      top: 300px;
+    }
+  </style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var app=document.querySelector('#app')
+var globalID;
+let i=20;
+function animate() {
+  i+=3
+  app.style.left=i+'px'
+  app.style.width=i+'px'
+  app.style.height=i+'px'
+  globalID=requestAnimationFrame(animate);
+  // Do something animate
+}
+//when ot start
+	globalID=requestAnimationFrame(animate);
+// 	cancelAnimationFrame(globalID);
+  setTimeout(function () {
+    cancelAnimationFrame(globalID)
+  },2000)
+</script>
 
                         
                         
