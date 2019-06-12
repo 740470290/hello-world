@@ -1350,7 +1350,14 @@ filesList.addEventListener("change", function(event){
  };
 });
 </script>
-
+//中间函数,f把接收的参数,都给a
+ function a (a,b,c) {
+    return a+b+c
+  }
+ function f(d,...arr){
+   console.log(a(...arr))
+ }
+ f('add',4,5,6)
 
                         
                         
