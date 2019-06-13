@@ -1355,7 +1355,10 @@ filesList.addEventListener("change", function(event){
     return a+b+c
   }
  function f(d,...arr){
-   console.log(a(...arr))
+ var handlerArgs = Array.prototype.slice.call(arguments,1)
+  console.log(a.apply(null,handlerArgs))
+  console.log(a.call(null,...handlerArgs))
+  console.log(a(...arr))
  }
  f('add',4,5,6)
 //requestAnimationFrame
