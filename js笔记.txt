@@ -1420,6 +1420,19 @@ class Polygon extends Person{
 }
 var poly1 = new Polygon("Polygon");
 console.log(poly1.eat());//'good'
+//setPrototypeOf实现继承
+var obj1 = {
+  method1() {
+    console.log("method 1");
+  }
+}
+var obj2 = {
+  method2() {
+   super.method1();
+  }
+}
+console.log(Object.setPrototypeOf(obj2, obj1));//{method2: ƒ}
+obj2.method2();//method 1
                         
                         
                         
