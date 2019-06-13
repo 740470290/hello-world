@@ -1395,7 +1395,31 @@ function animate() {
     cancelAnimationFrame(globalID)
   },2000)
 </script>
-
+//class继承
+ class Person{
+    constructor (age){
+      this.age=age
+    }
+    eat(){
+      return 'good'
+    }
+  }
+class Polygon extends Person{
+  constructor(name) {
+    //调用super的age
+    super(48)
+    this.name = name;
+  }
+  eat(){
+      //调用super的方法
+      return super.eat()
+    }
+  say(){
+    return this.name
+  }
+}
+var poly1 = new Polygon("Polygon");
+console.log(poly1.eat());//'good'
                         
                         
                         
