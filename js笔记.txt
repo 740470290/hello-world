@@ -1037,7 +1037,7 @@ git重置登录信息 git config --system --unset credential.helper
 //设置账号密码
 C:\users\Administrator
 vim .git-credentials
-https://740470290%40qq.com:740470290%40qq.com@github.com
+https://740470290%40qq.com:密码@github.com
 git config --global credential.helper store      
 //版本回退
 git log//历史记录
