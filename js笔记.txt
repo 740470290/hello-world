@@ -1456,6 +1456,55 @@ function minNumber(a,b) {
     console.log(min)
 }
 minNumber(8,16)
+//五张牌，每张牌由牌大小和花色组成，牌大小2~10、J、Q、K、A，牌花色为红桃、黑桃、梅花、方块四种花色之一。 
+判断牌型:
+牌型1，同花顺：同一花色的顺子，如红桃2红桃3红桃4红桃5红桃6。
+牌型2，四条：四张相同数字 + 单张，如红桃A黑桃A梅花A方块A + 黑桃K。
+牌型3，葫芦：三张相同数字 + 一对，如红桃5黑桃5梅花5 + 方块9梅花9。
+牌型4，同花：同一花色，如方块3方块7方块10方块J方块Q。
+牌型5，顺子：花色不一样的顺子，如红桃2黑桃3红桃4红桃5方块6。
+牌型6，三条：三张相同 + 两张单。
+说明：
+1）五张牌里不会出现牌大小和花色完全相同的牌。
+2）前面的牌型比后面的牌型大，如同花顺比四条大，依次类推。
+输入描述:
+输入由5行组成
+每行为一张牌大小和花色，牌大小为2~10、J、Q、K、A，花色分别用字符H、S、C、D表示红桃、黑桃、梅花、方块。
+输出描述:
+输出牌型序号，5张牌符合多种牌型时，取最大的牌型序号输出
+function max(a,b,c,d,e) {
+    let arr=[a[0],b[0],c[0],d[0],e[0]];//牌的大小
+    for(let i=0;i<5;i++){
+        if(arr[i]==='J'){
+            arr[i]='11'
+        }else if(arr[i]==='Q'){
+            arr[i]='12'
+        }else if(arr[i]==='K'){
+            arr[i]='13'
+        }else if(arr[i]==='A'){
+            arr[i]='14'
+        }
+    }
+    arr.sort((a,b)=>a-b);
+    let arr1=[a[1],b[1],c[1],d[1],e[1]];//牌的花色
+    if((new Set(arr1)).size===1&&(new Set(arr)).size===5&&arr[4]-arr[0]===4){
+        return 1
+    }
+    if((new Set(arr)).size===2){
+        if(arr[1]===arr[3]){
+            return 2
+        }else {
+            return 3
+        }
+    }
+    if((new Set(arr1)).size===1){return 4}
+    if((new Set(arr)).size===5&&arr[4]-arr[0]===4){return 5}
+    if((new Set(arr)).size===3){
+        if(arr[0]===arr[2]||arr[1]===arr[3]||arr[2]===arr[4]){return 6}
+    }
+    return 7;
+}
+console.log(max('4c','2c','4c','5c','8h'))
 
 
                         
