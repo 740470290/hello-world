@@ -1433,8 +1433,31 @@ var obj2 = {
 }
 console.log(Object.setPrototypeOf(obj2, obj1));//{method2: ƒ}
 obj2.method2();//method 1
-                        
-                        
+//查找兄弟单词,输出个数,以及对应位置的单词
+function brother(...arr) {
+console.log(arr);
+const word=arr[arr[0]+1];
+console.log(word);
+let count=[];
+for(let i=1;i<=arr[0];i++){
+    if(arr[i]!==word&&arr[i].split('').sort().join('')===word){
+	count.push(i)
+    }
+}
+console.log(count.length,arr[count[arr[arr.length-1]]])
+}
+brother(3,'abc','cba','acb','abc',1)
+//最小公倍数
+function minNumber(a,b) {
+    let min=a;
+    while(min%b!==0){
+        min+=a;
+    }
+    console.log(min)
+}
+minNumber(8,16)
+
+
                         
                         
                         
