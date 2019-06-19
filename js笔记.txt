@@ -918,8 +918,8 @@ d1.addEventListener('click',function(){
 addEventListener,removeEventListener
 attachEvent, detachEvent
 getComputedStyle, currentStyle
-stopPropagation,cancelBubble
-preventDefault(),returnValue=false
+stopPropagation,window.event.cancelBubble=true
+preventDefault(),window.event.returnValue=false
 鼠标事件event.shiftKey,ctrlKey,altKey,metaKey
 有没有在点击鼠标的时候按shift键
 //鼠标滚动事件
