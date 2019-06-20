@@ -1521,7 +1521,11 @@ this.msg.sort((a,b)=>a.id-b.id)
 show () {
   alert(123)
 }
-
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
                         
                         
                         
