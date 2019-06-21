@@ -1171,6 +1171,21 @@ xhr.ontimeout = function(){
 这个中间件你可以根据自己的需求进行构建，如果需要在请求中伴随认证信息（包含 cookie，session）那么你就需要指定 Access-Control-Allow-Credentials 为 true, 因为对于预请求来说如果你未指定该响应头，那么浏览器会直接忽略该响应。
 在响应中指定 Access-Control-Allow-Credentials 为 true 时，Access-Control-Allow-Origin 不能指定为 *（这个一定要注意，我就是在这个地方调了好久）
 后置中间件只有在正常响应时才会被追加响应头，而如果出现异常，这时响应是不会经过中间件的。
+完整的无歧义的表述应该是这样：
+1.ajax会自动带上同源的cookie，不会带上不同源的cookie
+2. 可以通过前端设置withCredentials为true， 后端设置Header的方式让ajax自动带上不同源的cookie，但是这个属性对同源请求没有任何影响。会被自动忽略。
+3. 这是MDN对withCredentials的解释： MDN-withCredentials ，我接着解释一下同源。
+众所周知，ajax请求是有同源策略的，虽然可以应用CORS等手段来实现跨域，但是这并不是说这样就是“同源”了。ajax在请求时就会因为这个同源的问题而决定是否带上cookie，这样解释应该没有问题了吧，还不知道同源策略的，应该去谷歌一下看看。
+x.open('GET', f + u, true)
+x.withCredentials = true // 这句话是重点
+x.send()
+//express服务器端
+app.use(function (req,res,next) {
+  res.header('Access-Control-Allow-Origin', 'http://172.17.14.250:8080');
+  // res.header('Access-Control-Allow-Credentials','true');
+  // res.header("Access-Control-Allow-Headers", "Content-Type,username");
+  next()
+});
 //阻止修改对象preventExtensions,不可以拓展,可以修改删除
 var person = {name:'tom'}
 console.log(Object.isExtensible(person))//true
@@ -1230,7 +1245,7 @@ new Promise((resolve, reject) => {
   }).then(() => {
     console.log('第三层结束')
   })
-  //  fn(4).then中传2个方法,第二个是失败的方法,或者用catch代替它
+//  fn(4).then中传2个方法,第二个是失败的方法,或者用catch代替它
   let fn = function(num){
     return new Promise((resolve,reject)=>{
       if(num>5){
@@ -1251,7 +1266,7 @@ new Promise((resolve, reject) => {
   }).catch(function(err){
     console.log('error: ',err);
   })
-  //promise,all
+  //promise,all全部完成,方法才结束
   function f (src) {
     return new Promise((resolve,reject)=>{
       let img=new Image();
@@ -1284,10 +1299,8 @@ new Promise((resolve, reject) => {
   })
 //js代码规范
 变量名应为名词如 car 或 person
-函数名应该以动词开始，如 getName()。返回布尔类型值的函数一般以 is 开头，如
-isEnable()
-变量和函数都应使用合乎逻辑的名字，不要担心长度。长度问题可以通过后处理和压缩（本章
-后面会讲到）来缓解
+函数名应该以动词开始，如 getName()。返回布尔类型值的函数一般以 is 开头，如isEnable()
+变量和函数都应使用合乎逻辑的名字，不要担心长度。长度问题可以通过后处理和压缩（本章后面会讲到）来缓解
 1.最好别分别定义module.exports和exports
 2.NodeJs开发者建议导出对象用module.exports,导出多个方法和变量用exports
 //代码规范
