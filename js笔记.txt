@@ -1549,6 +1549,19 @@ function bubbleRank(arr){
   }
   return arr
 }
+//webpack打包文件,去除map文件
+config/index.js
+productionSourceMap: false,
+//webpack打包文件,压缩大图片,先安装插件,然后写入配置文件
+cnpm install image-webpack-loader --save-dev
+{
+test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+loader: 'image-webpack-loader',
+options: {
+  bypassOnDebug: true,
+}
+},
+
                         
                         
                         
