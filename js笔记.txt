@@ -1561,6 +1561,20 @@ options: {
   bypassOnDebug: true,
 }
 },
+// vue打包后,在服务器上,刷新页面404问题
+由于刷新页面,导致重新向服务器发送请求,服务器无法匹配,出现404页面
+由于前端npm打包时,已经对路由进行配置,所以开发环境没有这个问题
+解决方法,1.将nginx中的location配置修改为如下代码
+2.使用vue-router官网的代码
+https://segmentfault.com/a/1190000016653688?utm_source=tag-newest
+location /{
+    root   html;
+    index  index.html index.htm;
+    if (!-e $request_filename) {
+        rewrite ^/(.*) /index.html last;
+        break;
+    }
+}
 
                         
                         
