@@ -1599,6 +1599,10 @@ left:50px;
 .inter_learn .pic:hover:after{
     opacity: .8;
 }
+vue watch立即生效
+immediate: true
+vue router.beforeEach立即生效
+router.beforeEach放在new Vue前面
 
 
 
