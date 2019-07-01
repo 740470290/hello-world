@@ -1603,7 +1603,15 @@ vue watch立即生效
 immediate: true
 vue router.beforeEach立即生效
 router.beforeEach放在new Vue前面
-
+//ajax发送多文件,ajax发送表单
+<form ref="form" onsubmit="return false">
+<input type="file" accept="image/*" name="worksPictures" multiple="multiple" class="custom-file-input" id="customFile">
+<input class="btn btn-success" type="submit" value="上传" @click="submit">
+</form>
+=======================
+const form=new FormData(this.$refs.form);
+axios.post('/excellentWorks/add',form)
+或者放在原生ajax的send(form)里
 
 
                         
