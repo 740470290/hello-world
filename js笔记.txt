@@ -1612,6 +1612,11 @@ router.beforeEach放在new Vue前面
 const form=new FormData(this.$refs.form);
 axios.post('/excellentWorks/add',form)
 或者放在原生ajax的send(form)里
+// vue路由懒加载
+// import Login from '@/components/Login'
+改写为
+const Login = () => import('@/components/Login')
+
 
 
                         
