@@ -1,8 +1,4 @@
 vue webpack打包静态资源路径错误,解决
-config/index.js
- assetsSubDirectory: 'static',
-assetsPublicPath: './',//重点
-proxyTable: {},
 build/utils.js
 if (options.extract) {
   return ExtractTextPlugin.extract({
