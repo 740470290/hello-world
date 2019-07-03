@@ -1,3 +1,7 @@
+//node.js跨域问题
+res.writeHead(200, {'Content-Type': 'text/plain','Access-Control-Allow-Origin':'*'});
+
+
 vue webpack打包静态资源路径错误,解决
 build/utils.js
 if (options.extract) {
@@ -7,9 +11,6 @@ if (options.extract) {
     publicPath:'../../'//重点
   })
 }
-
-
-
 var a=document.getElementById('a')
 //改变css .style只能获得内联样式
 window.getComputedStyle(a).color
