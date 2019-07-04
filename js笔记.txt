@@ -1,6 +1,28 @@
 //node.js跨域问题
 res.writeHead(200, {'Content-Type': 'text/plain','Access-Control-Allow-Origin':'*'});
-
+// webpack
+clean-webpack-plugin
+const { CleanWebpackPlugin } =require('clean-webpack-plugin')
+new CleanWebpackPlugin(),
+打包前清除全部数据
+// webpack-cli 的常用指令 
+(1) --mode: 指定模式 
+(2) --config: 指定一个webpack的配置文件 
+(3) --watch : 开始监听模式 
+(4) --hot: 开启模块热更新 
+(5) --progress: 显示打包进度
+(6) --profile: 详细输出每个环节的耗时，方便排查打包速度瓶颈  
+webpack提供了两个基本的loader来处理css
+1. css-loader : 识别css语法
+2. style-loader: 把样式内联到html中
+// CSS Module (模块化)
+css-loader 下设置 options: { modules : true }
+// CSS预处理的配置(less,sass,stylus)
+webpack 处理 less 文件， 需要 less-loader, sass文件需要sass-loader | node-sass
+// 独立打包css文件(mini-css-extract-plugin)
+目前为止，css 是被打包到JS中的，不利于CSS的调试，所以一般会吧CSS单独打包出来
+利用webpack提供的插件
+cnpm i -D mini-css-extract-plugin
 
 vue webpack打包静态资源路径错误,解决
 build/utils.js
