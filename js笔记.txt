@@ -1,3 +1,15 @@
+// webpack作为服务器,发送信息
+before(app) {
+  const goodsData = require('./goods.json');
+  app.get('/goods', (req,res)=>{
+    return res.json( goodsData )
+  })
+
+
+
+
+
+
 //node.js跨域问题
 res.writeHead(200, {'Content-Type': 'text/plain','Access-Control-Allow-Origin':'*'});
 // webpack
@@ -25,8 +37,6 @@ webpack 处理 less 文件， 需要 less-loader, sass文件需要sass-loader | 
 cnpm i -D mini-css-extract-plugin
 // url-loader
 打包图片的路径
-
-
 vue webpack打包静态资源路径错误,解决
 build/utils.js
 if (options.extract) {
